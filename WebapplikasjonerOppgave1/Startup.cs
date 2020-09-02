@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 //Test fra Synne
+// Test fra Martine
 
 namespace WebapplikasjonerOppgave1
 {
