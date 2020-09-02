@@ -9,7 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 //Test fra Synne
+<<<<<<< HEAD
 // Test fra Martine
+=======
+//camilla
+>>>>>>> 2b3ef5a... testCamilla
 
 namespace WebapplikasjonerOppgave1
 {
