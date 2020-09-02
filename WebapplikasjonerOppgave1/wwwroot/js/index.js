@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $.get("bestilling/HentAlleStartStasjoner", function (startStasjoner) {
+    $.get("Bestilling/HentAlleStartStasjoner", function (startStasjoner) {
         listDestinasjoner(startStasjoner);
     });
 
