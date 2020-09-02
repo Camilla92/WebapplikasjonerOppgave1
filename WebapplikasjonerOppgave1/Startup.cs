@@ -6,13 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-//Test fra Synne
-
-// Test fra Martine
-
-//camilla
-
-
 namespace WebapplikasjonerOppgave1
 {
     public class Startup
@@ -32,6 +25,7 @@ namespace WebapplikasjonerOppgave1
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                DbInit.Initialize(app);
             }
 
             app.UseHttpsRedirection();

@@ -13,22 +13,23 @@ namespace WebapplikasjonerOppgave1.Models
         public string Navn { get; set; }
         public string Telefonnummer { get; set; }
 
-        public virtual List<Tur> turer { get; set; }
+        public virtual List<Tur> Turer { get; set; }
 
     }
 
     public class Tur
     {
         [Key]
-        public int TId { get; set; }
-        public string Destinasjon { get; set; }
-        public DateTime dato { get; set; }
+        public int RId { get; set; }
+        public string StartStasjon { get; set; }
+        public string EndeStasjon { get; set; }
+        public DateTime Tid { get; set; }
     }
 
   
     public class NorwayContext : DbContext
     {
-        public DbSet<Kunde> kunder { get; set; }
+        public DbSet<Kunde> Kunder { get; set; }
         public DbSet<Tur> Turer { get; set; }
 
         public NorwayContext(DbContextOptions<NorwayContext> options)
