@@ -1,21 +1,22 @@
 ﻿$(function () {
-    $.get("Bestilling/HentAlleStartStasjoner", function (startStasjoner) {
-        listDestinasjoner(startStasjoner);
-    });
-
+    HentAlleStartStasjoner();
 });
 
+function HentAlleStartStasjoner() {
+    $.get("HentAlleStartStasjoner", function (startStasjoner) {
+        listDestinasjoner(startStasjoner);
+    });
+}
 
-function listDestinasjoner(StartStasjoner) {
-    destinasjonSelect: $("#destinasjon").val()
 
-    var opt;
-    for (var i = 0, len = destinasjonSelect.options.length; i < len; i++) {
-        opt = destinasjonSelect.options[i];
-        if (opt.selected === true) {
-            break;
-        }
+function listDestinasjoner(startStasjoner) {
+    let ut = "<select id='destinasjon'>";
+    for (const tur of startStasjoner) {
+        ut += "<option>" + tur + "</option>";
     }
-    return opt;
+    ut += "</select>";
+    $("#destinasjon").html(ut);
 
+
+    
 }
