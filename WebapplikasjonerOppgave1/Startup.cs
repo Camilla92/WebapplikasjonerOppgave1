@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+//Test fra Synne
+
 namespace WebapplikasjonerOppgave1
 {
     public class Startup
