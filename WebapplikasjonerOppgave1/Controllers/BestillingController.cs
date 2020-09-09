@@ -19,7 +19,7 @@ namespace WebapplikasjonerOppgave1.Controllers
         [HttpPost]
         public List<string> HentAlleStartStasjoner()
         {
-            List<Tur> alleTurer = _db.Turer.ToList();
+            List<Stasjoner> alleTurer = _db.Stasjoner.ToList();
             var alleStartStasjoner = new List<string>();
             foreach (var tur in alleTurer)
             {
@@ -28,8 +28,6 @@ namespace WebapplikasjonerOppgave1.Controllers
             };
             return alleStartStasjoner;
         }
-
-
     }
 }
 
