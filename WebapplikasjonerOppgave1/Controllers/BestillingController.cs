@@ -17,11 +17,10 @@ namespace WebapplikasjonerOppgave1.Controllers
         }
 
         [HttpPost]
-
-        public List<String> HentAlleStartStasjoner()
+        public List<string> HentAlleStartStasjoner()
         {
             List<Tur> alleTurer = _db.Turer.ToList();
-            var alleStartStasjoner = new List<String>();
+            var alleStartStasjoner = new List<string>();
             foreach (var tur in alleTurer)
             {
                 var EnStartStasjon = tur.StartStasjon;

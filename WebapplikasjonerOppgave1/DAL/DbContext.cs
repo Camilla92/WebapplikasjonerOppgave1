@@ -2,42 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using WebapplikasjonerOppgave1.DAL;
 
 namespace WebapplikasjonerOppgave1.Models
 {
-
-    public class Kunde
-    {
-        [Key]
-        public int KId { get; set; }
-        public string Navn { get; set; }
-        public string Telefonnummer { get; set; }
-
-        public virtual List<Tur> Turer { get; set; }
-
-    }
-
-    public class Tur
-    {
-        [Key]
-        public int RId { get; set; }
-        public Stasjon StartStasjon { get; set; }
-        public Stasjon EndeStasjon { get; set; }
-        public DateTime Tid { get; set; }
-    }
-
-    public class Stasjon
-    {
-        [Key]
-        public int SId { get; set; }
-        public string Navn { get; set; }
-}
-
-
-public class NorwayContext : DbContext
+    public class NorwayContext : DbContext
     {
         public DbSet<Kunde> Kunder { get; set; }
         public DbSet<Tur> Turer { get; set; }
+        public DbSet<Stasjon> Stasjoner { get; set; }
+        public DbSet<Bestilling> Bestillinger { get; set; }
 
         public NorwayContext(DbContextOptions<NorwayContext> options)
             : base(options)

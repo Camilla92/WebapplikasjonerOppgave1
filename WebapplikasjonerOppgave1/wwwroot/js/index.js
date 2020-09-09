@@ -4,14 +4,18 @@
 
 function HentAlleStartStasjoner() {
     $.get("HentAlleStartStasjoner", function (startStasjoner) {
-        listDestinasjoner(startStasjoner);
+        if (startStasjoner) {
+            listDestinasjoner(startStasjoner);
+        } else {
+            $("#feil").html("Feil i db");
+        }
     });
 }
 
 
 function listDestinasjoner(startStasjoner) {
     let ut = "<select id='destinasjon'>";
-    for (const tur of startStasjoner) {
+    for (let tur of startStasjoner) {
         ut += "<option>" + tur + "</option>";
     }
     ut += "</select>";
