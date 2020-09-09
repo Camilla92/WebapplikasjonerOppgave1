@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebapplikasjonerOppgave1.DAL
 {
     public class Bestilling
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BId {get; set;}
         public virtual Kunde Kunde { get; set; }
         public int AntallBarn { get; set; }
