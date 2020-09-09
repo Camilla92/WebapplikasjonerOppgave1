@@ -17,15 +17,21 @@ namespace WebapplikasjonerOppgave1.Controllers
             _db = db;
         }
 
-        [HttpPost]
-        public List<Stasjon> HentAlleStasjoner()
+        //[HttpPost]
+        public List<BussBestilling> HentAlleStasjoner()
         {
             List<Stasjon> alleStasjoner = _db.Stasjoner.ToList();
-            return alleStasjoner;
+            List<BussBestilling> alleBestillinger = new List<BussBestilling>();
+
+
+            var enBestilling = new BussBestilling
+            {
+                EndeStasjon = e;
+             }
+
+
+
+            return alleBestillinger;
         }
-
-
     }
 }
-
-//TEst

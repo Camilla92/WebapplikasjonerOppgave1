@@ -32,6 +32,9 @@ namespace WebapplikasjonerOppgave1.Models
                 context.Kunder.Add(kunde1);
                 */
 
+
+
+
                 var stasjon1 = new Stasjon { StasjonsNavn = "Oslo" };
                 var stasjon2 = new Stasjon { StasjonsNavn = "Bergen" };
                 var stasjon3 = new Stasjon { StasjonsNavn = "Trondheim" };

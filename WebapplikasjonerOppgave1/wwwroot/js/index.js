@@ -23,8 +23,10 @@ function listDestinasjoner(stasjoner) {
 }
 
 function skrivUt(stasjoner) {
+    let ut;
     for (let stasjon of stasjoner) {
         ut += stasjon;
-        console.log(ut);
     }
+    console.log(ut);
+
 }
