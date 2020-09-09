@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebapplikasjonerOppgave1.Models
 {
-    
+
     public class Kunde
     {
         [Key]
@@ -21,13 +21,20 @@ namespace WebapplikasjonerOppgave1.Models
     {
         [Key]
         public int RId { get; set; }
-        public string StartStasjon { get; set; }
-        public string EndeStasjon { get; set; }
+        public Stasjon StartStasjon { get; set; }
+        public Stasjon EndeStasjon { get; set; }
         public DateTime Tid { get; set; }
     }
 
-  
-    public class NorwayContext : DbContext
+    public class Stasjon
+    {
+        [Key]
+        public int SId { get; set; }
+        public string Navn { get; set; }
+}
+
+
+public class NorwayContext : DbContext
     {
         public DbSet<Kunde> Kunder { get; set; }
         public DbSet<Tur> Turer { get; set; }
