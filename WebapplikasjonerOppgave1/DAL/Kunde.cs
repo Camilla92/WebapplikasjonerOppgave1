@@ -8,12 +8,10 @@ namespace WebapplikasjonerOppgave1.DAL
     public class Kunde
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int KId { get; set; }
         public string Fornavn { get; set; }
         public string Etternavn { get; set; }
         public string Telefonnummer { get; set; }
         public virtual List<Bestilling> Bestilling { get; set; }
-        //string test
     }
 }

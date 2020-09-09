@@ -8,7 +8,6 @@ namespace WebapplikasjonerOppgave1.DAL
     public class Tur
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TurId { get; set; }
         public virtual Stasjon StartStasjon { get; set; }
         public virtual Stasjon EndeStasjon { get; set; }

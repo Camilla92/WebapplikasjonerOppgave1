@@ -7,7 +7,6 @@ namespace WebapplikasjonerOppgave1.DAL
     public class Stasjon
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SId { get; set; }
         public string StasjonsNavn { get; set; }
     }
