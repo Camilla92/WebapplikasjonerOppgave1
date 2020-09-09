@@ -2,8 +2,9 @@
 namespace WebapplikasjonerOppgave1.Models
 {
 
-    public class Bestilling
+    public class BussBestilling
     {
+        public int Id { get; set; }
         public string Fornavn { get; set; }
         public string Etternavn { get; set; }
         public string Telefonnummer { get; set; }
