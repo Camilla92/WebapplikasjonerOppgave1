@@ -18,16 +18,10 @@ namespace WebapplikasjonerOppgave1.Controllers
         }
 
         [HttpPost]
-        public List<string> HentAlleStartStasjoner()
+        public List<Stasjon> HentAlleStasjoner()
         {
             List<Stasjon> alleStasjoner = _db.Stasjoner.ToList();
-            var alleStartStasjoner = new List<string>();
-            foreach (var stasjon in alleStasjoner)
-            {
-                var EnStartStasjon = stasjon.StasjonsNavn;
-                alleStartStasjoner.Add(EnStartStasjon);
-            };
-            return alleStartStasjoner;
+            return alleStasjoner;
         }
 
 

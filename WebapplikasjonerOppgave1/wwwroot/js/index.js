@@ -1,11 +1,11 @@
 ﻿$(function () {
-    HentAlleStartStasjoner();
+    HentAlleStasjoner();
 });
 
-function HentAlleStartStasjoner() {
-    $.get("Bestilling/HentAlleStartStasjoner", function (startStasjoner) {
-        if (startStasjoner) {
-            listDestinasjoner(startStasjoner);
+function HentAlleStasjoner() {
+    $.get("Bestilling/HentAlleStasjoner", function (stasjoner) {
+        if (stasjoner) {
+            skrivUt(stasjoner);
         } else {
             $("#feil").html("Feil i db");
         }
@@ -13,14 +13,18 @@ function HentAlleStartStasjoner() {
 }
 
 
-function listDestinasjoner(startStasjoner) {
+function listDestinasjoner(stasjoner) {
     let ut = "<select id='destinasjon'>";
-    for (let tur of startStasjoner) {
-        ut += "<option>" + tur + "</option>";
+    for (let stasjon of stasjoner) {
+        ut += "<option>" + stasjon + "</option>";
     }
     ut += "</select>";
-    $("#destinasjon").html(ut);
+    $("#stasjon").html(ut);
+}
 
-
-    
+function skrivUt(stasjoner) {
+    for (let stasjon of stasjoner) {
+        ut += stasjon;
+        console.log(ut);
+    }
 }
