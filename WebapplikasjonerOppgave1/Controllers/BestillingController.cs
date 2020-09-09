@@ -18,7 +18,7 @@ namespace WebapplikasjonerOppgave1.Controllers
         }
 
         //[HttpPost]
-        public List<BussBestilling> HentAlleStasjoner()
+        /*public List<BussBestilling> HentAlleStasjoner()
         {
             List<Stasjon> alleStasjoner = _db.Stasjoner.ToList();
             List<BussBestilling> alleBestillinger = new List<BussBestilling>();
@@ -32,6 +32,6 @@ namespace WebapplikasjonerOppgave1.Controllers
 
 
             return alleBestillinger;
-        }
+        }*/
     }
 }
