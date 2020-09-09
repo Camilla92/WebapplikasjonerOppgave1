@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-
+using WebapplikasjonerOppgave1.DAL;
 
 namespace WebapplikasjonerOppgave1.Models
 {
@@ -13,11 +13,11 @@ namespace WebapplikasjonerOppgave1.Models
             {
                 var context = serviceScope.ServiceProvider.GetService<NorwayContext>();
 
-                // må slette og opprette databasen hver gang når den skalinitieres (seed`es)
+               // må slette og opprette databasen hver gang når den skalinitieres (seed`es)
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
-                DateTime date1 = new DateTime (2008, 3, 1, 7, 0, 0 );
+                /*DateTime date1 = new DateTime (2008, 3, 1, 7, 0, 0 );
                 DateTime date2 = new DateTime(2008, 3, 2, 9, 0, 0);
 
 
@@ -30,8 +30,24 @@ namespace WebapplikasjonerOppgave1.Models
                 context.Turer.Add(tur1);
                 context.Turer.Add(tur2);
                 context.Kunder.Add(kunde1);
+                */
+
+                var stasjon1 = new Stasjon { StasjonsNavn = "Oslo" };
+                var stasjon2 = new Stasjon { StasjonsNavn = "Bergen" };
+                var stasjon3 = new Stasjon { StasjonsNavn = "Trondheim" };
+                var stasjon4 = new Stasjon { StasjonsNavn = "Bodø" };
+
+                context.Stasjoner.Add(stasjon1);
+                context.Stasjoner.Add(stasjon2);
+                context.Stasjoner.Add(stasjon3);
+                context.Stasjoner.Add(stasjon4);
+
+
 
                 context.SaveChanges();
+
+
+
             }
         }
     }

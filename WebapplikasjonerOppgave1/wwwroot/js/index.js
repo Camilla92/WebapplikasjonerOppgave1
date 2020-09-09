@@ -3,7 +3,7 @@
 });
 
 function HentAlleStartStasjoner() {
-    $.get("HentAlleStartStasjoner", function (startStasjoner) {
+    $.get("Bestilling/HentAlleStartStasjoner", function (startStasjoner) {
         if (startStasjoner) {
             listDestinasjoner(startStasjoner);
         } else {

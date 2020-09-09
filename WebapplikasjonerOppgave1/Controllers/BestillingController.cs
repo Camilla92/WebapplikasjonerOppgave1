@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebapplikasjonerOppgave1.Models;
 using Microsoft.AspNetCore.Mvc;
+using WebapplikasjonerOppgave1.DAL;
 
 namespace WebapplikasjonerOppgave1.Controllers
 {
@@ -19,15 +20,17 @@ namespace WebapplikasjonerOppgave1.Controllers
         [HttpPost]
         public List<string> HentAlleStartStasjoner()
         {
-            List<Stasjoner> alleTurer = _db.Stasjoner.ToList();
+            List<Stasjon> alleStasjoner = _db.Stasjoner.ToList();
             var alleStartStasjoner = new List<string>();
-            foreach (var tur in alleTurer)
+            foreach (var stasjon in alleStasjoner)
             {
-                var EnStartStasjon = tur.StartStasjon;
+                var EnStartStasjon = stasjon.StasjonsNavn;
                 alleStartStasjoner.Add(EnStartStasjon);
             };
             return alleStartStasjoner;
         }
+
+
     }
 }
 
