@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using WebapplikasjonerOppgave1.DAL;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Stasjon = WebapplikasjonerOppgave1.Models.Stasjon;
 
 namespace WebapplikasjonerOppgave1.Controllers
 {
@@ -44,7 +43,7 @@ namespace WebapplikasjonerOppgave1.Controllers
                 List<Stasjon> alleStasjoner = _db.Stasjoner.ToList();
                 return alleStasjoner;
             }
-            catch
+            catch (Exception e)
             {
                 return null;
             }
