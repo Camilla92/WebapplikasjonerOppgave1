@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebapplikasjonerOppgave1.DAL;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Stasjon = WebapplikasjonerOppgave1.Models.Stasjon;
+using Stasjon = WebapplikasjonerOppgave1.DAL.Stasjon;
+using Microsoft.Extensions.Logging;
 
 namespace WebapplikasjonerOppgave1.Controllers
 {
@@ -14,34 +15,167 @@ namespace WebapplikasjonerOppgave1.Controllers
     public class BestillingController : ControllerBase
     {
         private readonly NorwayContext _db;
+        private readonly ILogger<BestillingController> _log;
 
-        public BestillingController(NorwayContext db)
+        public BestillingController(NorwayContext db, ILogger<BestillingController> log)
         {
             _db = db;
+            _log = log;
         }
 
-        public List<Stasjon> HentAlleStasjoner()
+        public async Task<ActionResult> HentAlleStasjoner()
         {
-            try
-            {
-                List<Stasjon> alleStasjoner = _db.Stasjoner.ToList();
-                return alleStasjoner;
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
+
+
+            List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
+            return Ok(alleStasjoner);
+
+
         }
 
-       /* public bool lagre(BussBestilling innBussBestilling)
+        /*public async Task<ActionResult> Lagre(Kunde innKunde, Bestilling innBestilling)
         {
-            var nyBestillingRad = new Bestilling();
-            nyBestillingRad.Kunde.Fornavn = innBussBestilling.Fornavn;
-            nyBestillingRad.Kunde.Fornavn = innBussBestilling.Etternavn;
-
-        }*/
-        
+            bool returOk = await _db.Lagre(Kunde innKunde);
+            if (!returOk) {
+                _log.LogInformation("Kunden ble ikke lagret");
+                return BadRequest("Kunden ble ikke lagret");
+            }
+            return Ok("Kunde lagret");
 
         }
+        */
+
+
+
+
+        public async Task<List<Stasjon>> HentEndeStasjoner(Tur innStartstasjon)
+        {
+
+            List<Tur> alleTurer = await _db.Turer.ToListAsync();
+            var endeStasjon = new List<Stasjon>();
+
+            foreach (var turen in alleTurer)
+            {
+                if (innStartstasjon.Equals(turen.StartStasjon))
+                {
+                    foreach (var enEndeStasjon in endeStasjon)
+                    {
+                        if (!turen.EndeStasjon.Equals(enEndeStasjon))
+                        {
+                            endeStasjon.Add(turen.EndeStasjon);
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+            return endeStasjon;
+
+            //return Ok(alleTurer);
+            //Tur enTur = await _db.HentEndeStasjoner(innStartstasjon);
+            // Tur enTur = await _db.Turer.FirstOrDefault(k=> k.StartStasjon = innStartstasjon.EndeStasjon);
+
+            // Kunde funnetKunde = await _db.Kunder.FirstOrDefault(k => k.Fornavn
+            // = innBussBestilling.Fornavn && k => k.Etternavn = innBussBestilling.Etternavn);
+
+
+
+            /* if (enTur == null)
+             {
+                 _log.LogInformation("Turen ble ikke funnet");
+                 return NotFound("Turen ble ikke funnet");
+             }
+             return Ok("Turen ble funnet");
+            */
+
+        }
+
+        /*public async Task<ActionResult> HentEnTur(Stasjon startStasjon, Stasjon endeStasjon)
+        {
+            Tur enTur = await _db.HentEnTur();
+
+
+            if (enTur == null)
+            {
+                _log.LogInformation("Turen ble ikke funnet");
+                return NotFound("Turen ble ikke funnet");
+            }
+            return Ok("Turen ble funnet");
+
+        }
+
+        public async Task<ActionResult> HentEnTur(Stasjon startStasjon, Stasjon endeStasjon, DateTime tid)
+        {
+            Tur enTur = await _db.HentEnTur();
+
+
+            if (enTur == null)
+            {
+                _log.LogInformation("Turen ble ikke funnet");
+                return NotFound("Turen ble ikke funnet");
+            }
+            return Ok("Turen ble funnet");
+
+        }
+        */
+
+
+
+        /* public async Task<ActionResult> lagre(BussBestilling innBussBestilling)
+          {
+
+             var bestilling = new Bestilling()
+             {
+                 AntallBarn = innBussBestilling.AntallBarn,
+                 AntallVoksne = innBussBestilling.AntallVoksne,
+                 TotalPris = innBussBestilling.TotalPris,
+                 Tur = innBussBestilling.Tur,
+             };
+
+             Kunde funnetKunde = await _db.Kunder.FirstOrDefault(k => k.Fornavn
+             = innBussBestilling.Fornavn && k => k.Etternavn = innBussBestilling.Etternavn);
+
+             if (funnetKunde == null)
+             {
+
+                 var kunde = new Kunde
+                 {
+                     Fornavn = innBussBestilling.Fornavn,
+                     Etternavn= innBussBestilling.Etternavn,
+                     Telefonnummer= innBussBestilling.Telefonnummer,
+                 };
+
+                 kunde.Bestillinger = new List<Bestilling>();
+                 kunde.Bestillinger.Add(bestilling);
+                 await _db.Kunder.Add(kunde);
+                 await _db.SaveChangesAsync();
+
+             }
+             else
+             {
+
+                 funnetKunde.Bestillinger.Add(bestilling);
+                 await _db.SaveChangesAsync();
+
+
+             }
+
+
+             bool returOKBestilling = await _db.Lagre(Bestilling innBestilling);
+             bool returOKKunde = await _db.Lagre(Bestilling innBestilling);
+
+             var nyBestillingRad = new Bestilling();
+              nyBestillingRad.Kunde.Fornavn = innBussBestilling.Fornavn;
+              nyBestillingRad.Kunde.Fornavn = innBussBestilling.Etternavn;
+
+          }
+
+
+     }
+        */
     }
+}
 

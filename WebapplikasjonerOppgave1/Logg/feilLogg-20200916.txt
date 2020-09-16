@@ -1,0 +1,4 @@
+2020-09-16T12:03:35.6474980+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-09-16T12:03:35.7457870+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-16T12:03:35.7629080+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-16T12:03:35.7902400+02:00  [INF] Content root path: "/Users/camillacarlsen/Documents/GitHub/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
