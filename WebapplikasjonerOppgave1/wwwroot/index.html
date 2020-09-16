@@ -4,27 +4,20 @@
     <meta charset="utf-8" />
     <title>NOR-WAY</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/2.3.1/css/bootstrap.min.css">
     <script src="js/index.js"></script>
 </head>
-
 <body>
     <div class="container">
-        <h1>NOR-WAY</h1>
-        <form class="form">
-            <h2>Jeg skal reise fra</h2>
-            <table class="table">
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <button class="btn btn-primary">Velg</button>
-                    </td>
-                </tr>
-            </table>
-            <div id="feil"></div>
-            <div id="stasjon"></div> <!--For å prøve å skrive ut stasjoner-->
-        </form>
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Alle Bestillingene:</h3>
+                <div id="bestillinger" class="table-responsive"></div>
+                <a href="/Registrer.html" class="btn btn-primary">Register</a>
+                <button class="btn btn-danger" onclick="slettAlle()">Slett alle bestillinger</button>
+                <div id="feil" style="color: red"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

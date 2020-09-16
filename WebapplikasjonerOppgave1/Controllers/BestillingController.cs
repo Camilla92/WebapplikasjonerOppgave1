@@ -20,23 +20,6 @@ namespace WebapplikasjonerOppgave1.Controllers
             _db = db;
         }
 
-        //[HttpPost]
-        /*public async Task<List<Stasjon>> HentAlleStasjoner()
-        {
-            try
-            {
-                List<Stasjon> alleStasjoner = await _db.Stasjoner.Select(k => new Stasjon
-                {
-                    StasjonsNavn = k.StasjonsNavn
-                }).ToListAsync();
-                return alleStasjoner;
-            }
-            catch
-            {
-                return null;
-            }*/
-
-
         public List<Stasjon> HentAlleStasjoner()
         {
             try
@@ -48,25 +31,17 @@ namespace WebapplikasjonerOppgave1.Controllers
             {
                 return null;
             }
+        }
 
+       /* public bool lagre(BussBestilling innBussBestilling)
+        {
+            var nyBestillingRad = new Bestilling();
+            nyBestillingRad.Kunde.Fornavn = innBussBestilling.Fornavn;
+            nyBestillingRad.Kunde.Fornavn = innBussBestilling.Etternavn;
 
+        }*/
+        
 
-
-
-
-            /*
-            List<Stasjon> alleStasjoner = _db.Stasjoner.ToList();
-            List<BussBestilling> alleBestillinger = new List<BussBestilling>();
-
-
-            var enBestilling = new BussBestilling
-            {
-                EndeStasjon = "Oslo";
-             }
-
-
-
-            return alleBestillinger;*/
         }
     }
-}
+
