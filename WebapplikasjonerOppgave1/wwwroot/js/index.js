@@ -5,23 +5,41 @@
 function HentAlleStasjoner() {
     $.get("bestilling/hentAlleStasjoner", function (stasjoner) {
         if (stasjoner) {
-            listDestinasjoner(stasjoner);
+            listStartStasjoner(stasjoner);
         } else {
             $("#feil").html("Feil i db");
         }
     });
 }
 
-
-function listDestinasjoner(stasjoner) {
-    let ut = "<select id='destinasjon'>";
+function listStartStasjoner(stasjoner) {
+    let ut = "<select>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
     }
     ut += "</select>";
-    $("#stasjon").html(ut);
+    $("#startstasjon").html(ut);
     console.log(JSON.stringify(stasjoner));
 }
+
+/*
+function listEndeStasjoner(startstasjon) {
+    const url = "bestilling/hentEndeStasjoner?innStartstasjon=" + startstasjon;
+    $.get(url, function (stasjoner) {
+        if (stasjoner) {
+            let ut = "<select>";
+            for (let stasjon of stasjoner) {
+                ut += "<option>" + stasjon.stasjonsNavn + "</option>";
+            }
+            ut += "</select>";
+            $("#endestasjon").html(ut);
+            console.log(JSON.stringify(stasjoner));
+        } else {
+            $("#feil").html("Feil i db");
+        }
+    });
+
+}*/
 
 function validerOgLagBestilling() {
     const FornavnOK = validerFornavn($("#fornavn").val());

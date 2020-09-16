@@ -27,15 +27,10 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         public async Task<ActionResult> HentAlleStasjoner()
 
-        public List<Tur> HentAlleStasjoner()
-
         {
-
 
             List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
             return Ok(alleStasjoner);
-
-
         }
 
         /*public async Task<ActionResult> Lagre(Kunde innKunde, Bestilling innBestilling)
@@ -53,7 +48,7 @@ namespace WebapplikasjonerOppgave1.Controllers
 
 
 
-        public async Task<List<Stasjon>> HentEndeStasjoner(Tur innStartstasjon)
+        public async Task<List<Stasjon>> HentEndeStasjoner(String startStasjonsNavn)
         {
 
             List<Tur> alleTurer = await _db.Turer.ToListAsync();
@@ -62,22 +57,19 @@ namespace WebapplikasjonerOppgave1.Controllers
             foreach (var turen in alleTurer)
             {
 
-                if (innStartstasjon.Equals(turen.StartStasjon))
+                if (startStasjonsNavn.Equals(turen.StartStasjon.StasjonsNavn))
                 {
                     foreach (var enEndeStasjon in endeStasjon)
                     {
-                        if (!turen.EndeStasjon.Equals(enEndeStasjon))
+                        if (!turen.EndeStasjon.StasjonsNavn.Equals(enEndeStasjon.StasjonsNavn))
                         {
                             endeStasjon.Add(turen.EndeStasjon);
                         }
                     }
                 }
-
-                List<Tur> alleTurer = _db.Turer.ToList();
-                return alleTurer;
             }
-
             return endeStasjon;
+
 
             //return Ok(alleTurer);
             //Tur enTur = await _db.HentEndeStasjoner(innStartstasjon);
@@ -183,4 +175,3 @@ namespace WebapplikasjonerOppgave1.Controllers
         */
     }
 }
-
