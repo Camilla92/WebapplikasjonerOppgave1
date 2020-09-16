@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebapplikasjonerOppgave1.DAL;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Stasjon = WebapplikasjonerOppgave1.Models.Stasjon;
 
 namespace WebapplikasjonerOppgave1.Controllers
 {
