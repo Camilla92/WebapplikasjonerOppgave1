@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Stasjon = WebapplikasjonerOppgave1.DAL.Stasjon;
 using Microsoft.Extensions.Logging;
 
+
 namespace WebapplikasjonerOppgave1.Controllers
 {
     [Route("[controller]/[action]")]
@@ -23,7 +24,11 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log = log;
         }
 
+
         public async Task<ActionResult> HentAlleStasjoner()
+
+        public List<Tur> HentAlleStasjoner()
+
         {
 
 
@@ -56,6 +61,7 @@ namespace WebapplikasjonerOppgave1.Controllers
 
             foreach (var turen in alleTurer)
             {
+
                 if (innStartstasjon.Equals(turen.StartStasjon))
                 {
                     foreach (var enEndeStasjon in endeStasjon)
@@ -64,12 +70,11 @@ namespace WebapplikasjonerOppgave1.Controllers
                         {
                             endeStasjon.Add(turen.EndeStasjon);
                         }
-
                     }
-
                 }
 
-
+                List<Tur> alleTurer = _db.Turer.ToList();
+                return alleTurer;
             }
 
             return endeStasjon;
