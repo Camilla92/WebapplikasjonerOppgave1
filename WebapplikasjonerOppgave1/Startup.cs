@@ -1,11 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using WebapplikasjonerOppgave1.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using WebapplikasjonerOppgave1.DAL;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Stasjon = WebapplikasjonerOppgave1.DAL.Stasjon;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
 
 namespace WebapplikasjonerOppgave1
 {
