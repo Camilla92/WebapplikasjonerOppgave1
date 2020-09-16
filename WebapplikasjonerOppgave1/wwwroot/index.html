@@ -10,12 +10,63 @@
 <body>
     <div class="container">
         <div class="row">
+            <div class="col-md-4">
+                <h2>NOR-WAY</h2>
+                <form class="form">
+                    <div class="form-group">
+                        <label>Jeg skal reise fra : </label>
+                        <div id="stasjon" class="dropdown" />
+                    </div>
+                    <div class="form-group">
+                        <label>Jeg skal reise til : </label>
+                        <div id="stasjon" class="dropdown" />
+                    </div>
+                    <div class="col-sm-3 col-md2">
+                        <label>Fornavn</label>
+                        <input type="text" id="fornavn" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Etternavn</label>
+                        <input type="text" id="etternavn" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonnr</label>
+                        <input type="text" id="telefonnr" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Antall barn</label>
+                        <input type="number" id="antallBarn" class="form-control" />
+                        <inline id="barnePris"></inline>
+                    </div>
+                    <div class="form-group">
+                        <label>Antall voksne</label>
+                        <input type="number" id="antallVoksne" class="form-control" />
+                        <inline id="voksenPris"></inline>
+                    </div>
+                    <div class="form-group">
+                        <label>Totalpris</label>
+                        <div id="totalPris"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tid</label>
+                        <div id="tid"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Startstasjon</label>
+                        <div id="startstasjon"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Endestasjon</label>
+                        <div id="endestasjon"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="btn btn-primary" id="reg" value="Registrer" onclick="lagreBestilling()" />
+                    </div>
+                </form>
+            </div>
             <div class="col-md-8">
-                <h3>Alle Bestillingene:</h3>
-                <div id="bestillinger" class="table-responsive"></div>
-                <a href="/Registrer.html" class="btn btn-primary">Register</a>
-                <button class="btn btn-danger" onclick="slettAlle()">Slett alle bestillinger</button>
-                <div id="feil" style="color: red"></div>
+                <h4>Alle Bestillingene:</h4>
+                <div id="bestillinger"></div>
             </div>
         </div>
     </div>
