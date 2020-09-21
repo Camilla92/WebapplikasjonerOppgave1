@@ -38,13 +38,7 @@ namespace WebapplikasjonerOppgave1.Controllers
             {
                 if (startStasjonsNavn.Equals(turen.StartStasjon.StasjonsNavn))
                 {
-                    foreach (var enEndeStasjon in endeStasjon)
-                    {
-                        if (!turen.EndeStasjon.StasjonsNavn.Equals(enEndeStasjon.StasjonsNavn))
-                        {
-                            endeStasjon.Add(turen.EndeStasjon);
-                        }
-                    }
+                    endeStasjon.Add(turen.EndeStasjon);
                 }
             }
             return endeStasjon;

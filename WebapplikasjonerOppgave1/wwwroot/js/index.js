@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner(startstasjon)' id='startstasjon'>";
+    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
     }
@@ -22,10 +22,10 @@ function listStartStasjoner(stasjoner) {
     console.log(JSON.stringify(stasjoner));
 }
 
-function listEndeStasjoner(startstasjon) {
-    let startstasjonn = $('#startstasjon option:selected').text();
+function listEndeStasjoner() {
+    let startstasjon = $('#startstasjon option:selected').text();
     console.log("StartStasjon: "+startstasjon);
-    const url = "bestilling/hentEndeStasjoner?innStartstasjon=" + startstasjon;
+    const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
             let ut = "<select>";
