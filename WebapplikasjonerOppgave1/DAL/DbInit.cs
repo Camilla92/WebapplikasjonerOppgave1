@@ -33,23 +33,29 @@ namespace WebapplikasjonerOppgave1.Models
 
 
                 /*---------OPPRETTER DATOER--------*/
-                DateTime date1 = new DateTime(2020, 3, 1, 7, 0, 0);
-                DateTime date2 = new DateTime(2020, 4, 2, 8, 2, 2);
+                string dato1 = "12/12/2020";
+                //string dato2 = "24/12/2020";
+
+                /*---------OPPRETTER TIDER--------*/
+                string tid1 = "09:00";
+                string tid2 = "15:00";
+                string tid3 = "20:00";
+
 
 
                 /*---------OPPRETTER TURER--------*/
-                var tur1 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = date1, BarnePris = 50, VoksenPris = 100};
-                var tur2 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon3, Tid = date2, BarnePris = 50, VoksenPris = 200 };
-                var tur3 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon4, Tid = date1, BarnePris = 50, VoksenPris = 100 };
-                var tur4 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon1, Tid = date2, BarnePris = 50, VoksenPris = 200 };
-                var tur5 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon3, Tid = date1, BarnePris = 50, VoksenPris = 100 };
-                var tur6 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon4, Tid = date2, BarnePris = 50, VoksenPris = 200 };
-                var tur7 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon1, Tid = date1, BarnePris = 50, VoksenPris = 100 };
-                var tur8 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon2, Tid = date2, BarnePris = 50, VoksenPris = 200 };
-                var tur9 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon4, Tid = date1, BarnePris = 50, VoksenPris = 100 };
-                var tur10 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon1, Tid = date2, BarnePris = 50, VoksenPris = 200 };
-                var tur11 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon2, Tid = date1, BarnePris = 50, VoksenPris = 100 };
-                var tur12 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon3, Tid = date2, BarnePris = 50, VoksenPris = 200 };
+                var tur1 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = tid1, Dato = dato1, BarnePris = 50, VoksenPris = 100};
+                var tur2 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon3, Tid = tid2, Dato = dato1, BarnePris = 50, VoksenPris = 200 };
+                var tur3 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon4, Tid = tid3, Dato = dato1, BarnePris = 50, VoksenPris = 100 };
+                var tur4 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon1, Tid = tid1, Dato = dato1, BarnePris = 50, VoksenPris = 200 };
+                var tur5 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon3, Tid = tid2, Dato = dato1, BarnePris = 50, VoksenPris = 100 };
+                var tur6 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon4, Tid = tid3, Dato = dato1, BarnePris = 50, VoksenPris = 200 };
+                var tur7 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon1, Tid = tid1, Dato = dato1, BarnePris = 50, VoksenPris = 100 };
+                var tur8 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon1, Tid = tid2, Dato = dato1, BarnePris = 50, VoksenPris = 200 };
+                var tur9 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon1, Tid = tid3, Dato = dato1, BarnePris = 50, VoksenPris = 100 };
+                var tur10 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon1, Tid = tid1, Dato = dato1, BarnePris = 50, VoksenPris = 200 };
+                var tur11 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon2, Tid = tid2, Dato = dato1, BarnePris = 50, VoksenPris = 100 };
+                var tur12 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon3, Tid = tid3, Dato = dato1, BarnePris = 50, VoksenPris = 200 };
 
                 context.Turer.Add(tur1);
                 context.Turer.Add(tur2);

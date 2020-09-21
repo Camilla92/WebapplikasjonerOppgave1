@@ -28,7 +28,7 @@ function listEndeStasjoner() {
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-            let ut = "<select>";
+            let ut = "<select onchange='listDato()'>";
             for (let stasjon of stasjoner) {
                 ut += "<option>" + stasjon.stasjonsNavn + "</option>";
             }
@@ -36,6 +36,38 @@ function listEndeStasjoner() {
             $("#endestasjon").html(ut);
             console.log(JSON.stringify(stasjoner));
         } else {
+            $("#feil").html("Feil i db");
+        }
+    });
+}
+
+function listDato() {
+    let ut = "<label>Velg dato<span> (DD/MM/ÅÅÅÅ) </span></label>";
+    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt()'>";
+    $("#dato").html(ut);
+   
+}
+
+function listTidspunkt() {
+    let dato = document.getElementById('datoValgt').value;
+    let startstasjon = $('#startstasjon option:selected').text();
+    let endestasjon = $('#endestasjon option:selected').text();
+    console.log("Dato: " + dato + ", startstasjon: " + startstasjon + ", endestasjon: " + endestasjon);
+    const url = "bestilling/hentAlleTurer";
+    $.get(url, function (turer) {
+        if (turer) {
+            let ut = "<label>Velg tidspunkt</label>";
+            ut += "<select>";
+            for (let tur of turer) {
+                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.Dato){
+                    ut += "<option>" + tur.tid + "</option>";
+                }
+            }
+            ut += "</select>";
+            $("#tid").html(ut);
+            console.log(JSON.stringify(turer));
+        }
+        else {
             $("#feil").html("Feil i db");
         }
     });
