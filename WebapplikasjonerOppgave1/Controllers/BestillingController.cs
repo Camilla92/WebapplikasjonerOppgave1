@@ -44,18 +44,24 @@ namespace WebapplikasjonerOppgave1.Controllers
             return endeStasjon;
         }
 
-            /*public async Task<ActionResult> Lagre(Kunde innKunde, Bestilling innBestilling)
-{
-    bool returOk = await _db.Lagre(Kunde innKunde);
-    if (!returOk) {
-        _log.LogInformation("Kunden ble ikke lagret");
-        return BadRequest("Kunden ble ikke lagret");
+        public async Task<ActionResult> Lagre(BussBestilling innBussBestilling)
+        {
+            if (ModelState.IsValid)
+            {
+                bool returOk = await _db.Lagre(innBussBestilling);
+                if (!returOk)
+                {
+                    _log.LogInformation("Bestilling ble ikke registrert");
+                    return BadRequest("Bestilling ble ikke registrert");
+                }
+                return Ok("Bestilling registrert");
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+        }
     }
-    return Ok("Kunde lagret");
-
 }
-*/
-
+        /*
 
             //return Ok(alleTurer);
             //Tur enTur = await _db.HentEndeStasjoner(innStartstasjon);
@@ -156,5 +162,4 @@ namespace WebapplikasjonerOppgave1.Controllers
           }
      }
         */
-    }
-}
+    
