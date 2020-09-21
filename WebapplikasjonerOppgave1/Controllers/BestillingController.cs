@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Stasjon = WebapplikasjonerOppgave1.DAL.Stasjon;
 using Microsoft.Extensions.Logging;
 
-
 namespace WebapplikasjonerOppgave1.Controllers
 {
     [Route("[controller]/[action]")]
@@ -24,39 +23,19 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log = log;
         }
 
-
         public async Task<ActionResult> HentAlleStasjoner()
-
         {
-
             List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
             return Ok(alleStasjoner);
         }
 
-        /*public async Task<ActionResult> Lagre(Kunde innKunde, Bestilling innBestilling)
+        public async Task<List<Stasjon>> HentEndeStasjoner(string startStasjonsNavn)
         {
-            bool returOk = await _db.Lagre(Kunde innKunde);
-            if (!returOk) {
-                _log.LogInformation("Kunden ble ikke lagret");
-                return BadRequest("Kunden ble ikke lagret");
-            }
-            return Ok("Kunde lagret");
-
-        }
-        */
-
-
-
-
-        public async Task<List<Stasjon>> HentEndeStasjoner(String startStasjonsNavn)
-        {
-
             List<Tur> alleTurer = await _db.Turer.ToListAsync();
             var endeStasjon = new List<Stasjon>();
 
             foreach (var turen in alleTurer)
             {
-
                 if (startStasjonsNavn.Equals(turen.StartStasjon.StasjonsNavn))
                 {
                     foreach (var enEndeStasjon in endeStasjon)
@@ -69,6 +48,19 @@ namespace WebapplikasjonerOppgave1.Controllers
                 }
             }
             return endeStasjon;
+        }
+
+            /*public async Task<ActionResult> Lagre(Kunde innKunde, Bestilling innBestilling)
+{
+    bool returOk = await _db.Lagre(Kunde innKunde);
+    if (!returOk) {
+        _log.LogInformation("Kunden ble ikke lagret");
+        return BadRequest("Kunden ble ikke lagret");
+    }
+    return Ok("Kunde lagret");
+
+}
+*/
 
 
             //return Ok(alleTurer);
@@ -88,7 +80,7 @@ namespace WebapplikasjonerOppgave1.Controllers
              return Ok("Turen ble funnet");
             */
 
-        }
+        
 
         /*public async Task<ActionResult> HentEnTur(Stasjon startStasjon, Stasjon endeStasjon)
         {
@@ -167,10 +159,7 @@ namespace WebapplikasjonerOppgave1.Controllers
              var nyBestillingRad = new Bestilling();
               nyBestillingRad.Kunde.Fornavn = innBussBestilling.Fornavn;
               nyBestillingRad.Kunde.Fornavn = innBussBestilling.Etternavn;
-
           }
-
-
      }
         */
     }
