@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebapplikasjonerOppgave1.DAL;
 
@@ -23,6 +24,21 @@ namespace WebapplikasjonerOppgave1.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
+        }
+
+        internal Task<bool> Lagre(Kunde kunde, Kunde innKunde)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Task<bool> Lagre(Kunde innKunde, Bestilling innBestilling)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Task<bool> Lagre(BussBestilling innBussBestilling)
+        {
+            throw new NotImplementedException();
         }
     }
 }

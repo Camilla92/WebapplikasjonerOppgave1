@@ -1,6 +1,6 @@
-﻿function validerFornavn(Fornavn) {
+﻿function validerFornavn(fornavn) {
     const regexp = /^[a-zA-ZæøåÆØÅ\.\ \-]{2,20}$/;
-    const ok = regexp.test(Fornavn);
+    const ok = regexp.test(fornavn);
     if (!ok) {
         $("#feilFornavn").html("Fornavnet må bestå av 2 til 20 bokstaver");
         return false;
