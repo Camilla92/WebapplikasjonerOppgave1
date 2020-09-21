@@ -14,6 +14,7 @@ function HentAlleStasjoner() {
 
 function listStartStasjoner(stasjoner) {
     let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
+    ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
     }
@@ -28,9 +29,15 @@ function listEndeStasjoner() {
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-            let ut = "<select>";
+            let ut = "<label>Jeg skal reise til</label>";
+            ut += "<select>";
+            ut += "<option></option>";
+            let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
-                ut += "<option>" + stasjon.stasjonsNavn + "</option>";
+                if (stasjon.stasjonsNavn !== forrigeStasjon) {
+                    ut += "<option>" + stasjon.stasjonsNavn + "</option>";
+                }
+                forrigeStasjon = stasjon.stasjonsNavn;
             }
             ut += "</select>";
             $("#endestasjon").html(ut);
@@ -39,7 +46,29 @@ function listEndeStasjoner() {
             $("#feil").html("Feil i db");
         }
     });
+}
 
+function antallBarn() {
+    var antallBarn = $("#antallBarn");
+    $.get("bestilling/barnePris?barnepris=" + antallBarn, function (barnePris) {
+        if (barnePris) {
+            let ut = barnePris * antallBarn;
+            $("#barnePris").html(ut);
+        } else {
+            $("#feilBarnePris").html("Feil i db");
+        });
+}
+
+
+function antallVoksne() {
+    var antallVoksne = $("#antallVoksne");
+    $.get("bestilling/totalPris?voksenpris=" + antallVoksne, function (voksenPris) {
+        if (voksenPris) {
+            let ut = voksenPris * antallVoksne;
+            $("#voksenPris").html(ut);
+        } else {
+            $("#feilVoksenPris").html("Feil i db");
+        });
 }
 
 function validerOgLagBestilling() {

@@ -44,9 +44,9 @@ namespace WebapplikasjonerOppgave1.Models
                 var tur4 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon1, Tid = date2, BarnePris = 50, VoksenPris = 200 };
                 var tur5 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon3, Tid = date1, BarnePris = 50, VoksenPris = 100 };
                 var tur6 = new Tur { StartStasjon = stasjon2, EndeStasjon = stasjon4, Tid = date2, BarnePris = 50, VoksenPris = 200 };
-                var tur7 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon1, Tid = date1, BarnePris = 50, VoksenPris = 100 };
+                var tur7 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon2, Tid = date1, BarnePris = 50, VoksenPris = 100 };
                 var tur8 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon2, Tid = date2, BarnePris = 50, VoksenPris = 200 };
-                var tur9 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon4, Tid = date1, BarnePris = 50, VoksenPris = 100 };
+                var tur9 = new Tur { StartStasjon = stasjon3, EndeStasjon = stasjon2, Tid = date1, BarnePris = 50, VoksenPris = 100 };
                 var tur10 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon1, Tid = date2, BarnePris = 50, VoksenPris = 200 };
                 var tur11 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon2, Tid = date1, BarnePris = 50, VoksenPris = 100 };
                 var tur12 = new Tur { StartStasjon = stasjon4, EndeStasjon = stasjon3, Tid = date2, BarnePris = 50, VoksenPris = 200 };

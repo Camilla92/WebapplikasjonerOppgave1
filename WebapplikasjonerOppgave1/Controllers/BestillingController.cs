@@ -44,6 +44,25 @@ namespace WebapplikasjonerOppgave1.Controllers
             return endeStasjon;
         }
 
+        public async Task<AcceptedResult> barnePris(double antallBarn)
+        {
+            List<Tur> alleTurer = await _db.Turer.ToListAsync();
+            var barneprisTurer = new List<double>();
+            foreach(var tur in alleTurer)
+            {
+                if(tur.BarnePris)
+            }
+
+        }
+
+        /*public async Task<ActionResult> voksenPris()
+        {
+            List<Tur> alleTurer = await _db.Turer.ToListAsync();
+
+        }*/
+
+       
+
             /*public async Task<ActionResult> Lagre(Kunde innKunde, Bestilling innBestilling)
 {
     bool returOk = await _db.Lagre(Kunde innKunde);
