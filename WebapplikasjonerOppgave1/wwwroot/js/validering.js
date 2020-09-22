@@ -23,6 +23,20 @@ function validerEndestasjon(endestasjon) {
 }*/
 
 // valider dato
+
+function listTidspunkt(dato) {
+    const regexp = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
+    const ok = regexp.test(dato);
+    if (!ok) {
+        $("#feilDato").html("Dato må være skrevet i riktig format");
+        return false;
+    }
+    else {
+        $("#feilDato").html("");
+        return true;
+    }
+}
+
 // valider tid
 
 function validerFornavn(fornavn) {
