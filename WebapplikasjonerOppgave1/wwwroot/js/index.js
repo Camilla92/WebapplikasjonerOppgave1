@@ -48,6 +48,7 @@ function listEndeStasjoner() {
     });
 }
 
+/*
 function antallBarn() {
     var antallBarn = $("#antallBarn");
     $.get("bestilling/barnePris?barnepris=" + antallBarn, function (barnePris) {
@@ -58,17 +59,19 @@ function antallBarn() {
             $("#feilBarnePris").html("Feil i db");
         });
 }
+*/
 
+function beregnPris() {
+    let dato = document.getElementById('datoValgt').value;
+    let startstasjon = $('#startstasjon option:selected').text();
+    let endestasjon = $('#endestasjon option:selected').text();
+    let tidspunkt = $('#tidspunkt option:selected').text();
+    const url = "bestilling/beregnPris?startStasjonsNavn=" + startstasjon + "endeStasjonsNavn=" + endestasjon + "tid=" + tidspunkt + "dato=" + dato;
+    $.get(url, function (pris)){
+        if (pris) {
 
-function antallVoksne() {
-    var antallVoksne = $("#antallVoksne");
-    $.get("bestilling/totalPris?voksenpris=" + antallVoksne, function (voksenPris) {
-        if (voksenPris) {
-            let ut = voksenPris * antallVoksne;
-            $("#voksenPris").html(ut);
-        } else {
-            $("#feilVoksenPris").html("Feil i db");
-        });
+        }
+    }
 }
 
 function validerOgLagBestilling() {
