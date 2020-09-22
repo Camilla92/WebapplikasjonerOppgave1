@@ -6,26 +6,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/2.3.1/css/bootstrap.min.css">
     <script src="js/index.js"></script>
+    <link rel="stylesheet" href="stylingIndex.css">
 </head>
 
 <body>
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">
-                <img src="norway.jpg" width="250" height="0" alt="Nor-way logo">
+            <a class="navbar-brand" href="index.html">
+                <img class="bilde" src="norway.jpg" alt="Nor-Way logo">
             </a>
         </nav>
     </header>
-    <div class="view" style="background-image: url('Bilde1.png'); background-repeat: no-repeat; background-size: cover; background-position: center center; height:100%;">
-      
+
+    <div class="view">
+
+
         <div class="container">
 
             <div class="row">
 
                 <div class="col-md-4">
 
-                    <form class="form">
+                    <form class="form" >
                         <div class="form-group ">
                             <label>Jeg skal reise fra : </label>
                             <div id="startstasjon" class="dropdown" />
@@ -45,7 +47,7 @@
                             <span id="feilEtternavn" style="color: red"></span>
                         </div>
                         <div class="form-group">
-                            <label style="color:white;">Telefonnr</label>
+                            <label>Telefonnr</label>
                             <input type="text" id="telefonnr" class="form-control" onchange="validerTelefonnummer(this.value)" />
                             <span id="feilTelefonnummer" style="color: red"></span>
                         </div>
@@ -62,30 +64,15 @@
                             <span id="feilAntallVoksne" style="color: red"></span>
                         </div>
                         <div class="form-group">
-                            <label>Totalpris</label>
-                            <div id="totalPris"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Tid</label>
-                            <div id="tid"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Startstasjon</label>
-                            <div id="startstasjon"></div>
-                        </div>
-                        <div class="form-group">
-                            <label>Endestasjon</label>
-                            <div id="endestasjon"></div>
-                        </div>
-                        <div class="form-group">
                             <input type="button" class="btn btn-primary" id="reg" value="Registrer" onclick="lagreBestilling()" />
                         </div>
                     </form>
                 </div>
-                <div class="col-md-8">
+                <aside>
                     <h4>Alle Bestillingene:</h4>
+                    <!--bruke aside? i css slik at det kommer på siden position: absolute/fixed eller noe annet-->
                     <div id="bestillinger"></div>
-                </div>
+                </aside>
             </div>
         </div>
     </div>
