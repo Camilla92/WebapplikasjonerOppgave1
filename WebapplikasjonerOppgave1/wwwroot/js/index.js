@@ -60,7 +60,7 @@ function listTidspunkt() {
             let ut = "<label>Velg tidspunkt</label>";
             ut += "<select>";
             for (let tur of turer) {
-                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.Dato){
+                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato){
                     ut += "<option>" + tur.tid + "</option>";
                 }
             }

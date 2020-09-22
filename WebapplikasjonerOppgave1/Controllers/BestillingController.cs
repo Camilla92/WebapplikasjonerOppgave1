@@ -59,9 +59,6 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
         }
-    }
-}
-        /*
 
         public async Task<List<Tur>> hentAlleTurer()
         {
@@ -69,8 +66,11 @@ namespace WebapplikasjonerOppgave1.Controllers
             return alleTurer;
 
         }
+    }
 
 
+}
+/*
 
         /*public async Task<ActionResult> Lagre(Kunde innKunde, Bestilling innBestilling)
         {
