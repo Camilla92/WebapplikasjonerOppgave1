@@ -20,5 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Registrer.html" />
+    <Content Remove="wwwroot\Bilde1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\Bilde1.png" />
   </ItemGroup>
 </Project>
