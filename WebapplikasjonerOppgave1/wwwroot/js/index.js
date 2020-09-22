@@ -57,10 +57,12 @@ function listTidspunkt() {
     $.get(url, function (turer) {
         if (turer) {
             let ut = "<label>Velg tidspunkt</label>";
-            ut += "<select>";
+            ut += "<select id='tidspunkt'>";
             for (let tur of turer) {
-                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.Dato){
+                console.log("Utenfor if, tur sin tid:" + tur.tid);
+                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato){
                     ut += "<option>" + tur.tid + "</option>";
+                    console.log("Tur sin tid:"+tur.tid);
                 }
             }
             ut += "</select>";
@@ -74,7 +76,10 @@ function listTidspunkt() {
 
 }
 
+
 function validerOgLagBestilling() {
+    //Validere dato?
+
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
@@ -85,6 +90,8 @@ function validerOgLagBestilling() {
     }
 }
 
+
+
 function lagreBestilling() {
     const bestilling = {
         fornavn: $("#fornavn").val(),
@@ -93,9 +100,10 @@ function lagreBestilling() {
         antallBarn: $("#antallBarn").val(),
         antallVoksne: $("#antallVoksne").val(),
         //totalPris: $("#totalPris").val(),
-        tid: $("#tid").val(),
-        startStasjon: $("#startstasjon").val(),
-        endeStasjon: $("#endestasjon").val()
+        dato: document.getElementById('datoValgt').value,
+        tid: $('#tidspunkt option:selected').text(),
+        startStasjon: $('#startstasjon option:selected').text(),
+        endeStasjon: $('#endestasjon option:selected').text();
     }
     const url = "bestilling/lagre";
     $.post(url, bestilling, function () {
