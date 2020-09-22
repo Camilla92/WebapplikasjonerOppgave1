@@ -16,15 +16,23 @@
                 <form class="form">
                     <div class="form-group">
                         <label>Jeg skal reise fra : </label>
-                        <div id="startstasjon" class="dropdown" />
+                        <div id="startstasjon" class="dropdown" onchange="validerStartstasjon(this.value)" /> <br />
+                        <span id="feilStartstasjon" style="color: red"></span>
                     </div>
                     <div class="form-group">
                         <label>Jeg skal reise til : </label>
-                        <div id="endestasjon" class="dropdown" />
+                        <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()" /> <br />
+                        <span id="feilEndestasjon" style="color: red"></span>
                     </div>
-                    <div>
+                    <div class="form-group">
+                        <div id="dato" />
+                    </div>
+                    <div class="form-group">
+                        <div id="tid" />
+                    </div>
+                    <div class="form-group">
                         <label>Fornavn</label>
-                        <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br/ >
+                        <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br />
                         <span id="feilFornavn" style="color: red"></span>
                     </div>
                     <div class="form-group">
