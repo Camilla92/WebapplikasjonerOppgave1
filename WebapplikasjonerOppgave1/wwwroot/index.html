@@ -7,73 +7,80 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/2.3.1/css/bootstrap.min.css">
     <script src="js/index.js"></script>
     <script src="js/validering.js"></script>
-    <link rel="stylesheet" href="stylingIndex.css">
 </head>
-
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">
-                <img class="bilde" src="norway.jpg" alt="Nor-Way logo">
-            </a>
-        </nav>
-    </header>
-
-    <div class="view">
-
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-4">
-
-                    <form class="form" >
-                        <div class="form-group ">
-                            <label>Jeg skal reise fra : </label>
-                            <div id="startstasjon" class="dropdown" />
-                        </div>
-                        <div class="form-group">
-                            <label>Jeg skal reise til : </label>
-                            <div id="endestasjon" class="dropdown" />
-                        </div>
-                        <div>
-                            <label>Fornavn</label>
-                            <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" />
-                            <span id="feilFornavn" style="color: red"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Etternavn</label>
-                            <input type="text" id="etternavn" class="form-control" onchange="validerEtternavn(this.value)" />
-                            <span id="feilEtternavn" style="color: red"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Telefonnr</label>
-                            <input type="text" id="telefonnr" class="form-control" onchange="validerTelefonnummer(this.value)" />
-                            <span id="feilTelefonnummer" style="color: red"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Antall barn</label>
-                            <input type="number" id="antallBarn" class="form-control" onchange="validerAntallBarn(this.value)" />
-                            <inline id="barnePris"></inline>
-                            <span id="feilAntallBarn" style="color: red"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Antall voksne</label>
-                            <input type="number" id="antallVoksne" class="form-control" onchange="validerAntallVoksne(this.value)" />
-                            <inline id="voksenPris"></inline>
-                            <span id="feilAntallVoksne" style="color: red"></span>
-                        </div>
-                        <div class="form-group">
-                            <input type="button" class="btn btn-primary" id="reg" value="Registrer" onclick="lagreBestilling()" />
-                        </div>
-                    </form>
-                </div>
-                <aside>
-                    <h4>Alle Bestillingene:</h4>
-                    <!--bruke aside? i css slik at det kommer på siden position: absolute/fixed eller noe annet-->
-                    <div id="bestillinger"></div>
-                </aside>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>NOR-WAY</h2>
+                <form class="form">
+                    <div class="form-group">
+                        <label>Jeg skal reise fra : </label>
+                        <div id="startstasjon" class="dropdown" onchange="validerStartstasjon(this.value)" /> <br />
+                        <span id="feilStartstasjon" style="color: red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Jeg skal reise til : </label>
+                        <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()" /> <br />
+                        <span id="feilEndestasjon" style="color: red"></span>
+                    </div>
+                    <div class="form-group">
+                        <div id="dato" />
+                    </div>
+                    <div class="form-group">
+                        <div id="tid" />
+                    </div>
+                    <div class="form-group">
+                        <label>Fornavn</label>
+                        <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br />
+                        <span id="feilFornavn" style="color: red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Etternavn</label>
+                        <input type="text" id="etternavn" class="form-control" onchange="validerEtternavn(this.value)" /> <br />
+                        <span id="feilEtternavn" style="color: red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonnr</label>
+                        <input type="text" id="telefonnr" class="form-control" onchange="validerTelefonnummer(this.value)" /> <br />
+                        <span id="feilTelefonnummer" style="color: red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Antall barn</label>
+                        <input type="number" id="antallBarn" class="form-control" onchange="validerAntallBarn(this.value)" /> <br />
+                        <inline id="barnePris"></inline>
+                        <span id="feilAntallBarn" style="color: red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Antall voksne</label>
+                        <input type="number" id="antallVoksne" class="form-control" onchange="validerAntallVoksne(this.value)" /> <br />
+                        <inline id="voksenPris"></inline>
+                        <span id="feilAntallVoksne" style="color: red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Totalpris</label>
+                        <div id="totalPris"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tid</label>
+                        <div id="tid"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Startstasjon</label>
+                        <div id="startstasjon"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Endestasjon</label>
+                        <div id="endestasjon"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="btn btn-primary" id="reg" value="Registrer" onclick="lagreBestilling()" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <h4>Alle Bestillingene:</h4>
+                <div id="bestillinger"></div>
             </div>
         </div>
     </div>
