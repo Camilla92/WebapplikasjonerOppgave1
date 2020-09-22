@@ -9,6 +9,27 @@
         return true;
     }
 }
+
+
+function validerDato(dato) {
+    const regexp = /^(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+    const ok = regexp.test(dato);
+    if (!ok) {
+        $("#feilDato").html("Dato må være i riktig format");
+        return false;
+    }
+    else {
+        $("#feilDato").html("");
+        return true;
+    }
+}
+
+/*
+function validerTid(tid) {
+
+}
+*/
+
 /*
 function validerEndestasjon(endestasjon) {
     const endestasjon = $("valgtEndestasjon").val();
