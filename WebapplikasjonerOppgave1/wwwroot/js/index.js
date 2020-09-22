@@ -58,10 +58,12 @@ function listTidspunkt() {
     $.get(url, function (turer) {
         if (turer) {
             let ut = "<label>Velg tidspunkt</label>";
-            ut += "<select>";
+            ut += "<select id='tidspunkt'>";
             for (let tur of turer) {
-                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato){
+                console.log("Utenfor if, tur sin tid:" + tur.tid);
+                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
                     ut += "<option>" + tur.tid + "</option>";
+                    console.log("Tur sin tid:" + tur.tid);
                 }
             }
             ut += "</select>";
