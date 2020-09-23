@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
+    let ut = "<select onchange='listEndeStasjoner()' id='valgtStartstasjon'>";
     ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
@@ -80,12 +80,16 @@ function listTidspunkt() {
 function validerOgLagBestilling() {
     const StartstasjonOK = validerStartstasjon($("#startstasjon").val());
     //const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
+
+    const DatoOK = validerDato($("#dato").val());
+    const TidOK = validerTid($("#tid").val());
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
-    if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
+    if (StartstasjonOK && DatoOK && TidOK && FornavnOK && EtternavnOK && TelefonnummerOK
+        && AntallBarnOK && AntallVoksneOK) {
         lagreBestilling();
     }
 }

@@ -1,6 +1,6 @@
 ﻿function validerStartstasjon() {
-    const startstasjon = $("#startstasjon").val();
-    if (startstasjon === "Velg startstasjon") {
+    const valgtStartstasjon = $("#valgtStartstasjon").val();
+    if (valgtStartstasjon === "Velg startstasjon") {
         $("#feilStartstasjon").html("Velg en startstasjon");
         return false;
     }
@@ -24,11 +24,19 @@ function validerDato(dato) {
     }
 }
 
-/*
-function validerTid(tid) {
 
+function validerTid() {
+    const tid = $("datoValgt").val();
+    if (tid === null) {
+        $("#feilTid").html("Må velge et tidspunkt");
+        return false;
+    }
+    else {
+        $("#feilTid").html("");
+        return true;
+    }
 }
-*/
+
 
 /*
 function validerEndestasjon(endestasjon) {
