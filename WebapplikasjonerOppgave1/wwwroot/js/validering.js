@@ -1,6 +1,6 @@
 ﻿function validerStartstasjon() {
-    const startstasjon = $("#valgtStartstasjon").val();
-    if (startstasjon === "Velg startstasjon") {
+    const valgtStartstasjon = $("#valgtStartstasjon").val();
+    if (valgtStartstasjon === "Velg startstasjon") {
         $("#feilStartstasjon").html("Velg en startstasjon");
         return false;
     }
@@ -10,21 +10,6 @@
     }
 }
 
-/*
-function validerEndestasjon(endestasjon) {
-    const endestasjon = $("valgtEndestasjon").val();
-    if (endestasjon === "Velg endestasjon") {
-        $("#feilEndestasjon").html("Velg endestasjon");
-        return false;
-    }
-    else {
-        $("#feilEndestasjon").html("");
-        return true;
-    }
-}*/
-
-// valider dato
-// valider tid
 
 function validerDato(dato) {
     const regexp = /^(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
@@ -53,7 +38,21 @@ function validerTid() {
 }
 
 
+/*
+function validerEndestasjon(endestasjon) {
+    const endestasjon = $("valgtEndestasjon").val();
+    if (endestasjon === "Velg endestasjon") {
+        $("#feilEndestasjon").html("Velg endestasjon");
+        return false;
+    }
+    else {
+        $("#feilEndestasjon").html("");
+        return true;
+    }
+}*/
 
+// valider dato
+// valider tid
 
 function validerFornavn(fornavn) {
     const regexp = /^[a-zA-ZæøåÆØÅ\.\ \-]{2,20}$/;

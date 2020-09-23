@@ -14,7 +14,7 @@ function HentAlleStasjoner() {
 
 function listStartStasjoner(stasjoner) {
     let ut = "<select onchange='listEndeStasjoner()' id='valgtStartstasjon'>";
-    ut += "<option id='valgtStartstasjon'>Velg startstasjon</option>";
+    ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
     }
