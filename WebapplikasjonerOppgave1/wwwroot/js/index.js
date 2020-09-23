@@ -29,15 +29,10 @@ function listEndeStasjoner() {
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-<<<<<<< HEAD
             let ut = "<label>Jeg skal reise til</label>";
             ut += "<select onchange='listDato()'>";
             ut += "<option></option>";
             let forrigeStasjon = "";
-=======
-            let ut = "<label>Velg endestasjon:</label>";
-            ut += "<select onchange='listDato()'>";
->>>>>>> 5cb9fffcf48f8ca845350dcc30cd2aa664ee7ae7
             for (let stasjon of stasjoner) {
                 if (stasjon.stasjonsNavn !== forrigeStasjon) {
                     ut += "<option>" + stasjon.stasjonsNavn + "</option>";
