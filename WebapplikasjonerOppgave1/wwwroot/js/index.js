@@ -29,7 +29,8 @@ function listEndeStasjoner() {
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-            let ut = "<select onchange='listDato()'>";
+            let ut = "<label>Velg endestasjon:</label>";
+            ut += "<select onchange='listDato()'>";
             for (let stasjon of stasjoner) {
                 ut += "<option>" + stasjon.stasjonsNavn + "</option>";
             }
@@ -75,6 +76,62 @@ function listTidspunkt() {
         }
     });
 
+}
+
+function beregnPris() {
+    let dato = document.getElementById('datoValgt').value;
+    let startstasjon = $('#startstasjon option:selected').text();
+    let endestasjon = $('#endestasjon option:selected').text();
+    let tid = $('#tid option:selected').text();
+    let antallBarn = $("#antallBarn").val();
+    let antallVoksne = $("#antallVoksne").val();
+
+    let pris;
+    let barnepris = 0;
+    let voksenpris = 0;
+
+    const url = "bestilling/hentAlleTurer";
+    $.get(url, function (turer) {
+        if (turer) {
+            for (let tur of turer) {
+                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato && tid == tur.tid) {
+                    console.log("tur.barnepris: " + tur.barnePris + ", antallBarn: " + antallBarn + ", tur.voksenPris: " + tur.voksenPris + ", antallVoksne: " + antallVoksne);
+                    barnepris = tur.barnePris;
+                    voksenpris = tur.voksenPris;
+                }
+            }
+            if (antallBarn > 0 && antallVoksne > 0) {
+                pris = (barnepris * antallBarn) + (voksenpris * antallVoksne);
+            }
+            else if (antallBarn <= 0 && antallVoksne > 0) {
+                pris = voksenpris * antallVoksne;
+            }
+            else if (antallVoksne <= 0 && antallBarn > 0) {
+                pris = barnepris * antallBarn;
+            }
+            else {
+                pris = 0;
+            }
+            console.log("Beregnet pris: " + pris);
+        }
+        else {
+            $("#feil").html("Feil i db");
+        }
+    });
+
+    
+}
+
+function beregnOgValiderBarn() {
+    let antallBarn = $("#antallBarn").val();
+    validerAntallBarn(antallBarn);
+    beregnPris();
+}
+
+function beregnOgValiderVoksen() {
+    let antallVoksne = $("#antallVoksne").val();
+    validerAntallBarn(antallVoksne);
+    beregnPris();
 }
 
 function validerOgLagBestilling() {
