@@ -50,7 +50,7 @@ function listEndeStasjoner() {
 
 function listDato() {
     let ut = "<label>Velg dato<span> (DD/MM/ÅÅÅÅ) </span></label>";
-    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt()'>";
+    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt(), validerDato(this.value)'>";
     $("#dato").html(ut);
 }
 

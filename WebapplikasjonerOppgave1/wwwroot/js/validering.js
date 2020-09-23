@@ -26,7 +26,9 @@ function validerEndestasjon() {
 
 function validerDato(dato) {
     // regex på formatet: dd/mm/yyyy
-    const regexp = /^(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+    //const regexp = /^(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;/*
+    const regexp = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+    
     const ok = regexp.test(dato);
     if (!ok) {
         $("#feilDato").html("Dato må være i riktig format");
@@ -34,6 +36,7 @@ function validerDato(dato) {
     }
     else {
         $("#feilDato").html("");
+        
         return true;
     }
 }
