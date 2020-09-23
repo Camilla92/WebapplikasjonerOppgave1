@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner()' id='valgtStartstasjon'>";
+    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
     ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
@@ -25,13 +25,19 @@ function listStartStasjoner(stasjoner) {
 
 function listEndeStasjoner() {
     let startstasjon = $('#startstasjon option:selected').text();
-    console.log("StartStasjon: "+startstasjon);
+    console.log("StartStasjon: " + startstasjon);
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-            let ut = "<select onchange='listDato()'>";
+            let ut = "<label>Jeg skal reise til</label>";
+            ut += "<select onchange='listDato()'>";
+            ut += "<option></option>";
+            let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
-                ut += "<option>" + stasjon.stasjonsNavn + "</option>";
+                if (stasjon.stasjonsNavn !== forrigeStasjon) {
+                    ut += "<option>" + stasjon.stasjonsNavn + "</option>";
+                }
+                forrigeStasjon = stasjon.stasjonsNavn;
             }
             ut += "</select>";
             $("#endestasjon").html(ut);
@@ -80,16 +86,12 @@ function listTidspunkt() {
 function validerOgLagBestilling() {
     const StartstasjonOK = validerStartstasjon($("#startstasjon").val());
     //const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
-
-    const DatoOK = validerDato($("#dato").val());
-    const TidOK = validerTid($("#tid").val());
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
-    if (StartstasjonOK && DatoOK && TidOK && FornavnOK && EtternavnOK && TelefonnummerOK
-        && AntallBarnOK && AntallVoksneOK) {
+    if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
         lagreBestilling();
     }
 }
