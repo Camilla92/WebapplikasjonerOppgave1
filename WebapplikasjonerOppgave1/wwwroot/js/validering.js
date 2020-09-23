@@ -1,7 +1,7 @@
 ﻿function validerStartstasjon() {
-    const valgtStartstasjon = $("#valgtStartstasjon").val();
-    if (valgtStartstasjon === "Velg startstasjon") {
-        $("#feilStartstasjon").html("Velg en startstasjon");
+    const ikkeValgtSS = $('#startstasjon option:selected').text();
+    if (ikkeValgtSS === "Velg startstasjon") {
+        $("#feilStartstasjon").html("Må velge en startstasjon");
         return false;
     }
     else {
@@ -11,7 +11,21 @@
 }
 
 
+function validerEndestasjon() {
+    const ikkeValgtES = $('#endestasjon option:selected').text();
+    if (ikkeValgtES === "Velg endestasjon") {
+        $("#feilEndestasjon").html("Må velge en endestasjon");
+        return false;
+    }
+    else {
+        $("#feilEndestasjon").html("");
+        return true;
+    }
+}
+
+
 function validerDato(dato) {
+    // regex på formatet: dd/mm/yyyy
     const regexp = /^(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
     const ok = regexp.test(dato);
     if (!ok) {
@@ -24,10 +38,10 @@ function validerDato(dato) {
     }
 }
 
-
 function validerTid() {
-    const tid = $("datoValgt").val();
-    if (tid === null) {
+    const tid = $('#tid option:selected').text();
+;
+    if (tid === "Velg tidspunkt") {
         $("#feilTid").html("Må velge et tidspunkt");
         return false;
     }
@@ -36,23 +50,6 @@ function validerTid() {
         return true;
     }
 }
-
-
-/*
-function validerEndestasjon(endestasjon) {
-    const endestasjon = $("valgtEndestasjon").val();
-    if (endestasjon === "Velg endestasjon") {
-        $("#feilEndestasjon").html("Velg endestasjon");
-        return false;
-    }
-    else {
-        $("#feilEndestasjon").html("");
-        return true;
-    }
-}*/
-
-// valider dato
-// valider tid
 
 function validerFornavn(fornavn) {
     const regexp = /^[a-zA-ZæøåÆØÅ\.\ \-]{2,20}$/;
@@ -117,4 +114,10 @@ function validerAntallVoksne(AntallVoksne) {
         $("#feilAntallVoksne").html("");
         return true;
     }
+}
+
+function ingenValideringsFeil() {
+    return ( validerStartstasjon() && validerEndestasjon() && validerDato() &&
+        validerTid() && validerFornavn() && validerEtternavn() && validerTelefonnummer
+        && validerAntallBarn() && validerAntallVoksne() );
 }

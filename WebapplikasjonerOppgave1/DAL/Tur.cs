@@ -12,8 +12,8 @@ namespace WebapplikasjonerOppgave1.DAL
         public virtual Stasjon StartStasjon { get; set; }
         public virtual Stasjon EndeStasjon { get; set; }
         //public DateTime Tid { get; set; }
-        public String Dato { get; set; }
-        public String Tid { get; set; }
+        public string Dato { get; set; }
+        public string Tid { get; set; }
         public double BarnePris { get; set; }
         public double VoksenPris { get; set; }
     }

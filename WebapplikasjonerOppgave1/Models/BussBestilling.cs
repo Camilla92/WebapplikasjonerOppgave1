@@ -18,7 +18,12 @@ namespace WebapplikasjonerOppgave1.Models
         [RegularExpression(@"^[0-9]{2}$")]
         public int AntallVoksne { get; set; }
         public double TotalPris { get; set; }
-        public DateTime Tid { get; set; }
+
+        //public DateTime Tid { get; set;
+        [RegularExpression(@"^(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$")]
+        public string Dato { get; set; }
+        public string Tid { get; set; }
+
         public double BarnePris { get; set; }
         public double VoksenPris { get; set; }
         public string StartStasjon { get; set; }

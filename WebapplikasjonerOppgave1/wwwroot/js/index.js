@@ -29,9 +29,9 @@ function listEndeStasjoner() {
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-            let ut = "<label>Jeg skal reise til</label>";
+            let ut = "<label>Jeg skal reise til:</label>";
             ut += "<select onchange='listDato()'>";
-            ut += "<option></option>";
+            ut += "<option>Velg endestasjon</option>";
             let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
                 if (stasjon.stasjonsNavn !== forrigeStasjon) {
@@ -52,7 +52,6 @@ function listDato() {
     let ut = "<label>Velg dato<span> (DD/MM/ÅÅÅÅ) </span></label>";
     ut += "<input type='text' id='datoValgt' onchange='listTidspunkt()'>";
     $("#dato").html(ut);
-   
 }
 
 function listTidspunkt() {
@@ -80,7 +79,6 @@ function listTidspunkt() {
             $("#feil").html("Feil i db");
         }
     });
-
 }
 
 function beregnPris() {
@@ -123,8 +121,6 @@ function beregnPris() {
             $("#feil").html("Feil i db");
         }
     });
-
-    
 }
 
 function beregnOgValiderBarn() {
@@ -135,40 +131,44 @@ function beregnOgValiderBarn() {
 
 function beregnOgValiderVoksen() {
     let antallVoksne = $("#antallVoksne").val();
-    validerAntallVoksnes(antallVoksne);
+    validerAntallVoksne(antallVoksne);
     beregnPris();
 }
 
 function validerOgLagBestilling() {
     const StartstasjonOK = validerStartstasjon($("#startstasjon").val());
-    //const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
+    const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
-    if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
+    if (StartstasjonOK && EndestasjonOK  && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
         lagreBestilling();
     }
 }
 
 function lagreBestilling() {
     const bestilling = {
+        //sette inn id?
+        startstasjon: $("#startstasjon").val(),
+        endeStasjon: $("#endestasjon").val(),
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),
         telefonnummer: $("#telefonnr").val(),
         antallBarn: $("#antallBarn").val(),
-        antallVoksne: $("#antallVoksne").val(),
+        antallVoksne: $("#antallVoksne").val()
         //totalPris: $("#totalPris").val(),
         //tid: $("#tid").val(),
-        startstasjon: $("#startstasjon").val(),
-        //endeStasjon: $("#endestasjon").val()
+    };
+
+    if (ingenValideringsFeil()) {
+        const url = "bestilling/lagre";
+        $.post(url, bestilling, function () {
+            window.location.href = 'index.html';
+        })
+            .fail(function () {
+                $("#feil").html("Feil på server - prøv igjen senere");
+            });
     }
-    const url = "bestilling/lagre";
-    $.post(url, bestilling, function () {
-        window.location.href = 'index.html';
-    })
-        .fail(function () {
-            $("#feil").html("Feil på server - prøv igjen senere");
-        });
-};
+}
