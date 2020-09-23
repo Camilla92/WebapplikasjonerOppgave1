@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner()' id='valgtStartstasjon'>";
+    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
     ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
@@ -25,13 +25,19 @@ function listStartStasjoner(stasjoner) {
 
 function listEndeStasjoner() {
     let startstasjon = $('#startstasjon option:selected').text();
-    console.log("StartStasjon: "+startstasjon);
+    console.log("StartStasjon: " + startstasjon);
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-            let ut = "<select onchange='listDato()'>";
+            let ut = "<label>Jeg skal reise til</label>";
+            ut += "<select onchange='listDato()'>";
+            ut += "<option></option>";
+            let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
-                ut += "<option>" + stasjon.stasjonsNavn + "</option>";
+                if (stasjon.stasjonsNavn !== forrigeStasjon) {
+                    ut += "<option>" + stasjon.stasjonsNavn + "</option>";
+                }
+                forrigeStasjon = stasjon.stasjonsNavn;
             }
             ut += "</select>";
             $("#endestasjon").html(ut);
@@ -77,19 +83,71 @@ function listTidspunkt() {
 
 }
 
+function beregnPris() {
+    let dato = document.getElementById('datoValgt').value;
+    let startstasjon = $('#startstasjon option:selected').text();
+    let endestasjon = $('#endestasjon option:selected').text();
+    let tid = $('#tid option:selected').text();
+    let antallBarn = $("#antallBarn").val();
+    let antallVoksne = $("#antallVoksne").val();
+
+    let pris;
+    let barnepris = 0;
+    let voksenpris = 0;
+
+    const url = "bestilling/hentAlleTurer";
+    $.get(url, function (turer) {
+        if (turer) {
+            for (let tur of turer) {
+                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato && tid == tur.tid) {
+                    console.log("tur.barnepris: " + tur.barnePris + ", antallBarn: " + antallBarn + ", tur.voksenPris: " + tur.voksenPris + ", antallVoksne: " + antallVoksne);
+                    barnepris = tur.barnePris;
+                    voksenpris = tur.voksenPris;
+                }
+            }
+            if (antallBarn > 0 && antallVoksne > 0) {
+                pris = (barnepris * antallBarn) + (voksenpris * antallVoksne);
+            }
+            else if (antallBarn <= 0 && antallVoksne > 0) {
+                pris = voksenpris * antallVoksne;
+            }
+            else if (antallVoksne <= 0 && antallBarn > 0) {
+                pris = barnepris * antallBarn;
+            }
+            else {
+                pris = 0;
+            }
+            console.log("Beregnet pris: " + pris);
+        }
+        else {
+            $("#feil").html("Feil i db");
+        }
+    });
+
+    
+}
+
+function beregnOgValiderBarn() {
+    let antallBarn = $("#antallBarn").val();
+    validerAntallBarn(antallBarn);
+    beregnPris();
+}
+
+function beregnOgValiderVoksen() {
+    let antallVoksne = $("#antallVoksne").val();
+    validerAntallBarn(antallVoksne);
+    beregnPris();
+}
+
 function validerOgLagBestilling() {
     const StartstasjonOK = validerStartstasjon($("#startstasjon").val());
     //const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
-
-    const DatoOK = validerDato($("#dato").val());
-    const TidOK = validerTid($("#tid").val());
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
-    if (StartstasjonOK && DatoOK && TidOK && FornavnOK && EtternavnOK && TelefonnummerOK
-        && AntallBarnOK && AntallVoksneOK) {
+    if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
         lagreBestilling();
     }
 }
