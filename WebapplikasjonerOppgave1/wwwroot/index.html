@@ -29,33 +29,24 @@
                 <div class="col-md-4">
 
                     <form class="form">
-                        <!--
-    <div class="form-group ">
-        <label>Jeg skal reise fra : </label>
-        <div id="startstasjon" class="dropdown" onchange="validerStartstasjon()" /> <br />
-        <span id="feilStartstasjon" style="color: red"></span>
-    </div>-->
+                        
                         <div class="form-group ">
                             <label for="startstasjon">Jeg skal reise fra : </label>
-                            <div id="startstasjon" class="dropdown" onchange="validerStartstasjon()" /> <br />
+                            <div id="startstasjon" class="dropdown" onchange="validerStartstasjon()"></div>
+                            <span id="feilStartstasjon" style="color: red"></span>
                         </div>
-                        <span id="feilStartstasjon" style="color: red"></span>
-
                         <div class="form-group">
-                            <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()" /> <br />
+                            <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()"> </div>
+                            <span id="feilEndestasjon" style="color: red"></span>
                         </div>
-                        <span id="feilEndestasjon" style="color: red"></span>
-
                         <div class="form-group">
-                            <div type="text" id="dato" class="form-control" onchange="validerDato(this.value)" />
+                            <div type="text" id="dato" class="form-control" onchange="validerDato(this.value)"></div>
+                            <span id="feilDato" style="color: red"></span>
                         </div>
-                        <span id="feilDato" style="color: red"></span>
-
                         <div class="form-group">
-                            <div id="tid" class="dropdown" onchange="validerTid()" />
+                            <div id="tid" class="dropdown" onchange="validerTid()"></div>
+                            <span id="feilTid" style="color: red"></span>
                         </div>
-                        <span id="feilTid" style="color: red"></span>
-
                         <div class="form-group">
                             <label>Fornavn</label>
                             <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br />
