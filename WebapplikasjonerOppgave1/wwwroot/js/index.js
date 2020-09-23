@@ -135,7 +135,7 @@ function beregnOgValiderBarn() {
 
 function beregnOgValiderVoksen() {
     let antallVoksne = $("#antallVoksne").val();
-    validerAntallBarn(antallVoksne);
+    validerAntallVoksnes(antallVoksne);
     beregnPris();
 }
 
