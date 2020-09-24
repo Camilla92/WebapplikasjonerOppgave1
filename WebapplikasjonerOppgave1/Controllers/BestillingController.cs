@@ -43,7 +43,7 @@ namespace WebapplikasjonerOppgave1.Controllers
             }
             return endeStasjon;
         }
-        /*
+        /*  Må gjøre om til noe sånn her senere?
         public async Task<ActionResult> Lagre(BussBestilling innBussBestilling)
         {
             if (ModelState.IsValid)
@@ -125,10 +125,6 @@ namespace WebapplikasjonerOppgave1.Controllers
              bool returOKKunde = await _db.Lagre(Bestilling bestilling);
 
 
-            /*
-             var nyBestillingRad = new Bestilling();
-              nyBestillingRad.Kunde.Fornavn = innBussBestilling.Fornavn;
-              nyBestillingRad.Kunde.Fornavn = innBussBestilling.Etternavn;*/
           }
      }
 
