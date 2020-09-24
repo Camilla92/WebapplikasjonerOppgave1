@@ -20,25 +20,9 @@ namespace WebapplikasjonerOppgave1.Models
         public virtual DbSet<Stasjon> Stasjoner { get; set; }
         public virtual DbSet<Bestilling> Bestillinger { get; set; }
 
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
-        }
-
-        internal Task<bool> Lagre(Kunde kunde, Kunde innKunde)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal Task<bool> Lagre(Kunde innKunde, Bestilling innBestilling)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal Task<bool> Lagre(BussBestilling innBussBestilling)
-        {
-            throw new NotImplementedException();
         }
     }
 }

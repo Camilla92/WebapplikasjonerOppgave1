@@ -12,5 +12,6 @@ namespace WebapplikasjonerOppgave1.DAL
         public int AntallVoksne { get; set; }
         public double TotalPris { get; set; }
         public virtual Tur Tur { get; set; }
+        public virtual Kunde kunde { get; set; }
     }
 }
