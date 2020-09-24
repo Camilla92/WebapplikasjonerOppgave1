@@ -69,6 +69,7 @@ namespace WebapplikasjonerOppgave1.Controllers
         */
         
 
+        //Ser du den nå, Nikola??? 
         public async Task<ActionResult> Lagre(BussBestilling innBussBestilling)
           {
 
