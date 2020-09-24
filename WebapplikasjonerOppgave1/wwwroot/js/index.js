@@ -148,6 +148,11 @@ function validerOgLagBestilling() {
     }
 }
 
+function genererPopUP() {
+    window.confirm("hei på deg");
+    
+}
+
 function lagreBestilling() {
     const bestilling = {
         //sette inn id?
@@ -172,3 +177,6 @@ function lagreBestilling() {
             });
     }
 }
+
+
+
