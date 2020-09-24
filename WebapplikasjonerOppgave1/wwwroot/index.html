@@ -29,7 +29,7 @@
                 <div class="col-md-4">
 
                     <form class="form">
-                        
+
                         <div class="form-group ">
                             <label for="startstasjon">Jeg skal reise fra : </label>
                             <div id="startstasjon" class="dropdown" onchange="validerStartstasjon()"></div>
@@ -40,7 +40,7 @@
                             <span id="feilEndestasjon" style="color: red"></span>
                         </div>
                         <div class="form-group">
-                            <div type="text" id="dato" class="form-control" ></div>
+                            <div type="text" id="dato" class="form-control"></div>
                             <span id="feilDato" style="color: red"></span>
                         </div>
                         <div class="form-group">
@@ -75,13 +75,24 @@
                             <span id="feilAntallVoksne" style="color: red"></span>
                         </div>
                         <div class="form-group">
-                            <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="genererPopUP(), lagreBestilling()"/>
+                            <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="lagMinEgenPopUp()" />
                             <!---->
                         </div>
                         <div id="feil" style="color: red"></div>
+
                     </form>
                 </div>
-          
+
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p id="bestillingUt">Bestillinger</p>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
