@@ -30,7 +30,7 @@ function listEndeStasjoner() {
     $.get(url, function (stasjoner) {
         if (stasjoner) {
             let ut = "<label>Jeg skal reise til:</label>";
-            ut += "<select onchange='listDato()'>";
+            ut += "<select onchange='listDato()' class='endestasjoner'>";
             ut += "<option>Velg endestasjon</option>";
             let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
