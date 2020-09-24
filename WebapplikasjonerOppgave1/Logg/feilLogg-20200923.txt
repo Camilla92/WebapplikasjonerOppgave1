@@ -17,3 +17,8 @@
 2020-09-23T09:26:38.8865300+02:00  [INF] Hosting environment: "Development" (c3307c92)
 2020-09-23T09:26:38.8888270+02:00  [INF] Content root path: "/Users/synneangell/Projects/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
 >>>>>>> 5cb9fffcf48f8ca845350dcc30cd2aa664ee7ae7
+2020-09-23T09:51:58.9994580+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-09-23T09:51:59.0072430+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-23T09:51:59.0113450+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-23T09:51:59.0143910+02:00  [INF] Content root path: "/Users/nikolasekiw/Prog-prosjekter/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
+2020-09-23T09:52:25.1452620+02:00 0HM2VIM6EAMI7:00000012 [INF] Feil i inputvalidering (06f553d7)
