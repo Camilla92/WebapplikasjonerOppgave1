@@ -116,10 +116,10 @@ namespace WebapplikasjonerOppgave1.Controllers
                     kundeRad.Etternavn = innBussBestilling.Etternavn;
                     kundeRad.Telefonnummer = innBussBestilling.Telefonnummer;
                     _db.Kunder.Add(kundeRad);
-                    await _db.SaveChangesAsync();
+                    //await _db.SaveChangesAsync();
                 } else
                 {
-                    nyBestillingRad.kunde = sjekkKundeFinnes;
+                    nyBestillingRad.kunde = funnetKunde;
                 }
                 _db.Bestillinger.Add(nyBestillingRad);
                 await _db.SaveChangesAsync();

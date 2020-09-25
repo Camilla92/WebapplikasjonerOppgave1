@@ -171,3 +171,4 @@ function lagreBestilling() {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
 };
+
