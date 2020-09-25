@@ -182,6 +182,17 @@ function lagMinEgenPopUp() {
 
 }
 
+function sjekkValidering() {
+    
+    if (lagreBestilling == true) {
+        return lagMinEgenPopUp();
+    }
+    else {
+
+        $("#feil").html("Feil i validering");
+    }
+}
+
 function lagreBestilling() {
     const bestilling = {
         //sette inn id?
