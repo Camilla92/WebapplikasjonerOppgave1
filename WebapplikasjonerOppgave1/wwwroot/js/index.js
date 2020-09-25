@@ -1,4 +1,4 @@
-﻿$(function () {
+$(function () {
     HentAlleStasjoner();
 });
 
@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'> ";
+    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
     ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
@@ -24,14 +24,14 @@ function listStartStasjoner(stasjoner) {
 }
 
 function listEndeStasjoner() {
-    let startstasjon = $('#startstasjon option:selected').text();
+    let startstasjon = $('#startstasjon option:selected').val();
     console.log("StartStasjon: " + startstasjon);
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
-            let ut = "<label>Jeg skal reise til:</label>";
-            ut += "<select onchange='listDato()' class='endestasjoner'>";
-            ut += "<option>Velg endestasjon</option>";
+            let ut = "<label>Jeg skal reise til</label>";
+            ut += "<select onchange='listDato()'>";
+            ut += "<option></option>";
             let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
                 if (stasjon.stasjonsNavn !== forrigeStasjon) {
@@ -50,14 +50,14 @@ function listEndeStasjoner() {
 
 function listDato() {
     let ut = "<label>Velg dato<span> (DD/MM/ÅÅÅÅ) </span></label>";
-    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt(), validerDato(this.value)'>";
+    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt()'>";
     $("#dato").html(ut);
 }
 
 function listTidspunkt() {
-    let dato = document.getElementById('datoValgt').value;
-    let startstasjon = $('#startstasjon option:selected').text();
-    let endestasjon = $('#endestasjon option:selected').text();
+    let dato = $('#datoValgt').val();
+    let startstasjon = $('#startstasjon option:selected').val();
+    let endestasjon = $('#endestasjon option:selected').val();
     console.log("Dato: " + dato + ", startstasjon: " + startstasjon + ", endestasjon: " + endestasjon);
     const url = "bestilling/hentAlleTurer";
     $.get(url, function (turer) {
@@ -82,10 +82,10 @@ function listTidspunkt() {
 }
 
 function beregnPris() {
-    let dato = document.getElementById('datoValgt').value;
-    let startstasjon = $('#startstasjon option:selected').text();
-    let endestasjon = $('#endestasjon option:selected').text();
-    let tid = $('#tid option:selected').text();
+    let dato = $('#datoValgt').val();
+    let startstasjon = $('#startstasjon option:selected').val();
+    let endestasjon = $('#endestasjon option:selected').val();
+    let tid = $('#tid option:selected').val();
     let antallBarn = $("#antallBarn").val();
     let antallVoksne = $("#antallVoksne").val();
 
@@ -131,52 +131,43 @@ function beregnOgValiderBarn() {
 
 function beregnOgValiderVoksen() {
     let antallVoksne = $("#antallVoksne").val();
-    validerAntallVoksne(antallVoksne);
+    validerAntallBarn(antallVoksne);
     beregnPris();
 }
 
 function validerOgLagBestilling() {
     const StartstasjonOK = validerStartstasjon($("#startstasjon").val());
-    const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
+    //const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
-    if (StartstasjonOK && EndestasjonOK  && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
+    if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
         lagreBestilling();
     }
 }
 
-function genererPopUP() {
-    window.confirm("hei på deg");
-    
-}
-
 function lagreBestilling() {
     const bestilling = {
-        //sette inn id?
-        startstasjon: $("#startstasjon").val(),
-        endeStasjon: $("#endestasjon").val(),
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),
         telefonnummer: $("#telefonnr").val(),
         antallBarn: $("#antallBarn").val(),
-        antallVoksne: $("#antallVoksne").val()
-        //totalPris: $("#totalPris").val(),
-        //tid: $("#tid").val(),
-    };
+        antallVoksne: $("#antallVoksne").val(),
+        totalPris: $("#totalPris").val(),
+        startstasjon: $("#startstasjon option:selected").val(),
+        endeStasjon: $("#endestasjon option:selected").val(),
+        dato: $("#dato").val(),
+        tid: $("#tid option:selected").val()
 
-    if (ingenValideringsFeil()) {
-        const url = "bestilling/lagre";
-        $.post(url, bestilling, function () {
-            window.location.href = 'index.html';
-        })
-            .fail(function () {
-                $("#feil").html("Feil på server - prøv igjen senere");
-            });
     }
-}
-
-
-
+    const url = "bestilling/lagre";
+    $.post(url, bestilling, function () {
+        window.location.href = 'index.html';
+        console.log("Bestillingen er lagret!");
+    })
+        .fail(function () {
+            $("#feil").html("Feil på server - prøv igjen senere");
+        });
+};
