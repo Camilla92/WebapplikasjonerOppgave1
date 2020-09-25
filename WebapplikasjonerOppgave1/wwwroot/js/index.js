@@ -116,13 +116,13 @@ function beregnPris() {
                 pris = 0;
             }
             console.log("Beregnet pris: " + pris);
-            if (antallBarn > 0) {
+            if (antallBarn > 0 && antallBarn < 10) {
                 $("#prisBarn").html("Pris barn: " + barnepris + " kr x " + antallBarn + " = " + barnepris * antallBarn + " kr");
             }
             else {
                 $("#prisBarn").html("");
             }
-            if (antallVoksne > 0) {
+            if (antallVoksne > 0 && antallVoksne < 10) {
                 $("#prisVoksen").html("Pris voksen: " + voksenpris + " kr x " + antallVoksne + " = " + voksenpris * antallVoksne + " kr");
             }
             else {
