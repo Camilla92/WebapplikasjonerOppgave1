@@ -71,9 +71,17 @@
 
 }
 #bekreft {
-    margin-left: 45%;
+    margin-left: 35%;
     margin-top: 80%;
     font-size: 18px;
+}
+
+#avslutt {
+    
+    margin-top: 80%;
+    font-size: 18px;
+   
+    
 }
 
 .close:hover,
