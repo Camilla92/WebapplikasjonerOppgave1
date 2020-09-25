@@ -167,10 +167,9 @@ function genererPopUP() {
 
 
 function lagMinEgenPopUp() {
+    //var modal = document.getElementById("myModal");
 
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
+    // Get the button that opens the modal*/
     var btn = document.getElementById("reg");
 
     // Get the <span> element that closes the modal
@@ -190,6 +189,8 @@ function lagMinEgenPopUp() {
     avslutt.onclick = function () {
         modal.style.display = "none";
     }
+
+
 
 
 }

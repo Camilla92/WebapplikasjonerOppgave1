@@ -37,6 +37,57 @@
  
 }
 
+modal {
+    display: none; /* Hidden by default */
+    position: center; /* Stay in place */
+    width: 60%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: rgba(0,0,0,0.92); /* Black w/ opacity */
+    width: 100%; /* Could be more or less, depending on screen size */
+    height: 100%;
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#bestillingUt {
+    margin-left: 40%;
+    padding-top: 10px;
+    color: white;
+    font-size: 25px;
+}
+
+#bekreft {
+    margin-left: 35%;
+    margin-top: 80%;
+    font-size: 18px;
+}
+
+#avslutt {
+    margin-top: 80%;
+    font-size: 18px;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
