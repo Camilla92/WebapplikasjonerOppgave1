@@ -37,7 +37,7 @@
  
 }
 
-modal {
+.modal {
     display: none; /* Hidden by default */
     position: center; /* Stay in place */
     width: 60%; /* Full width */
