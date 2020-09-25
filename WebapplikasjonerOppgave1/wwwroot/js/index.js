@@ -116,6 +116,18 @@ function beregnPris() {
                 pris = 0;
             }
             console.log("Beregnet pris: " + pris);
+            if (antallBarn > 0) {
+                $("#prisBarn").html("Pris barn: " + barnepris + " kr x " + antallBarn + " = " + barnepris * antallBarn + " kr");
+            }
+            else {
+                $("#prisBarn").html("");
+            }
+            if (antallVoksne > 0) {
+                $("#prisVoksen").html("Pris voksen: " + voksenpris + " kr x " + antallVoksne + " = " + voksenpris * antallVoksne + " kr");
+            }
+            else {
+                $("#prisVoksen").html("");
+            }
         }
         else {
             $("#feil").html("Feil i db");
