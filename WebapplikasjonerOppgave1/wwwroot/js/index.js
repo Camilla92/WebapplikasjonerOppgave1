@@ -116,6 +116,18 @@ function beregnPris() {
                 pris = 0;
             }
             console.log("Beregnet pris: " + pris);
+            if (antallBarn > 0 && antallBarn < 10) {
+                $("#prisBarn").html("Pris barn: " + barnepris + " kr x " + antallBarn + " = " + barnepris * antallBarn + " kr");
+            }
+            else {
+                $("#prisBarn").html("");
+            }
+            if (antallVoksne > 0 && antallVoksne < 10) {
+                $("#prisVoksen").html("Pris voksen: " + voksenpris + " kr x " + antallVoksne + " = " + voksenpris * antallVoksne + " kr");
+            }
+            else {
+                $("#prisVoksen").html("");
+            }
         }
         else {
             $("#feil").html("Feil i db");
@@ -146,6 +158,47 @@ function validerOgLagBestilling() {
     if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
         lagreBestilling();
     }
+}
+
+
+function genererPopUP() {
+    window.confirm("hei på deg");
+    
+}
+
+
+function lagMinEgenPopUp() {
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+
+    var btn = document.getElementById("reg");
+
+    // Get the <span> element that closes the modal
+
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // Når man trykker på avslutt så blir popupen borte
+
+    avslutt.onclick = function () {
+        modal.style.display = "none";
+    }
+
+
+
+
 }
 
 function lagreBestilling() {
