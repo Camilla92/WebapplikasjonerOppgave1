@@ -149,22 +149,18 @@ function validerOgLagBestilling() {
 }
 
 function lagreBestilling() {
-    var totalPris = beregnPris();
-    console.log("Totalpris: "+totalPris);
-
+  
     const bestilling = {
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),
         telefonnummer: $("#telefonnr").val(),
         antallBarn: $("#antallBarn").val(),
         antallVoksne: $("#antallVoksne").val(),
-        totalPris: totalPris,
+        totalPris: pris,
         startstasjon: $("#startstasjon option:selected").val(),
         endeStasjon: $("#endestasjon option:selected").val(),
         dato: $("#datoValgt").val(),
         tid: $("#tid option:selected").val()
-
-        //console.log("barn: " + antallBarn + ", voksne: " + antallVoksne + ", totalpris: " + totalPris);
 
     }
     const url = "bestilling/lagre";

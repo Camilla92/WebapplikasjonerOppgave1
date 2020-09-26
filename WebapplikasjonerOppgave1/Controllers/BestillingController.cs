@@ -52,7 +52,7 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         }
 
-
+        /*
         public async Task<double> beregnPris(String startStasjonsNavn, String endeStasjonsNavn, String tid, String dato, String antallBarn, String antallVoksne)
         {
             double pris;
@@ -76,7 +76,7 @@ namespace WebapplikasjonerOppgave1.Controllers
             }
             pris = (barnepris * intAntallBarn) + (voksenpris + intAntallVoksne);
             return pris;
-        }
+        }*/
 
         //først bestilling, så tur, så sjekke om kunden finnes fra før av!
         public async Task<bool> lagre(BussBestilling innBussBestilling)
@@ -95,10 +95,13 @@ namespace WebapplikasjonerOppgave1.Controllers
             }
             Tur funnetTur = _db.Turer.Find(turID);
 
+            double totalpris = (innBussBestilling.AntallBarn * funnetTur.BarnePris) + (innBussBestilling.AntallVoksne * funnetTur.VoksenPris);
+
+
             int kundeID = 0;
             List<Kunde> alleKunder = await _db.Kunder.ToListAsync();
 
-            foreach (var kunde in alleKunder)
+                      foreach (var kunde in alleKunder)
             {
                 if (innBussBestilling.Fornavn.Equals(kunde.Fornavn) &&
                     innBussBestilling.Etternavn.Equals(kunde.Etternavn))
@@ -111,14 +114,9 @@ namespace WebapplikasjonerOppgave1.Controllers
                 var nyBestillingRad = new Bestilling();
                 nyBestillingRad.AntallBarn = innBussBestilling.AntallBarn;
                 nyBestillingRad.AntallVoksne = innBussBestilling.AntallVoksne;
-                nyBestillingRad.TotalPris = innBussBestilling.TotalPris;
+                nyBestillingRad.TotalPris = totalpris;
                 nyBestillingRad.Tur = funnetTur;
-                /*nyBestillingRad.Tur.StartStasjon.StasjonsNavn = innBussBestilling.StartStasjon;
-                nyBestillingRad.Tur.EndeStasjon.StasjonsNavn = innBussBestilling.EndeStasjon;
-                nyBestillingRad.Tur.Dato = innBussBestilling.Dato;
-                nyBestillingRad.Tur.Tid = innBussBestilling.Tid;
-                nyBestillingRad.Tur.BarnePris = innBussBestilling.BarnePris;
-                nyBestillingRad.Tur.VoksenPris = innBussBestilling.VoksenPris;*/
+                
 
                 Kunde funnetKunde = await _db.Kunder.FindAsync(kundeID);
 
@@ -127,9 +125,11 @@ namespace WebapplikasjonerOppgave1.Controllers
                     var kundeRad = new Kunde();
                     kundeRad.Fornavn = innBussBestilling.Fornavn;
                     kundeRad.Etternavn = innBussBestilling.Etternavn;
-                    kundeRad.Telefonnummer = innBussBestilling.Telefonnummer;
+                    kundeRad.Telefonnummer = innBussBestilling.Telefonnummer;             
                     _db.Kunder.Add(kundeRad);
                     await _db.SaveChangesAsync();
+                    nyBestillingRad.kunde = kundeRad;
+
                 }
                 else
                 {
