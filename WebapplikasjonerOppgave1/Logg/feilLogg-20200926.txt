@@ -66,3 +66,7 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-09-26T20:15:03.5384830+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-09-26T20:15:03.5451440+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-09-26T20:15:03.5476720+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-09-26T20:15:03.5502580+02:00  [INF] Content root path: "/Users/synneangell/Projects/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
