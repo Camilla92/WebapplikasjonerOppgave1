@@ -209,7 +209,6 @@ function lagreBestilling() {
         telefonnummer: $("#telefonnr").val(),
         antallBarn: $("#antallBarn").val(),
         antallVoksne: $("#antallVoksne").val(),
-        totalPris: pris,
         startstasjon: $("#startstasjon option:selected").val(),
         endeStasjon: $("#endestasjon option:selected").val(),
         dato: $("#datoValgt").val(),
