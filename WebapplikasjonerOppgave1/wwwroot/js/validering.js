@@ -32,7 +32,7 @@ function validerDato(dato) {
     
     const ok = regexp.test(dato);
     if (!ok) {
-        $("#feilDato").html("Dato må være i riktig format.");
+        $("#feilDato").html("Dato må være i riktig format");
         return false;
     }
     else {
