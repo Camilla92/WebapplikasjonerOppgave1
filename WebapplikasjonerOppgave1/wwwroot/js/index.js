@@ -67,15 +67,13 @@ function listTidspunkt() {
             for (let tur of turer) {
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
                     ut += "<option>" + tur.tid + "</option>";
-                    console.log("Tur sin tid:" + tur.tid);
-                }
-                else {
-                    $("#feilDato").html("Ikke tilgjengelig tur på valgt dato");
                 }
             }
             ut += "</select>";
             $("#tid").html(ut);
-            console.log(JSON.stringify(turer));
+            if (document.getElementById('tidspunkt').options.length == 0) {
+                $("#feilDato").html("Ingen tilgjengelige turer på valgt dato");
+            }
         }
         else {
             $("#feil").html("Feil i db");
