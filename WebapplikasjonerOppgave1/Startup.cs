@@ -22,6 +22,7 @@ namespace WebapplikasjonerOppgave1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IBussBestillingRepository, BussBestillingRepository>();
             services.AddDbContext<NorwayContext>(options =>
                             options.UseSqlite("Data Source=NORWAY.db"));
         }

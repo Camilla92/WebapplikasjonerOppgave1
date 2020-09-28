@@ -24,21 +24,23 @@ function listStartStasjoner(stasjoner) {
 }
 
 function listEndeStasjoner() {
-    let stasjon;
     let startstasjon = $('#startstasjon option:selected').val();
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
+
+            const uniq = new Set(stasjoner.map(e => JSON.stringify(e)));
+
+            const unikeStasjoner = Array.from(uniq).map(e => JSON.parse(e));
+
             let ut = "<label>Jeg skal reise til</label>";
             ut += "<select onchange='listDato()'>";
-            ut += "<option></option>";
+            ut += "<option>Velg endestasjon</option>";
 
-            for (let stasjon of stasjoner) {
-                if (stasjon.stasjonsNavn != forrigeStasjon) {
-                    ut += "<option>" + stasjon.stasjonsNavn + "</option>";
-                }
-                forrigeStasjon = stasjon.stasjonsNavn;
+            for (let stasjon of unikeStasjoner) {
+                ut += "<option>" + stasjon.stasjonsNavn + "</option>";
             }
+
             ut += "</select>";
             $("#endestasjon").html(ut);
             console.log(JSON.stringify(stasjoner));
@@ -93,7 +95,7 @@ function beregnPris() {
     let barnepris = 0;
     let voksenpris = 0;
 
-    const url = "bestilling/hentAlleTurer";
+    const url = "bestilling/HentAlleTurer";
     $.get(url, function (turer) {
         if (turer) {
             for (let tur of turer) {
@@ -156,7 +158,7 @@ function validerOgLagBestilling() {
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
     if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
-        lagreBestilling();
+        lagMinEgenPopUp;
     }
 }
 
@@ -165,33 +167,9 @@ function genererPopUP() {
 }
 
 function lagMinEgenPopUp() {
-    var modal = document.getElementById("myModal");
+    const options = { show: true };
 
-    // Get the button that opens the modal
-
-    var btn = document.getElementById("reg");
-
-    // Get the <span> element that closes the modal
-
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // Når man trykker på avslutt så blir popupen borte
-
-    avslutt.onclick = function () {
-        modal.style.display = "none";
-    }
+    $('#myModal').modal('show');
 
     formaterBestilling();
 }
@@ -202,9 +180,9 @@ function formaterBestilling() {
     let ut = "<table class='table table-striped'><tr>" +
         "<tr>Fornavn : </tr>" + $("#fornavn").val() + "<br>" +
         "<tr>Etternav : </tr>" + $("#etternavn").val() + "<br>" +
-        "<tr>Telefonnummer : </tr>" + + $("#telefonnr").val() + "<br>" +
+        "<tr>Telefonnummer : </tr>" + $("#telefonnr").val() + "<br>" +
         "<tr><br>" +
-        "<tr>Antall barn : </tr>" + + $("#antallBarn").val() + "<br>" +
+        "<tr>Antall barn : </tr>" + $("#antallBarn").val() + "<br>" +
         "<tr>Antall voksne : </tr>" + $("#antallVoksne").val() + "<br>" +
         "<tr>Totalpris : </tr>" + $("#totalPris").val() + "<br>" +
         "<tr>Startstasjon : </tr>" + $("#startstasjon option:selected").val() + "<br>" +
@@ -217,8 +195,7 @@ function formaterBestilling() {
 }
 
 function lagreBestilling() {
-    beregnPris();
-    
+   
     const bestilling = {
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),

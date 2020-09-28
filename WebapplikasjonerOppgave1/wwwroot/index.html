@@ -71,8 +71,7 @@
                             <div id="prisVoksen"></div>
                         </div>
                         <div class="form-group">
-                            <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="lagMinEgenPopUp()" />
-                            <!---->
+                            <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="lagreBestilling()" />
                         </div>
                         <div id="feil" style="color: red"></div>
                     </form>
@@ -80,14 +79,24 @@
 
             </div>
         </div>
-        <div id="myModal" class="modal">
-            <!-- Popup -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p id="bestillingUt">Bestilling</p>
-                <p id="innhold"></p>
-                <input type="button" class="btn btn-primary" id="bekreft" value="Bekreft" onclick="lagreBestilling()" />
-                <input type="button" class="btn btn-outline-secondary" id="avslutt" value="Gå tilbake" onclick="" />
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
