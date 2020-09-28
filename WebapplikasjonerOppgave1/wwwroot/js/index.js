@@ -1,4 +1,4 @@
-﻿$(function () {
+$(function () {
     HentAlleStasjoner();
 });
 
@@ -51,7 +51,7 @@ function listEndeStasjoner() {
 function listDato() {
     let ut = "<label>Velg dato<span> (DD/MM/ÅÅÅÅ) </span></label>";
     ut += "<input type='text' id='datoValgt' onchange='listTidspunkt()'>";
-    $("#dato").html(ut); 
+    $("#dato").html(ut);
 }
 
 function listTidspunkt() {
@@ -116,6 +116,18 @@ function beregnPris() {
                 pris = 0;
             }
             console.log("Beregnet pris: " + pris);
+            if (antallBarn > 0 && antallBarn < 10) {
+                $("#prisBarn").html("Pris barn: " + barnepris + " kr x " + antallBarn + " = " + barnepris * antallBarn + " kr");
+            }
+            else {
+                $("#prisBarn").html("");
+            }
+            if (antallVoksne > 0 && antallVoksne < 10) {
+                $("#prisVoksen").html("Pris voksen: " + voksenpris + " kr x " + antallVoksne + " = " + voksenpris * antallVoksne + " kr");
+            }
+            else {
+                $("#prisVoksen").html("");
+            }
         }
         else {
             $("#feil").html("Feil i db");
@@ -148,6 +160,74 @@ function validerOgLagBestilling() {
     }
 }
 
+
+function genererPopUP() {
+    window.confirm("hei på deg");
+    
+}
+
+function formaterBestilling(bestillinger) {
+    let ut = "<table class='table table-striped'><tr>" +
+        "<th>Fornavn</th>" +
+        "<th>Etternavn</th>" +
+        "<th>Telefonnummer</th>" +
+        "<th>Antall barn</th>" +
+        "<th>Antall voksne</th>" +
+        "<th>Totalpris</th>" +
+        "<th>Startstasjon</th>" +
+        "<th>Endestasjon</th>" +
+        "<th>Dato</th>" +
+        "<th>Tid</th>" +
+        "</tr>";
+    for (const bestilling of bestillinger) {
+        ut += "<tr>" +
+            "<td>" + bestilling.fornavn + "</td>" +
+            "<td>" + bestilling.etternavn + "</td>" +
+            "<td>" + bestilling.telefonnummer + "</td>" +
+            "<td>" + bestilling.antallBarn + "</td>" +
+            "<td>" + bestilling.antallVoksne + "</td>" +
+            "<td>" + bestilling.totalPris + "</td>" +
+            "<td>" + bestilling.startStasjon + "</td>" +
+            "<td>" + bestilling.endestasjon + "</td>" +
+            "<td>" + bestilling.dato + "</td>" +
+            "<td>" + bestilling.tid + "</td>" +
+            "</tr>";
+    }
+    ut += "</table>";
+    $("#innhold").html(ut);
+}
+
+
+function lagMinEgenPopUp() {
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+
+    var btn = document.getElementById("reg");
+
+    // Get the <span> element that closes the modal
+
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // Når man trykker på avslutt så blir popupen borte
+
+    avslutt.onclick = function () {
+        modal.style.display = "none";
+    }
+}
+
 function lagreBestilling() {
     var totalPris = beregnPris();
     console.log("Totalpris: " + totalPris);
@@ -163,7 +243,6 @@ function lagreBestilling() {
         endeStasjon: $("#endestasjon option:selected").val(),
         dato: $("#datoValgt").val(),
         tid: $("#tid option:selected").val()
-
         //console.log("barn: " + antallBarn + ", voksne: " + antallVoksne + ", totalpris: " + totalPris);
 
     }
@@ -177,29 +256,4 @@ function lagreBestilling() {
         });
 };
 
-/*
-function lagreBestilling() {
-    const bestilling = {
-        fornavn: $("#fornavn").val(),
-        etternavn: $("#etternavn").val(),
-        telefonnummer: $("#telefonnr").val(),
-        antallBarn: $("#antallBarn").val(),
-        antallVoksne: $("#antallVoksne").val(),
-        totalPris: $("#totalPris").val(),
-        startstasjon: $("#startstasjon option:selected").val(),
-        endeStasjon: $("#endestasjon option:selected").val(),
-        dato: $("#datoValgt").val(),
-        tid: $("#tid option:selected").val()
-
-    }
-    const url = "bestilling/lagre";
-    $.post(url, bestilling, function () {
-        window.location.href = 'index.html';
-        console.log("Bestillingen er lagret!");
-    })
-        .fail(function () {
-            $("#feil").html("Feil på server - prøv igjen senere");
-        });
-};
-*/
 
