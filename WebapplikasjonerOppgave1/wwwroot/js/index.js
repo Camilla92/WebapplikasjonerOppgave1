@@ -195,29 +195,65 @@ function lagMinEgenPopUp() {
     formaterBestilling();
 }
 
-function formaterBestilling() {
-    beregnPris();
 
-    let ut = "<table class='table table-striped'><tr>" +
-        "<tr>Fornavn : </tr>" + $("#fornavn").val() + "<br>" +
-        "<tr>Etternav : </tr>" + $("#etternavn").val() + "<br>" +
-        "<tr>Telefonnummer : </tr>" + + $("#telefonnr").val() + "<br>" +
-        "<tr><br>" +
-        "<tr>Antall barn : </tr>" + + $("#antallBarn").val() + "<br>" +
-        "<tr>Antall voksne : </tr>" + $("#antallVoksne").val() + "<br>" +
-        "<tr>Totalpris : </tr>" + $("#totalPris").val() + "<br>" +
-        "<tr>Startstasjon : </tr>" + $("#startstasjon option:selected").val() + "<br>" +
-        "<tr>Endestasjon : </tr>" + $("#endestasjon option:selected").val() + "<br>" +
-        "<tr>Dato : </tr>" + $("#datoValgt").val() + "<br>" +
-        "<tr>Tid : </tr>" + $("#tid option:selected").val() +
-        "</tr>";
-    ut += "</table>";
-    $("#innhold").html(ut);
+function formaterBestilling() {
+    let dato = $('#datoValgt').val();
+    let startstasjon = $('#startstasjon option:selected').val();
+    let endestasjon = $('#endestasjon option:selected').val();
+    let tid = $('#tid option:selected').val();
+    let antallBarn = $("#antallBarn").val();
+    let antallVoksne = $("#antallVoksne").val();
+
+    let pris;
+    let barnepris = 0;
+    let voksenpris = 0;
+
+    const url = "bestilling/hentAlleTurer";
+    $.get(url, function (turer) {
+        if (turer) {
+            for (let tur of turer) {
+                if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato && tid == tur.tid) {
+                    console.log("tur.barnepris: " + tur.barnePris + ", antallBarn: " + antallBarn + ", tur.voksenPris: " + tur.voksenPris + ", antallVoksne: " + antallVoksne);
+                    barnepris = tur.barnePris;
+                    voksenpris = tur.voksenPris;
+                }
+            }
+            if (antallBarn > 0 && antallVoksne > 0) {
+                pris = (barnepris * antallBarn) + (voksenpris * antallVoksne);
+            }
+            else if (antallBarn <= 0 && antallVoksne > 0) {
+                pris = voksenpris * antallVoksne;
+            }
+            else if (antallVoksne <= 0 && antallBarn > 0) {
+                pris = barnepris * antallBarn;
+            }
+            else {
+                pris = 0;
+            }
+        }
+
+        let ut = "<table class='table table-striped'><tr>" +
+            "<tr>Fornavn : </tr>" + $("#fornavn").val() + "<br>" +
+            "<tr>Etternav : </tr>" + $("#etternavn").val() + "<br>" +
+            "<tr>Telefonnummer : </tr>" + + $("#telefonnr").val() + "<br>" +
+            "<tr><br>" +
+            "<tr>Antall barn : </tr>" + + $("#antallBarn").val() + "<br>" +
+            "<tr>Antall voksne : </tr>" + $("#antallVoksne").val() + "<br>" +
+            "<tr>Totalpris : </tr>" + pris + "<br>" +
+            "<tr>Startstasjon : </tr>" + $("#startstasjon option:selected").val() + "<br>" +
+            "<tr>Endestasjon : </tr>" + $("#endestasjon option:selected").val() + "<br>" +
+            "<tr>Dato : </tr>" + $("#datoValgt").val() + "<br>" +
+            "<tr>Tid : </tr>" + $("#tid option:selected").val() +
+            "</tr>";
+        ut += "</table>";
+        $("#innhold").html(ut);
+
+        });
+ 
 }
 
-function lagreBestilling() {
-    beregnPris();
-    
+
+function lagreBestilling() {    
     const bestilling = {
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),
@@ -238,5 +274,5 @@ function lagreBestilling() {
         .fail(function () {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
-};
+}
 
