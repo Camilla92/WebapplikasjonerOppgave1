@@ -1,5 +1,5 @@
 ﻿function validerStartstasjon() {
-    const ikkeValgtSS = $('#startstasjon option:selected').text();
+    const ikkeValgtSS = $('#startstasjon option:selected').val();
     if (ikkeValgtSS === "Velg startstasjon") {
         $("#feilStartstasjon").html("Må velge en startstasjon");
         return false;
@@ -12,7 +12,7 @@
 
 
 function validerEndestasjon() {
-    const ikkeValgtES = $('#endestasjon option:selected').text();
+    const ikkeValgtES = $('#endestasjon option:selected').val();
     if (ikkeValgtES === "Velg endestasjon") {
         $("#feilEndestasjon").html("Må velge en endestasjon");
         return false;
@@ -42,7 +42,7 @@ function validerDato(dato) {
 }
 
 function validerTid() {
-    const tid = $('#tid option:selected').text();
+    const tid = $('#tid option:selected').val();
 ;
     if (tid === "Velg tidspunkt") {
         $("#feilTid").html("Må velge et tidspunkt");

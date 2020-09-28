@@ -64,14 +64,14 @@
                         </div>
                         <div class="form-group">
                             <label>Antall voksne</label>
-                            <input type="number" min="0" id="antallVoksne" class="form-control" onchange="beregnOgValiderVoksen()" /> <br />
+                            <input type="number" min="0" id="antallVoksne" class="form-control" onkeyup="beregnOgValiderVoksen()" /> <br />
                             <inline id="voksenPris"></inline>
                             <span id="feilAntallVoksne" style="color: red"></span>
                             <div id="prisBarn"></div>
                             <div id="prisVoksen"></div>
                         </div>
                         <div class="form-group">
-                            <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="lagMinEgenPopUp()" />
+                            <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="validerOgLagBestilling()" />
                             <!---->
                         </div>
                         <div id="feil" style="color: red"></div>

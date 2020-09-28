@@ -30,7 +30,7 @@ function listEndeStasjoner() {
         if (stasjoner) {
             let ut = "<label>Jeg skal reise til</label>";
             ut += "<select onchange='listDato()'>";
-            ut += "<option></option>";
+            ut += "<option>Velg endestasjon</option>";
             let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
                 if (stasjon.stasjonsNavn !== forrigeStasjon) {
@@ -49,7 +49,7 @@ function listEndeStasjoner() {
 
 function listDato() {
     let ut = "<label>Velg dato<span> (DD/MM/ÅÅÅÅ) </span></label>";
-    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt()'>";
+    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt(), validerDato(this.value)'>";
     $("#dato").html(ut);
 }
 
@@ -142,26 +142,26 @@ function beregnOgValiderBarn() {
 
 function beregnOgValiderVoksen() {
     let antallVoksne = $("#antallVoksne").val();
-    validerAntallBarn(antallVoksne);
+    validerAntallVoksne(antallVoksne);
     beregnPris();
 }
 
 function validerOgLagBestilling() {
     const StartstasjonOK = validerStartstasjon($("#startstasjon").val());
-    //const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
+    const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
+    //const DatoOK = validerDato($("#dato").val());
+    const TidOK = validerTid($("#tid").val());
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
-    if (StartstasjonOK && FornavnOK && EtternavnOK && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
-        lagreBestilling();
+    if (StartstasjonOK && EndestasjonOK && TidOK && FornavnOK && EtternavnOK
+        && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
+        lagMinEgenPopUp();
     }
 }
 
-function genererPopUP() {
-    window.confirm("hei på deg");
-}
 
 function lagMinEgenPopUp() {
     var modal = document.getElementById("myModal");
