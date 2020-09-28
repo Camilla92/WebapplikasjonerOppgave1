@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
+    let ut = "<select class='custom-select custom - select - sm' onchange='listEndeStasjoner()' id='startstasjon'>";
     ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
@@ -29,7 +29,7 @@ function listEndeStasjoner() {
     $.get(url, function (stasjoner) {
         if (stasjoner) {
             let ut = "<label>Jeg skal reise til</label>";
-            ut += "<select onchange='listDato()'>";
+            ut += "<select class='custom-select custom - select - sm' onchange='listDato()'>";
             ut += "<option>Velg endestasjon</option>";
             let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
@@ -61,8 +61,8 @@ function listTidspunkt() {
     const url = "bestilling/hentAlleTurer";
     $.get(url, function (turer) {
         if (turer) {
-            let ut = "<label>Velg tidspunkt</label>";
-            ut += "<select id='tidspunkt'>";
+            let ut = "<label>Velg tidspunkt</label><br>";
+            ut += "<select class='custom-select custom - select - sm' id='tidspunkt'>";
             for (let tur of turer) {
                 console.log("Utenfor if, tur sin tid:" + tur.tid);
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
