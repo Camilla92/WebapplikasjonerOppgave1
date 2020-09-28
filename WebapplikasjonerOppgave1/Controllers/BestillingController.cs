@@ -44,7 +44,6 @@ namespace WebapplikasjonerOppgave1.Controllers
             return endeStasjon;
         }
 
-
         public async Task<List<Tur>> hentAlleTurer()
         {
             List<Tur> alleTurer = await _db.Turer.ToListAsync();
@@ -52,33 +51,6 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         }
 
-        /*
-        public async Task<double> beregnPris(String startStasjonsNavn, String endeStasjonsNavn, String tid, String dato, String antallBarn, String antallVoksne)
-        {
-            double pris;
-            double barnepris = 0;
-            double voksenpris = 0;
-            //double doubleAntallBarn = Convert.ToDouble(antallBarn);
-            //double doubleAntallVoksne = Convert.ToDouble(antallVoksne);
-            int intAntallBarn = Convert.ToInt16(antallBarn);
-            int intAntallVoksne = Convert.ToInt16(antallVoksne);
-
-
-            List<Tur> alleTurer = await _db.Turer.ToListAsync();
-
-            foreach (var turen in alleTurer)
-            {
-                if ((startStasjonsNavn.Equals(turen.StartStasjon.StasjonsNavn)) && (endeStasjonsNavn.Equals(turen.EndeStasjon.StasjonsNavn)) && (tid.Equals(turen.Tid)) && (dato.Equals(turen.Dato)))
-                {
-                    barnepris = turen.BarnePris;
-                    voksenpris = turen.VoksenPris;
-                }
-            }
-            pris = (barnepris * intAntallBarn) + (voksenpris + intAntallVoksne);
-            return pris;
-        }*/
-
-        //først bestilling, så tur, så sjekke om kunden finnes fra før av!
         public async Task<bool> lagre(BussBestilling innBussBestilling)
         {
 

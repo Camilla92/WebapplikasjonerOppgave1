@@ -24,6 +24,7 @@ function listStartStasjoner(stasjoner) {
 }
 
 function listEndeStasjoner() {
+    let stasjon;
     let startstasjon = $('#startstasjon option:selected').val();
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
@@ -31,9 +32,9 @@ function listEndeStasjoner() {
             let ut = "<label>Jeg skal reise til</label>";
             ut += "<select onchange='listDato()'>";
             ut += "<option></option>";
-            let forrigeStasjon = "";
+
             for (let stasjon of stasjoner) {
-                if (stasjon.stasjonsNavn !== forrigeStasjon) {
+                if (stasjon.stasjonsNavn != forrigeStasjon) {
                     ut += "<option>" + stasjon.stasjonsNavn + "</option>";
                 }
                 forrigeStasjon = stasjon.stasjonsNavn;
