@@ -63,7 +63,7 @@ function listTidspunkt() {
     $.get(url, function (turer) {
         if (turer) {
             let ut = "<label>Velg tidspunkt</label>";
-            ut += "<select class='browser-default custom-select' id='tidspunkt'>";
+            ut += "<select class='browser-default custom-select' onchange='listEndeStasjoner()' id='tidspunkt'>";
             for (let tur of turer) {
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
                     ut += "<option>" + tur.tid + "</option>";
