@@ -35,7 +35,7 @@ namespace WebapplikasjonerOppgave1.Models
                 /*---------OPPRETTER DATOER--------*/
                 string dato1 = "12/12/2020";
                 string dato2 = "24/12/2020";
-                string dato3 = "01.01.2021";
+                string dato3 = "01/01/2021";
 
                 /*---------OPPRETTER TIDER--------*/
                 string tid1 = "09:00";
@@ -45,7 +45,7 @@ namespace WebapplikasjonerOppgave1.Models
 
                 /*---------OPPRETTER TURER--------*/
                 var tur1 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = tid1, Dato = dato1, BarnePris = 50, VoksenPris = 100};
-                var tur2 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = tid1, Dato = dato1, BarnePris = 50, VoksenPris = 100 };
+                var tur2 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = tid2, Dato = dato1, BarnePris = 50, VoksenPris = 100 };
                 var tur3 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = tid2, Dato = dato2, BarnePris = 70, VoksenPris = 200 };
                 var tur4 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = tid2, Dato = dato2, BarnePris = 70, VoksenPris = 200 };
                 var tur5 = new Tur { StartStasjon = stasjon1, EndeStasjon = stasjon2, Tid = tid3, Dato = dato3, BarnePris = 70, VoksenPris = 200 };

@@ -25,7 +25,6 @@ function listStartStasjoner(stasjoner) {
 
 function listEndeStasjoner() {
     let startstasjon = $('#startstasjon option:selected').val();
-    console.log("StartStasjon: " + startstasjon);
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
@@ -58,17 +57,13 @@ function listTidspunkt() {
     let dato = $('#datoValgt').val();
     let startstasjon = $('#startstasjon option:selected').val();
     let endestasjon = $('#endestasjon option:selected').val();
-    console.log("Dato: " + dato + ", startstasjon: " + startstasjon + ", endestasjon: " + endestasjon);
     const url = "bestilling/hentAlleTurer";
     $.get(url, function (turer) {
         if (turer) {
             let ut = "<label>Velg tidspunkt</label>";
             ut += "<select id='tidspunkt'>";
-            for (let tur of turer) {
-                console.log("Utenfor if, tur sin tid:" + tur.tid);
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
                     ut += "<option>" + tur.tid + "</option>";
-                    console.log("Tur sin tid:" + tur.tid);
                 }
             }
             ut += "</select>";
@@ -160,12 +155,9 @@ function validerOgLagBestilling() {
     }
 }
 
-
 function genererPopUP() {
     window.confirm("hei på deg");
-    
 }
-
 
 function lagMinEgenPopUp() {
     var modal = document.getElementById("myModal");
@@ -196,13 +188,32 @@ function lagMinEgenPopUp() {
         modal.style.display = "none";
     }
 
+    formaterBestilling();
+}
 
+function formaterBestilling() {
+    beregnPris();
 
-
+    let ut = "<table class='table table-striped'><tr>" +
+        "<tr>Fornavn : </tr>" + $("#fornavn").val() + "<br>" +
+        "<tr>Etternav : </tr>" + $("#etternavn").val() + "<br>" +
+        "<tr>Telefonnummer : </tr>" + + $("#telefonnr").val() + "<br>" +
+        "<tr><br>" +
+        "<tr>Antall barn : </tr>" + + $("#antallBarn").val() + "<br>" +
+        "<tr>Antall voksne : </tr>" + $("#antallVoksne").val() + "<br>" +
+        "<tr>Totalpris : </tr>" + $("#totalPris").val() + "<br>" +
+        "<tr>Startstasjon : </tr>" + $("#startstasjon option:selected").val() + "<br>" +
+        "<tr>Endestasjon : </tr>" + $("#endestasjon option:selected").val() + "<br>" +
+        "<tr>Dato : </tr>" + $("#datoValgt").val() + "<br>" +
+        "<tr>Tid : </tr>" + $("#tid option:selected").val() +
+        "</tr>";
+    ut += "</table>";
+    $("#innhold").html(ut);
 }
 
 function lagreBestilling() {
-  
+    beregnPris();
+    
     const bestilling = {
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),
