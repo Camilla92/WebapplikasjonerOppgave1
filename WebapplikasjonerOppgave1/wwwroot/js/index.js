@@ -23,21 +23,27 @@ function listStartStasjoner(stasjoner) {
     console.log(JSON.stringify(stasjoner));
 }
 
+
+
+
 function listEndeStasjoner() {
     let startstasjon = $('#startstasjon option:selected').val();
     const url = "bestilling/hentEndeStasjoner?startStasjonsNavn=" + startstasjon;
     $.get(url, function (stasjoner) {
         if (stasjoner) {
+
+            const uniq = new Set(stasjoner.map(e => JSON.stringify(e)));
+
+            const unikeStasjoner = Array.from(uniq).map(e => JSON.parse(e));
+
             let ut = "<label>Jeg skal reise til</label>";
             ut += "<select onchange='listDato()'>";
-            ut += "<option></option>";
-            let forrigeStasjon = "";
-            for (let stasjon of stasjoner) {
-                if (stasjon.stasjonsNavn !== forrigeStasjon) {
-                    ut += "<option>" + stasjon.stasjonsNavn + "</option>";
-                }
-                forrigeStasjon = stasjon.stasjonsNavn;
+            ut += "<option>Velg endestasjon</option>";
+
+            for (let stasjon of unikeStasjoner) {
+                ut += "<option>" + stasjon.stasjonsNavn + "</option>";
             }
+
             ut += "</select>";
             $("#endestasjon").html(ut);
             console.log(JSON.stringify(stasjoner));
@@ -159,6 +165,7 @@ function validerOgLagBestilling() {
     }
 }
 
+/*
 function genererPopUP() {
     window.confirm("hei på deg");
 }
@@ -193,7 +200,7 @@ function lagMinEgenPopUp() {
     }
 
     formaterBestilling();
-}
+}*/
 
 
 function formaterBestilling() {
