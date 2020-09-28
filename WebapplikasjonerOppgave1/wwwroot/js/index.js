@@ -71,8 +71,13 @@ function listTidspunkt() {
             }
             ut += "</select>";
             $("#tid").html(ut);
+            
+
             if (document.getElementById('tidspunkt').options.length == 0) {
-                $("#feilDato").html("Ingen tilgjengelige turer på valgt dato");
+                $("#ikkeTurDato").html("Ingen tilgjengelige turer på valgt dato.");
+            }
+            else {
+                $("#ikkeTurDato").html("");
             }
         }
         else {
