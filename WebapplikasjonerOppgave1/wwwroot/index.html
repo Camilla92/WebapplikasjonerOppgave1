@@ -28,67 +28,68 @@
 
     <div class="view">
         <div class="container-sm bg-dark border w-25">
+            <h4 class="text-white">Registrer bestilling</h4>
             <div class="row">
                 <div class="col-md-8">
+
                     <form class="form">
+
                         <div class="form-group ">
-                            <label for="startstasjon">Jeg skal reise fra : </label>
+
+                            <label for="startstasjon">Jeg skal reise fra: </label>
                             <div id="startstasjon" class="dropdown" onchange="validerStartstasjon()"></div>
                             <span id="feilStartstasjon" style="color: red"></span>
                         </div>
                         <div class="form-group">
-                            
-                                <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()"> </div>
-                                <span id="feilEndestasjon" style="color: red"></span>
-                         
+
+                            <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()"> </div>
+                            <span id="feilEndestasjon" style="color: red"></span>
+
                         </div>
                         <div class="form-group">
-
-                            <div class="col-xs-2">
-                            <div type="text" id="dato" class="form-control"></div>
+                            <div type="text" id="dato"></div>
                             <span id="feilDato" style="color: red"></span>
-                            </div>
                         </div>
                         <div class="form-group">
                             <div id="tid" class="dropdown" onchange="validerTid()"></div>
                             <span id="feilTid" style="color: red"></span>
                         </div>
-                     
-                            <div class="col-xs-2">
-                                <label>Fornavn</label>
-                                <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br />
-                                <span id="feilFornavn" style="color: red"></span>
-                  
-                         </div>
-                            <div class="form-group">
-                                <label>Etternavn</label>
-                                <input type="text" id="etternavn" class="form-control" onchange="validerEtternavn(this.value)" /> <br />
-                                <span id="feilEtternavn" style="color: red"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Telefonnr</label>
-                                <input type="text" id="telefonnr" class="form-control" onchange="validerTelefonnummer(this.value)" /> <br />
-                                <span id="feilTelefonnummer" style="color: red"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Antall barn</label>
-                                <input type="number" min="0" id="antallBarn" class="form-control" onchange="beregnOgValiderBarn()" /> <br />
-                                <inline id="barnePris"></inline>
-                                <span id="feilAntallBarn" style="color: red"></span>
-                            </div>
-                            <div class="form-group">
-                                <label>Antall voksne</label>
-                                <input type="number" min="0" id="antallVoksne" class="form-control" onkeyup="beregnOgValiderVoksen()" /> <br />
-                                <inline id="voksenPris"></inline>
-                                <span id="feilAntallVoksne" style="color: red"></span>
-                                <div id="prisBarn"></div>
-                                <div id="prisVoksen"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="validerOgLagBestilling()" />
-                                <!---->
-                            </div>
-                            <div id="feil" style="color: red"></div>
+
+                        <div class="form-group">
+                            <label>Fornavn</label>
+                            <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br />
+                            <span id="feilFornavn" style="color: red"></span>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Etternavn</label>
+                            <input type="text" id="etternavn" class="form-control" onchange="validerEtternavn(this.value)" /> <br />
+                            <span id="feilEtternavn" style="color: red"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefonnr</label>
+                            <input type="text" id="telefonnr" class="form-control" onchange="validerTelefonnummer(this.value)" /> <br />
+                            <span id="feilTelefonnummer" style="color: red"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Antall barn</label>
+                            <input type="number" min="0" id="antallBarn" class="form-control" onchange="beregnOgValiderBarn()" /> <br />
+                            <inline id="barnePris"></inline>
+                            <span id="feilAntallBarn" style="color: red"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Antall voksne</label>
+                            <input type="number" min="0" id="antallVoksne" class="form-control" onkeyup="beregnOgValiderVoksen()" /> <br />
+                            <inline id="voksenPris"></inline>
+                            <span id="feilAntallVoksne" style="color: red"></span>
+                            <div class="text-white" id="prisBarn"></div>
+                            <div class="text-white" id="prisVoksen"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="validerOgLagBestilling()" />
+                            <!---->
+                        </div>
+                        <div id="feil" style="color: red"></div>
                     </form>
                 </div>
 
@@ -97,19 +98,22 @@
      
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog ">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+
                         <h4 class="modal-title">Bestilling</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p>Bestillinger</p>
+                        <p id="bestillingUt">Bestillinger</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Gå tilbake</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="">Avbryt</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="">Bekreft</button>
                     </div>
                 </div>
 

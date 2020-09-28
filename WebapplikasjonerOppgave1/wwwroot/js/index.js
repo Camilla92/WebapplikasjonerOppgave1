@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
+    let ut = "<select class='browser-default custom-select' onchange='listEndeStasjoner()' id='startstasjon'>";
     ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
@@ -29,7 +29,7 @@ function listEndeStasjoner() {
     $.get(url, function (stasjoner) {
         if (stasjoner) {
             let ut = "<label>Jeg skal reise til</label>";
-            ut += "<select onchange='listDato()'>";
+            ut += "<select class='browser-default custom-select' onchange='listDato()'>";
             ut += "<option>Velg endestasjon</option>";
             let forrigeStasjon = "";
             for (let stasjon of stasjoner) {
@@ -62,7 +62,7 @@ function listTidspunkt() {
     $.get(url, function (turer) {
         if (turer) {
             let ut = "<label>Velg tidspunkt</label>";
-            ut += "<select id='tidspunkt'>";
+            ut += "<select class='browser-default custom-select' onchange='listEndeStasjoner()' id='tidspunkt'>";
             for (let tur of turer) {
                 console.log("Utenfor if, tur sin tid:" + tur.tid);
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
@@ -195,7 +195,7 @@ function lagMinEgenPopUp() {
     const options = { show: true };
    
 
-    $('#myModal').modal('show');
+    $('#myModal').modal('show')
 
     formaterBestilling();
 }
