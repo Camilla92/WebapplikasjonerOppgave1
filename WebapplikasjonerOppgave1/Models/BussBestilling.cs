@@ -19,10 +19,10 @@ namespace WebapplikasjonerOppgave1.Models
         public string Telefonnummer { get; set; }
 
         //Bestilling
-        [RegularExpression(@"^[0-9]{2}$")]
+        [RegularExpression(@"^[0-9]{1}$")]
         public int AntallBarn { get; set; }
 
-        [RegularExpression(@"^[0-9]{2}$")]
+        [RegularExpression(@"^[0-9]{1}$")]
         public int AntallVoksne { get; set; }
 
         public double TotalPris { get; set; }

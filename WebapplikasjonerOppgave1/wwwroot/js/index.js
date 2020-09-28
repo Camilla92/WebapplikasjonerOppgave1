@@ -237,9 +237,9 @@ function formaterBestilling() {
         let ut = "<table class='table table-striped'><tr>" +
             "<tr>Fornavn : </tr>" + $("#fornavn").val() + "<br>" +
             "<tr>Etternav : </tr>" + $("#etternavn").val() + "<br>" +
-            "<tr>Telefonnummer : </tr>" + + $("#telefonnr").val() + "<br>" +
+            "<tr>Telefonnummer : </tr>" + $("#telefonnr").val() + "<br>" +
             "<tr><br>" +
-            "<tr>Antall barn : </tr>" + + $("#antallBarn").val() + "<br>" +
+            "<tr>Antall barn : </tr>" + $("#antallBarn").val() + "<br>" +
             "<tr>Antall voksne : </tr>" + $("#antallVoksne").val() + "<br>" +
             "<tr>Totalpris : </tr>" + pris + "<br>" +
             "<tr>Startstasjon : </tr>" + $("#startstasjon option:selected").val() + "<br>" +
