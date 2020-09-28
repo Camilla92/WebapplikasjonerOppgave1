@@ -43,7 +43,6 @@ function listEndeStasjoner() {
 
             ut += "</select>";
             $("#endestasjon").html(ut);
-            console.log(JSON.stringify(stasjoner));
         } else {
             $("#feil").html("Feil i db");
         }
@@ -60,17 +59,18 @@ function listTidspunkt() {
     let dato = $('#datoValgt').val();
     let startstasjon = $('#startstasjon option:selected').val();
     let endestasjon = $('#endestasjon option:selected').val();
-    console.log("Dato: " + dato + ", startstasjon: " + startstasjon + ", endestasjon: " + endestasjon);
     const url = "bestilling/hentAlleTurer";
     $.get(url, function (turer) {
         if (turer) {
             let ut = "<label>Velg tidspunkt</label>";
             ut += "<select id='tidspunkt'>";
             for (let tur of turer) {
-                console.log("Utenfor if, tur sin tid:" + tur.tid);
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
                     ut += "<option>" + tur.tid + "</option>";
                     console.log("Tur sin tid:" + tur.tid);
+                }
+                else {
+                    $("#feilDato").html("Ikke tilgjengelig tur på valgt dato");
                 }
             }
             ut += "</select>";
@@ -100,7 +100,6 @@ function beregnPris() {
         if (turer) {
             for (let tur of turer) {
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato && tid == tur.tid) {
-                    console.log("tur.barnepris: " + tur.barnePris + ", antallBarn: " + antallBarn + ", tur.voksenPris: " + tur.voksenPris + ", antallVoksne: " + antallVoksne);
                     barnepris = tur.barnePris;
                     voksenpris = tur.voksenPris;
                 }
@@ -117,7 +116,6 @@ function beregnPris() {
             else {
                 pris = 0;
             }
-            console.log("Beregnet pris: " + pris);
             if (antallBarn > 0 && antallBarn < 10) {
                 $("#prisBarn").html("Pris barn: " + barnepris + " kr x " + antallBarn + " = " + barnepris * antallBarn + " kr");
             }
@@ -255,8 +253,6 @@ function formaterBestilling() {
 }
 
 function lagreBestilling() {
-    beregnPris();
-    
     const bestilling = {
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),
