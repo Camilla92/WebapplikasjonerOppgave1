@@ -27,28 +27,24 @@
     </header>
 
     <div class="view">
-        <div class="container-sm bg-dark border w-25">
+        <div class="container-sm bg-dark w-25">
             <h4 class="text-white">Registrer bestilling</h4>
             <div class="row">
                 <div class="col-md-8">
-
                     <form class="form">
-
                         <div class="form-group ">
-
                             <label for="startstasjon">Jeg skal reise fra: </label>
                             <div id="startstasjon" class="dropdown" onchange="validerStartstasjon()"></div>
                             <span id="feilStartstasjon" style="color: red"></span>
                         </div>
                         <div class="form-group">
-
                             <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()"> </div>
                             <span id="feilEndestasjon" style="color: red"></span>
-
                         </div>
                         <div class="form-group">
                             <div type="text" id="dato"></div>
                             <span id="feilDato" style="color: red"></span>
+                            <span id="ikkeTurDato" style="color: red"></span>
                         </div>
                         <div class="form-group">
                             <div id="tid" class="dropdown" onchange="validerTid()"></div>
@@ -59,7 +55,6 @@
                             <label>Fornavn</label>
                             <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br />
                             <span id="feilFornavn" style="color: red"></span>
-
                         </div>
                         <div class="form-group">
                             <label>Etternavn</label>
@@ -87,12 +82,10 @@
                         </div>
                         <div class="form-group">
                             <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="validerOgLagBestilling()" />
-                            <!---->
                         </div>
                         <div id="feil" style="color: red"></div>
                     </form>
                 </div>
-
             </div>
         </div>
      
@@ -103,24 +96,20 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-
-
                         <h4 class="modal-title">Bestilling</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                       
                         <div id="innhold"></div>
+                        <div id="bekreftBestilling"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="">Avbryt</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="lagreBestilling()">Bekreft</button>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </body>
 </html>

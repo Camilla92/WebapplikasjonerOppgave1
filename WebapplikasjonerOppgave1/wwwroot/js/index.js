@@ -51,7 +51,7 @@ function listEndeStasjoner() {
 
 function listDato() {
     let ut = "<label>Velg dato<span> (DD/MM/ÅÅÅÅ) </span></label>";
-    ut += "<input type='text' id='datoValgt' onchange='listTidspunkt(), validerDato(this.value)'>";
+    ut += "<input class='form-control' type='text' id='datoValgt' onchange='listTidspunkt(), validerDato(this.value)'>";
     $("#dato").html(ut);
 }
 
@@ -72,7 +72,10 @@ function listTidspunkt() {
             ut += "</select>";
             $("#tid").html(ut);
             if (document.getElementById('tidspunkt').options.length == 0) {
-                $("#feilDato").html("Ingen tilgjengelige turer på valgt dato");
+                $("#ikkeTurDato").html("Ingen tilgjengelige turer på valgt dato");
+            }
+            else {
+                $("#ikkeTurDato").html("");
             }
         }
         else {
@@ -148,7 +151,6 @@ function beregnOgValiderVoksen() {
 function validerOgLagBestilling() {
     const StartstasjonOK = validerStartstasjon($("#startstasjon").val());
     const EndestasjonOK = validerEndestasjon($("#endestasjon").val());
-    //const DatoOK = validerDato($("#dato").val());
     const TidOK = validerTid($("#tid").val());
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
@@ -161,45 +163,11 @@ function validerOgLagBestilling() {
     }
 }
 
-
 function lagMinEgenPopUp() {
-   /* var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-
-    var btn = document.getElementById("reg");
-
-    // Get the <span> element that closes the modal
-
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal
-
-   
-        modal.style.display = "block";
-    
-
-    // When the user clicks on <span> (x), close the modal
-
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // Når man trykker på avslutt så blir popupen borte
-
-    avslutt.onclick = function () {
-        modal.style.display = "none";
-    }*/
-
     const options = { show: true };
-   
-
     $('#myModal').modal('show')
-
     formaterBestilling();
 }
-
-
 
 function formaterBestilling() {
     let dato = $('#datoValgt').val();
@@ -252,9 +220,7 @@ function formaterBestilling() {
             "</tr>";
         ut += "</table>";
         $("#innhold").html(ut);
-
     });
-
 }
 
 function lagreBestilling() {
@@ -268,15 +234,16 @@ function lagreBestilling() {
         endeStasjon: $("#endestasjon option:selected").val(),
         dato: $("#datoValgt").val(),
         tid: $("#tid option:selected").val()
-
     }
     const url = "bestilling/lagre";
     $.post(url, bestilling, function () {
-        window.location.href = 'index.html';
+        window.location.href = 'bekreft.html';
         console.log("Bestillingen er lagret!");
     })
         .fail(function () {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
 };
+
+
 
