@@ -164,7 +164,7 @@ function validerOgLagBestilling() {
 
 
 function lagMinEgenPopUp() {
-    var modal = document.getElementById("myModal");
+   /* var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
 
@@ -176,9 +176,9 @@ function lagMinEgenPopUp() {
 
     // When the user clicks on the button, open the modal
 
-    btn.onclick = function () {
+   
         modal.style.display = "block";
-    }
+    
 
     // When the user clicks on <span> (x), close the modal
 
@@ -190,10 +190,17 @@ function lagMinEgenPopUp() {
 
     avslutt.onclick = function () {
         modal.style.display = "none";
-    }
+    }*/
+
+    const options = { show: true };
+   
+
+    $('#myModal').modal('show');
 
     formaterBestilling();
 }
+
+
 
 function formaterBestilling() {
     beregnPris();
