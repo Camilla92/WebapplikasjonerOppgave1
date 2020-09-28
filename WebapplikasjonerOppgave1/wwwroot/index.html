@@ -4,7 +4,14 @@
     <meta charset="utf-8" />
     <title>NOR-WAY</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/2.3.1/css/bootstrap.min.css">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+   
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
     <script src="js/index.js"></script>
     <script src="js/validering.js"></script>
     <link rel="stylesheet" href="stylingIndex.css">
@@ -20,31 +27,39 @@
     </header>
 
     <div class="view">
-        <div class="container">
+        <div class="container-sm bg-dark border w-25">
+            <h4 class="text-white">Registrer bestilling</h4>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-8">
+
                     <form class="form">
+
                         <div class="form-group ">
-                            <label for="startstasjon">Jeg skal reise fra : </label>
+
+                            <label for="startstasjon">Jeg skal reise fra: </label>
                             <div id="startstasjon" class="dropdown" onchange="validerStartstasjon()"></div>
                             <span id="feilStartstasjon" style="color: red"></span>
                         </div>
                         <div class="form-group">
+
                             <div id="endestasjon" class="dropdown" onchange="validerEndestasjon()"> </div>
                             <span id="feilEndestasjon" style="color: red"></span>
+
                         </div>
                         <div class="form-group">
-                            <div type="text" id="dato" class="form-control"></div>
+                            <div type="text" id="dato"></div>
                             <span id="feilDato" style="color: red"></span>
                         </div>
                         <div class="form-group">
                             <div id="tid" class="dropdown" onchange="validerTid()"></div>
                             <span id="feilTid" style="color: red"></span>
                         </div>
+
                         <div class="form-group">
                             <label>Fornavn</label>
                             <input type="text" id="fornavn" class="form-control" onchange="validerFornavn(this.value)" /> <br />
                             <span id="feilFornavn" style="color: red"></span>
+
                         </div>
                         <div class="form-group">
                             <label>Etternavn</label>
@@ -67,8 +82,8 @@
                             <input type="number" min="0" id="antallVoksne" class="form-control" onkeyup="beregnOgValiderVoksen()" /> <br />
                             <inline id="voksenPris"></inline>
                             <span id="feilAntallVoksne" style="color: red"></span>
-                            <div id="prisBarn"></div>
-                            <div id="prisVoksen"></div>
+                            <div class="text-white" id="prisBarn"></div>
+                            <div class="text-white" id="prisVoksen"></div>
                         </div>
                         <div class="form-group">
                             <input type="button" class="btn btn-primary" id="reg" value="Bestill" onclick="validerOgLagBestilling()" />
@@ -80,16 +95,31 @@
 
             </div>
         </div>
-        <div id="myModal" class="modal">
-            <!-- Popup -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p id="bestillingUt">Bestilling</p>
-                <p id="innhold"></p>
-                <input type="button" class="btn btn-primary" id="bekreft" value="Bekreft" onclick="lagreBestilling()" />
-                <input type="button" class="btn btn-outline-secondary" id="avslutt" value="Gå tilbake" onclick="" />
+     
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog ">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+
+
+                        <h4 class="modal-title">Bestilling</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="bestillingUt">Bestillinger</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="">Avbryt</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="">Bekreft</button>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
 </body>
 </html>

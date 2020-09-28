@@ -1,62 +1,10 @@
-﻿body {
-
-
-    
+﻿label {
+    color:white;
 }
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    width: 60%;
-    height: 80%; /* Full height */
-    background-color: rgba(0,0,0,0); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: rgba(0,0,0,0.92); /* Black w/ opacity */
-    
-    width: 70%; /* Could be more or less, depending on screen size */
-    height: 80%;
-}
-
-/* The Close Button */
-.close {
-    color: white;
-    float: right;
-    font-size: 50px;
-    font-weight: bold;
-}
-
-#bestillingUt {
-    margin-left: 10%;
-    padding-top: 10%;
-    color: white;
-    font-size: 25px;
-}
-
-#bekreft {
-    margin-left: 10%;
-    margin-top: 20%;
-    font-size: 18px;
-}
-
-#avslutt {
-    margin-top: 20%;
-    font-size: 18px;
-}
-
-.close:hover,
-.close:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}
-.form {
-    background-color: rgba(0,0,0,0.6);
-    max-width: 30%;
-    margin: 0 auto;
-}
+/*.container {
+    padding-top: 60px;
+    background-color: rgba(0,0,0,0.7);
+}*/
 
 .view {
     background-image: url('lofoten.jpg');
@@ -64,7 +12,6 @@
     background-size: cover;
     background-position: center center;
     height: 100%;
-    
 }
 
 .bilde {
@@ -72,26 +19,6 @@
     padding-top: 20px;
 }
 
-.form-group {
-    padding-top: 20px;
-    margin: 0 auto;
-    text-align: center;
-    color: white;
-}
-
-.col-md-8 {
-    color: white;
-    padding-bottom: 5px;
-    margin: 10px;
-    
- 
-}
-
-#innhold {
-    color: white;
-    font-size: 15px;
-    padding-left: 10px;
-}
 
 
 
@@ -99,41 +26,8 @@
 
 
 
-@media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    [class*="container"]{
-        width: 100%;
-    }
-    [id*="startstasjon"] {
-        width: 100%;
-    }
 
- 
-    [class*="endestasjoner"] {
-        width: 100%;
-    }
 
-    [class*="form"] {
-        width: 80%;
-    }
-
-    
-    [id*="datoValgt"] {
-        width: 100%;
-    }
-    [id*="tidspunkt"] {
-        width: 100%;
-    }
-
-    [class*=modal] {
-        padding-left: 25%;
-    }
-
-    [id*=avslutt] {
-        margin-top: 10%;
-        font-size: 10px;
-    }
-}
 
 
 

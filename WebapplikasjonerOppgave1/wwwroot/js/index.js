@@ -13,7 +13,7 @@ function HentAlleStasjoner() {
 }
 
 function listStartStasjoner(stasjoner) {
-    let ut = "<select onchange='listEndeStasjoner()' id='startstasjon'>";
+    let ut = "<select class='browser-default custom-select' onchange='listEndeStasjoner()' id='startstasjon'>";
     ut += "<option>Velg startstasjon</option>";
     for (let stasjon of stasjoner) {
         ut += "<option>" + stasjon.stasjonsNavn + "</option>";
@@ -34,7 +34,7 @@ function listEndeStasjoner() {
             const unikeStasjoner = Array.from(uniq).map(e => JSON.parse(e));
 
             let ut = "<label>Jeg skal reise til</label>";
-            ut += "<select onchange='listDato()'>";
+            ut += "<select class='browser-default custom-select' onchange='listDato()'>";
             ut += "<option>Velg endestasjon</option>";
 
             for (let stasjon of unikeStasjoner) {
@@ -63,7 +63,7 @@ function listTidspunkt() {
     $.get(url, function (turer) {
         if (turer) {
             let ut = "<label>Velg tidspunkt</label>";
-            ut += "<select id='tidspunkt'>";
+            ut += "<select class='browser-default custom-select' onchange='listEndeStasjoner()' id='tidspunkt'>";
             for (let tur of turer) {
                 if (startstasjon === tur.startStasjon.stasjonsNavn && endestasjon === tur.endeStasjon.stasjonsNavn && dato === tur.dato) {
                     ut += "<option>" + tur.tid + "</option>";
@@ -163,7 +163,7 @@ function validerOgLagBestilling() {
 
 
 function lagMinEgenPopUp() {
-    var modal = document.getElementById("myModal");
+   /* var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
 
@@ -175,9 +175,9 @@ function lagMinEgenPopUp() {
 
     // When the user clicks on the button, open the modal
 
-    btn.onclick = function () {
+   
         modal.style.display = "block";
-    }
+    
 
     // When the user clicks on <span> (x), close the modal
 
@@ -189,10 +189,17 @@ function lagMinEgenPopUp() {
 
     avslutt.onclick = function () {
         modal.style.display = "none";
-    }
+    }*/
+
+    const options = { show: true };
+   
+
+    $('#myModal').modal('show')
 
     formaterBestilling();
 }
+
+
 
 function formaterBestilling() {
     let dato = $('#datoValgt').val();
