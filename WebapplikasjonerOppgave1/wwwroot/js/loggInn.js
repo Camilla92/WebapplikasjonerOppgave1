@@ -13,7 +13,7 @@
         $.post("bestilling/loggInn", bruker, function (OK) {
 
             if (OK) {
-                window.location.href = 'loggInn.html';
+                window.location.href = 'admin.html';
 
             }
             else {
