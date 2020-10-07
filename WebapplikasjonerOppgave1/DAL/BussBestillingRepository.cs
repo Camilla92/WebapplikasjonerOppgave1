@@ -139,7 +139,7 @@ namespace WebapplikasjonerOppgave1.DAL
         {
             try
             {
-                Brukere funnetBruker = await _db.Brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.brukernavn);
+                Brukere funnetBruker = await _db.Brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.Brukernavn);
                 byte[] hash = LagHash(bruker.Passord, funnetBruker.Salt);
                 bool ok = hash.SequenceEqual(funnetBruker.Passord);
                 if (ok)
