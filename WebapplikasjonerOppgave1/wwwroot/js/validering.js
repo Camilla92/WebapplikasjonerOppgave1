@@ -125,6 +125,92 @@ function ingenValideringsFeil() {
         && validerAntallBarn() && validerAntallVoksne() );
 }
 
+
+
+
+// AdminValidering
+
+function validerBarnePrisAdmin(Barnepris) {
+    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+    const ok = regex.test(barnePrisAdmin);
+    if (!ok) {
+        $("#feilBarnePrisAdmin").html("Barnepris må være mellom 2 og 4 tegn");
+        return false;
+    } else {
+        $("#feilBarnePrisAdmin").html("");
+        return true;
+    }
+}
+
+function validerVoksenPrisAdmin(voksenPrisAdmin) {
+    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+    const ok = regex.test(voksenPrisAdmin);
+    if (!ok) {
+        $("#feilVoksenPrisAdmin").html("Voksenpris må være mellom 2 og fire tegn");
+        return false;
+    } else {
+        $("#feilVoksenPrisAdmin").html("");
+        return true;
+    }
+}
+
+function validerStartStasjonAdmin(startstasjonAdmin) {
+    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
+    const ok = regexp.test(startstasjonAdmin);
+    if (!ok) {
+        $("#feilStartStasjon").html("Startstasjon må bestå av 2 til 20 bokstaver")
+        return false;
+    } else {
+        $("#feilStartStasjon").html("");
+        return true;
+    }
+}
+
+function validerEndeStasjonAdmin(endestasjonAdmin) {
+    const regex = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
+    const ok = regex.test(endestasjonAdmin);
+    if (!ok) {
+        $("#feilEndeStasjonAdmin").html("Endestasjon må bestå av 2 til 20 bokstaver")
+        return false;
+    } else {
+        $("#feilEndeStasjonAdmin").html("");
+        return true;
+    }
+}
+
+function validerDatoAdmin(datoAdmin) {
+    const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+    const ok = regex.test(datoAdmin);
+    if (!ok) {
+        $("#feilDatoAdmin").html("Formatet på dato må være DD/MM/YYYY")
+        return false;
+    } else {
+        $("#feilDatoAdmin").html("");
+        return true;
+    }
+}
+
+function validerTidAdmin(tidAdmin) {
+    const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+    const ok = regex.test(tidAdmin);
+    if (!ok) {
+        $("#feilTidAdmin").html("Formatet på dato må være DD/MM/YYYY")
+        return false;
+    } else {
+        $("#feilTidAdmin").html("");
+        return true;
+    }
+}
+
+function ingenValideringsFeilAdmin() {
+    return (validerBarnePrisAdmin() && validerVoksenPrisAdmin() && validerStartStasjonAdmin()
+        && validerEndeStasjonAdmin && validerDatoAdmin() && validerTidAdmin());
+}
+
+
+
+
+
 //Tor sitt eksempel: 
 function validerBrukernavn(brukernavn) {
 
@@ -144,7 +230,7 @@ function validerBrukernavn(brukernavn) {
 
 function validerPassord(passord) {
 
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/];
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
     const ok = regex.test(passord);
     if (!ok) {
 
