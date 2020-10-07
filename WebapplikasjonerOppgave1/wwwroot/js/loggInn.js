@@ -22,7 +22,8 @@
             }
 
         })
-        .fail(function ()){
+
+        .fail(function (feil){
             
   
 

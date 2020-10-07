@@ -144,7 +144,7 @@ function validerBrukernavn(brukernavn) {
 
 function validerPassord(passord) {
 
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/];
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
     const ok = regex.test(passord);
     if (!ok) {
 
