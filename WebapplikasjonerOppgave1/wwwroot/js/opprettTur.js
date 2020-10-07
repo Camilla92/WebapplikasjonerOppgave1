@@ -5,11 +5,11 @@
         dato: $("#dato").val(),
         tid: $("#tid").val(),
         barnepris: $("#barnepris").val(),
-        voksenpris: $("#voksenpris").val(),
+        voksenpris: $("#voksenpris").val()
 
     }
     const url = "bestilling/opprettTur";
-    $.post(url, bestilling, function () {
+    $.post(url, tur, function () {
         window.location.href = 'admin.html';
         console.log("Tur er opprettet!");
     })

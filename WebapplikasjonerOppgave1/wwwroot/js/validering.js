@@ -120,8 +120,8 @@ function validerAntallVoksne(AntallVoksne) {
 }
 
 function validerBarnePris(barnePris) {
-    const regex = "/^([0-9.]{2,4}[0-9]{1,2})?$/""
-    const ok = regex.test(barnePris);
+    const regexp = "/^([0-9.]{2,4}[0-9]{1,2})?$/";
+    const ok = regexp.test(barnePris);
     if (!ok) {
         $("#feilBarnePris").html("Barnepris må være mellom 2 og 4 tegn");
         return false;
@@ -132,8 +132,8 @@ function validerBarnePris(barnePris) {
 }
 
 function validerVoksenPris(voksenPris) {
-    const regex = "/^([0-9.]{2,4}[0-9]{1,2})?$/"
-    const ok = regex.test(voksenPris);
+    const regexpp = "/^([0-9.]{2,4}[0-9]{1,2})?$/";
+    const ok = regexp.test(voksenPris);
     if (!ok) {
         $("#feilVoksenPris").html("Voksenpris må være mellom 2 og fire tegn");
         return false;
@@ -144,8 +144,8 @@ function validerVoksenPris(voksenPris) {
 }
 
 function validerStartStasjonAdmin(startstasjon) {
-    const regex = "/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/";
-    const ok = regex.test(startstasjon);
+    const regexp = "/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/";
+    const ok = regexp.test(startstasjon);
     if (!ok) {
         $("#feilStartStasjon").html("Startstasjon må bestå av 2 til 20 bokstaver")
         return false;
@@ -156,8 +156,8 @@ function validerStartStasjonAdmin(startstasjon) {
 }
 
 function validerEndeStasjonAdmin(endestasjon) {
-    const regex = "/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/";
-    const ok = regex.test(endestasjon);
+    const regexp = "/^[a-zA-ZæøåÆØÅ. \-]{2,20}$/";
+    const ok = regexp.test(endestasjon);
     if (!ok) {
         $("#feilEndeStasjon").html("Endestasjon må bestå av 2 til 20 bokstaver")
         return false;
@@ -168,8 +168,8 @@ function validerEndeStasjonAdmin(endestasjon) {
 }
 
 function validerDatoAdmin(datoAdmin) {
-    const regex = "/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/";
-    const ok = regex.test(datoAdmin);
+    const regexp = "/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/";
+    const ok = regexp.test(datoAdmin);
     if (!ok) {
         $("#feilDatoAdmin").html("Formatet på dato må være DD/MM/YYYY")
         return false;
@@ -180,8 +180,8 @@ function validerDatoAdmin(datoAdmin) {
 }
 
 function validerTidAdmin(tidAdmin) {
-    const regex = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$";
-    const ok = regex.test(datoAdmin);
+    const regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$";
+    const ok = regexp.test(datoAdmin);
     if (!ok) {
         $("#feilDatoAdmin").html("Formatet på dato må være DD/MM/YYYY")
         return false;
@@ -205,7 +205,7 @@ function ingenValideringsFeil() {
 //Tor sitt eksempel: 
 function validerBrukernavn(brukernavn) {
 
-    const regex = /^[a-zA-ZæøåÆØÅ\.\\-]{2,20}$/];
+    const regex = /^[a-zA-ZæøåÆØÅ\.\\-]{2,20}$/;
     const ok = regex.test(brukernavn);
     if (!ok) {
 
@@ -221,7 +221,7 @@ function validerBrukernavn(brukernavn) {
 
 function validerPassord(passord) {
 
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/];
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
     const ok = regex.test(passord);
     if (!ok) {
 
