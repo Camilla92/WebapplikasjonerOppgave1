@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebapplikasjonerOppgave1.Models;
@@ -109,6 +110,16 @@ namespace WebapplikasjonerOppgave1.DAL
                 _log.LogInformation(e.Message);
                 return false;
             }
+        }
+
+        public static byte[] LagHash(string passord, byte[] salt)
+        {
+            return KeyDerivation.Pbkdf2(
+                    password: passord,
+                    salt: salt,
+                    prf: KeyDerivationPrf.HMACSHA512,
+                    iterationCount: 1000,
+                    numBytesRequested: 32);
         }
     }
 }
