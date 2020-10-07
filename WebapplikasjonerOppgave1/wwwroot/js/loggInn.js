@@ -23,6 +23,8 @@
 
         })
         .fail(function ()){
+            
+  
 
             $("#feil").html("Feil på server.");
 
