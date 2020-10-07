@@ -1,7 +1,7 @@
 ﻿function loggInn() {
 
     const brukernavnOK = validerBrukernavn($("#brukernavn").val());
-    const passordOK = validerPassord($("#passord"));
+    const passordOK = validerPassord($("#passord").val());
 
     if (brukernavnOK && passordOK) {
 
@@ -10,7 +10,7 @@
             passord: $("#passord").val
 
         }
-        $.post("Bestilling/LoggInn"), bruker, function (OK) {
+        $.post("Bestilling/LoggInn", bruker, function (OK) {
 
             if (OK) {
                 window.location.href = 'loggInn.html';
