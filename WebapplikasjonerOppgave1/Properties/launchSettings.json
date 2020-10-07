@@ -19,7 +19,8 @@
     "WebapplikasjonerOppgave1": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "index.html",
+      "launchUrl": "loggInn.html",
+      
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

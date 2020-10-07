@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using WebapplikasjonerOppgave1.DAL;
 using WebapplikasjonerOppgave1.Models;
+using static WebapplikasjonerOppgave1.Models.NorwayContext;
 
 namespace WebapplikasjonerOppgave1.Models
 {
@@ -265,6 +266,17 @@ namespace WebapplikasjonerOppgave1.Models
                 context.Turer.Add(tur106);
                 context.Turer.Add(tur107);
                 context.Turer.Add(tur108);
+
+                /*---------OPPRETTER ADMIN-BRUKER--------*/
+
+                var bruker = new Brukere();
+                bruker.Brukernavn = "Admin";
+                string passord = "Admin1";
+                byte[] salt = BussBestillingRepository.LagSalt();
+                byte[] hash = BussBestillingRepository.LagHash(passord, salt);
+                bruker.Passord = hash;
+                bruker.Salt = salt;
+                context.Brukere.Add(bruker);
 
                 context.SaveChanges();
 

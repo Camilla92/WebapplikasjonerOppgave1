@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WebapplikasjonerOppgave1.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebapplikasjonerOppgave1.DAL;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Stasjon = WebapplikasjonerOppgave1.DAL.Stasjon;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace WebapplikasjonerOppgave1.Controllers
 {
@@ -13,6 +17,7 @@ namespace WebapplikasjonerOppgave1.Controllers
     {
         private readonly ILogger<BestillingController> _log;
         private readonly IBussBestillingRepository _db;
+        private const string _loggetInn = "loggetInn";
 
         public BestillingController(IBussBestillingRepository db, ILogger<BestillingController> log)
         {
@@ -20,48 +25,50 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log = log;
         }
 
-        public async Task<ActionResult> EndreTur(Tur endreTur)
+        public async Task<ActionResult> HentAlleStasjoner()
         {
+            //sjekker om innloggingssession er true/false
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
                 return Unauthorized();
             }
-            if (ModelState.IsValid)
-            {
-                bool returOK = await _db.EndreTur(endreTur);
-                if (!returOK)
-                {
-                    _log.LogInformation("Endringen kunne ikke utføres");
-                    return NotFound("Endringen av turen kunne ikke utføres");
-                }
-                return Ok("Turen er endret");
-            }
-            _log.LogInformation("Feil i inputvalidering");
-            return BadRequest("Feil i inputvalidering på server");
-        }
-
-        public async Task<ActionResult> HentAlleStasjoner()
-        {
             List<Stasjon> alleStasjoner = await _db.HentAlleStasjoner();
             return Ok(alleStasjoner);
         }
 
         public async Task<ActionResult> HentAlleTurer()
         {
+            //sjekker om innloggingssession er true/false
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
             List<Turer> alleTurer = await _db.HentAlleTurer();
             return Ok(alleTurer);
         }
 
         public async Task<ActionResult> HentEndeStasjoner(string startStasjonsNavn)
         {
+            //sjekker om innloggingssession er true/false
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
             List<Stasjon> endeStasjon = await _db.HentEndeStasjoner(startStasjonsNavn);
             return Ok(endeStasjon);
         }
 
         public async Task<ActionResult> Lagre(BussBestilling innBussBestilling)
         {
+            //sjekker om innloggingssession er true/false
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
             if (ModelState.IsValid)
             {
+               
                 bool returOk = await _db.Lagre(innBussBestilling);
                 if (!returOk)
                 {
@@ -74,27 +81,33 @@ namespace WebapplikasjonerOppgave1.Controllers
             return BadRequest("Feil i inputvalidering på server");
         }
 
-        public async Task<ActionResult> OpprettTur(Tur innTur)
+
+        //Tor sin kode
+        public async Task<ActionResult> LoggInn(Bruker bruker)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            {
-                return Unauthorized();
-            }
             if (ModelState.IsValid)
             {
-                bool returOK = await _db.OpprettTur(innTur);
-                if (!returOK)
+                bool returnOK = await _db.LoggInn(bruker);
+                if (!returnOK)
                 {
-                    _log.LogInformation("Tur kunne ikke lagres!");
-                    return BadRequest("Tur kunne ikke lagres");
+                    _log.LogInformation("Innloggingen feilet for bruker" + bruker.Brukernavn);
+                    HttpContext.Session.SetString(_loggetInn, "");
+                    return Ok(false);
                 }
-                return Ok("Tur lagret");
+                HttpContext.Session.SetString(_loggetInn, "LoggetInn");
+                return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
-
-
         }
-    }
 
+        //Tor sin kode
+        public void LoggUt()
+        {
+            HttpContext.Session.SetString(_loggetInn, "");
+        }
+
+
+    }
 }
+

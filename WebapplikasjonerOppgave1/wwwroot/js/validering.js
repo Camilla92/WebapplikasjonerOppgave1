@@ -1,4 +1,6 @@
-﻿function validerStartstasjon() {
+﻿//TESTE TESTE
+
+function validerStartstasjon() {
     const ikkeValgtSS = $('#startstasjon option:selected').val();
     if (ikkeValgtSS === "Velg startstasjon") {
         $("#feilStartstasjon").html("Må velge en startstasjon");
@@ -199,3 +201,37 @@ function ingenValideringsFeil() {
         validerTid() && validerFornavn() && validerEtternavn() && validerTelefonnummer
         && validerAntallBarn() && validerAntallVoksne() );
 }
+
+//Tor sitt eksempel: 
+function validerBrukernavn(brukernavn) {
+
+    const regex = /^[a-zA-ZæøåÆØÅ\.\\-]{2,20}$/];
+    const ok = regex.test(brukernavn);
+    if (!ok) {
+
+        $("#feilBrukernavn").html("Brukernavnet må være mellom 2-20 bokstaver");
+        return false;
+    }
+    else {
+        $("#feilBrukernavn").html("");
+        return true;
+    }
+
+}
+
+function validerPassord(passord) {
+
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/];
+    const ok = regex.test(passord);
+    if (!ok) {
+
+        $("#feilPassord").html("Feil i passord. Minimum 6 tegn. ");
+        return false;
+    }
+    else {
+        $("#feilPassord").html("");
+        return true;
+    }
+
+}
+
