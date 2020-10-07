@@ -43,7 +43,7 @@ namespace WebapplikasjonerOppgave1.Controllers
             {
                 return Unauthorized();
             }
-            List<Tur> alleTurer = await _db.HentAlleTurer();
+            List<Turer> alleTurer = await _db.HentAlleTurer();
             return Ok(alleTurer);
         }
 
