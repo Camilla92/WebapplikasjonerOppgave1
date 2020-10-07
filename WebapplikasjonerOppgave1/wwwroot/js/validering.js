@@ -1,4 +1,6 @@
-﻿function validerStartstasjon() {
+﻿//TESTE TESTE
+
+function validerStartstasjon() {
     const ikkeValgtSS = $('#startstasjon option:selected').val();
     if (ikkeValgtSS === "Velg startstasjon") {
         $("#feilStartstasjon").html("Må velge en startstasjon");
