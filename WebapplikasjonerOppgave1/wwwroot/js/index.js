@@ -235,6 +235,7 @@ function lagreBestilling() {
         dato: $("#datoValgt").val(),
         tid: $("#tid option:selected").val()
     }
+
     const url = "bestilling/lagre";
     $.post(url, bestilling, function () {
         window.location.href = 'bekreft.html';

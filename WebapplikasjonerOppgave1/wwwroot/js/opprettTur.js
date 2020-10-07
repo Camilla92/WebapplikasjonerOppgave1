@@ -17,12 +17,12 @@
 
 function opprettTur() {
     const tur = {
-        startstasjon: $("#startstasjon").val(),
-        endestasjon: $("#endestasjon").val(),
-        dato: $("#dato").val(),
-        tid: $("#tid").val(),
-        barnepris: $("#barnepris").val(),
-        voksenpris: $("#voksenpris").val()
+        startstasjon: $("#startstasjonAdmin").val(),
+        endestasjon: $("#endestasjonAdmin").val(),
+        dato: $("#datoAdmin").val(),
+        tid: $("#tidAdmin").val(),
+        barnepris: $("#barnePrisAdmin").val(),
+        voksenpris: $("#voksenPrisAdmin").val()
     }
 
     const url = "bestilling/opprettTur";
@@ -34,3 +34,4 @@ function opprettTur() {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
 };
+
