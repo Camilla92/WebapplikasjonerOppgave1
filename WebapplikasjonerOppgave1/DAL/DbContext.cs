@@ -8,13 +8,7 @@ using WebapplikasjonerOppgave1.DAL;
 namespace WebapplikasjonerOppgave1.Models
 {
 
-    public class Brukere
-    {
-        public int Id { get; set; }
-        public string Brukernavn { get; set; }
-        public byte[] Passord { get; set; }
-        public byte[] Salt { get; set; }
-    }
+   
     public class NorwayContext : DbContext
     {
 

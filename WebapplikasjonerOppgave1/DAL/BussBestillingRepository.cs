@@ -117,7 +117,6 @@ namespace WebapplikasjonerOppgave1.DAL
             }
         }
 
-<<<<<<< HEAD
         public static byte[] LagHash(string passord, byte[] salt)
         {
             return KeyDerivation.Pbkdf2(
@@ -149,9 +148,13 @@ namespace WebapplikasjonerOppgave1.DAL
                 }
                 return false;
             }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
 
-=======
-
+        }
         public async Task<bool> OpprettTur(Tur innTur)
         {
             try
@@ -236,18 +239,14 @@ namespace WebapplikasjonerOppgave1.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
->>>>>>> d450739e7f76c8c5ca93e2e9a03511c19cc3b405
             catch (Exception e)
             {
                 _log.LogInformation(e.Message);
                 return false;
             }
-<<<<<<< HEAD
-        
-}
 
-=======
+
+
         }
->>>>>>> d450739e7f76c8c5ca93e2e9a03511c19cc3b405
     }
 }
