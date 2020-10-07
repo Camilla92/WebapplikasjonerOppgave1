@@ -153,8 +153,8 @@ namespace WebapplikasjonerOppgave1.DAL
                 _log.LogInformation(e.Message);
                 return false;
             }
-
         }
+
         public async Task<bool> OpprettTur(Tur innTur)
         {
             try

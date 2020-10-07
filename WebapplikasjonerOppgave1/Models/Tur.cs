@@ -18,6 +18,7 @@ namespace WebapplikasjonerOppgave1.Models
         [RegularExpression(@"^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$")]
         public string Dato { get; set; }
 
+<<<<<<< HEAD
         [RegularExpression(@"^([01]?[0 - 9]|2[0-3]):[0-5] [0-9]$")]
         public string Tid { get; set; }
 
@@ -25,6 +26,15 @@ namespace WebapplikasjonerOppgave1.Models
         public double BarnePris { get; set; }
 
         [RegularExpression(@"^([0-9.]{2,4}[0-9]{1,2})?$")]
+=======
+
+        public string Tid { get; set; }
+
+        
+        public double BarnePris { get; set; }
+
+
+>>>>>>> ab17c12133de1243324fa8f70f5fd352dcbe7088
         public double VoksenPris { get; set; }
     }
 }
