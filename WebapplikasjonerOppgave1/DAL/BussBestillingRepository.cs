@@ -24,15 +24,15 @@ namespace WebapplikasjonerOppgave1.DAL
             return alleStasjoner;
         }
 
-        public async Task<List<Tur>> HentAlleTurer()
+        public async Task<List<Turer>> HentAlleTurer()
         {
-            List<Tur> alleTurer = await _db.Turer.ToListAsync();
+            List<Turer> alleTurer = await _db.Turer.ToListAsync();
             return alleTurer;
         }
 
         public async Task<List<Stasjon>> HentEndeStasjoner(string startStasjonsNavn)
         {
-            List<Tur> alleTurer = await _db.Turer.ToListAsync();
+            List<Turer> alleTurer = await _db.Turer.ToListAsync();
             var endeStasjon = new List<Stasjon>();
 
             foreach (var turen in alleTurer)
@@ -48,17 +48,17 @@ namespace WebapplikasjonerOppgave1.DAL
         public async Task<bool> Lagre(BussBestilling innBussBestilling)
         {
             int turID = 0;
-            List<Tur> alleTurer = await _db.Turer.ToListAsync();
+            List<Turer> alleTurer = await _db.Turer.ToListAsync();
             foreach (var turen in alleTurer)
             {
-                if (innBussBestilling.StartStasjon.Equals(turen.StartStasjon.StasjonsNavn) &&
-                    innBussBestilling.EndeStasjon.Equals(turen.EndeStasjon.StasjonsNavn) &&
+                if (innBussBestilling.StartStasjon.Equals(turen.StartStasjon) &&
+                    innBussBestilling.EndeStasjon.Equals(turen.EndeStasjon) &&
                     innBussBestilling.Tid.Equals(turen.Tid) && innBussBestilling.Dato.Equals(turen.Dato))
                 {
                     turID = turen.TurId;
                 }
             }
-            Tur funnetTur = _db.Turer.Find(turID);
+            Turer funnetTur = _db.Turer.Find(turID);
 
             double totalpris = (innBussBestilling.AntallBarn * funnetTur.BarnePris) + (innBussBestilling.AntallVoksne * funnetTur.VoksenPris);
 
@@ -112,12 +112,11 @@ namespace WebapplikasjonerOppgave1.DAL
         }
 
 
-
         public async Task<bool> OpprettTur(Tur innTur)
         {
             try
             {
-                var nyTurRad = new Tur();
+                var nyTurRad = new Turer();
                 nyTurRad.Dato = innTur.Dato;
                 nyTurRad.Tid = innTur.Tid;
                 nyTurRad.BarnePris = innTur.BarnePris;
@@ -128,11 +127,11 @@ namespace WebapplikasjonerOppgave1.DAL
                 {
                     var startStasjonRad = new Stasjon();
                     startStasjonRad.StasjonsNavn = innTur.StartStasjon;
-                    nyTurRad.StartStasjon = startStasjonRad.StasjonsNavn;
+                    nyTurRad.StartStasjon = startStasjonRad;
                 }
                 else
                 {
-                    nyTurRad.StartStasjon = sjekkStartStasjon.StasjonsNavn;
+                    nyTurRad.StartStasjon = sjekkStartStasjon;
                 }
 
                 var sjekkEndeStasjon = await _db.Stasjoner.FindAsync(innTur.EndeStasjon);
@@ -140,11 +139,11 @@ namespace WebapplikasjonerOppgave1.DAL
                 {
                     var endeStasjonRad = new Stasjon();
                     endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
-                    nyTurRad.EndeStasjon = endeStasjonRad.StasjonsNavn;
+                    nyTurRad.EndeStasjon = endeStasjonRad;
                 }
                 else
                 {
-                    nyTurRad.EndeStasjon = sjekkEndeStasjon.StasjonsNavn;
+                    nyTurRad.EndeStasjon = sjekkEndeStasjon;
                 }
 
 
@@ -159,5 +158,49 @@ namespace WebapplikasjonerOppgave1.DAL
             }
         }
 
+        public async Task<bool> EndreTur(Tur endreTur)
+        {
+            try
+            {
+                var tur = await _db.Turer.FindAsync(endreTur.Tid);
+                tur.Dato = endreTur.Dato;
+                tur.BarnePris = endreTur.BarnePris;
+                tur.VoksenPris = endreTur.VoksenPris;
+
+
+                var sjekkStartStasjon = await _db.Stasjoner.FindAsync(endreTur.StartStasjon);
+                if (sjekkStartStasjon == null)
+                {
+                    var startStasjonRad = new Stasjon();
+                    startStasjonRad.StasjonsNavn = endreTur.StartStasjon;
+                    endreTur.StartStasjon = startStasjonRad.StasjonsNavn;
+                }
+                else
+                {
+                    tur.StartStasjon.StasjonsNavn = endreTur.StartStasjon;
+                }
+
+                var sjekkEndeStasjon = await _db.Stasjoner.FindAsync(endreTur.EndeStasjon);
+                if (sjekkEndeStasjon == null)
+                {
+                    var endeStasjonRad = new Stasjon();
+                    endeStasjonRad.StasjonsNavn = endreTur.EndeStasjon;
+                    endreTur.EndeStasjon = endeStasjonRad.StasjonsNavn;
+                }
+                else
+                {
+                    tur.EndeStasjon.StasjonsNavn = endreTur.EndeStasjon;
+                }
+
+
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
+        }
     }
 }

@@ -8,9 +8,10 @@ namespace WebapplikasjonerOppgave1.DAL
     public interface IBussBestillingRepository
     {
         Task<List<Stasjon>> HentAlleStasjoner();
-        Task<List<Tur>> HentAlleTurer();
+        Task<List<Turer>> HentAlleTurer();
         Task<List<Stasjon>> HentEndeStasjoner(string startStasjonsNavn);
         Task<bool> Lagre(BussBestilling innBussBestilling);
-        Task<bool> OpprettTur(Models.Tur innTur);
+        Task<bool> OpprettTur(Tur innTur);
+        Task<bool> EndreTur(Tur endreTur);
     }
 }
