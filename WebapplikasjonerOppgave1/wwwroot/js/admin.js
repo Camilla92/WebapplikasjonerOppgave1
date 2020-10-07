@@ -1,4 +1,4 @@
-﻿$(function () {
+﻿/*$(function () {
     var url = "bestilling/HentAlleTurer";
     $.getJSON(url, function (turene) {
         if (turene === "Feil innlogging") {
@@ -8,6 +8,25 @@
         $("#endreTurene").html(ut);
     });
 });
+*/
+
+$(function () {
+    hentAlleTurer();
+});
+
+function hentAlleTurer() {
+    $.get("bestilling/HentAlleTurer", function (turene) {
+        formaterTurer(turer);
+    })
+        .fail(function (feil) {
+            if (feil.status == 401) {
+                window.location.href = 'loggInn.html';
+            }
+            else {
+                $("#feil").html("Feil på server - prøv igjen senere");
+            }
+        });
+}
 
 
 function formaterTurer(turer) {
@@ -125,4 +144,10 @@ function slettTur(linje) {
             }
         });
     }
+}
+
+function loggUt() {
+    $.get("/loggUt", function () {
+        window.location.href = "/";
+    })
 }
