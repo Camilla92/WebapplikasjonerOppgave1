@@ -110,5 +110,54 @@ namespace WebapplikasjonerOppgave1.DAL
                 return false;
             }
         }
+
+
+
+        public async Task<bool> OpprettTur(Tur innTur)
+        {
+            try
+            {
+                var nyTurRad = new Tur();
+                nyTurRad.Dato = innTur.Dato;
+                nyTurRad.Tid = innTur.Tid;
+                nyTurRad.BarnePris = innTur.BarnePris;
+                nyTurRad.VoksenPris = innTur.VoksenPris;
+
+                var sjekkStartStasjon = await _db.Stasjoner.FindAsync(innTur.StartStasjon);
+                if (sjekkStartStasjon == null)
+                {
+                    var startStasjonRad = new Stasjon();
+                    startStasjonRad.StasjonsNavn = innTur.StartStasjon;
+                    nyTurRad.StartStasjon = startStasjonRad.StasjonsNavn;
+                }
+                else
+                {
+                    nyTurRad.StartStasjon = sjekkStartStasjon.StasjonsNavn;
+                }
+
+                var sjekkEndeStasjon = await _db.Stasjoner.FindAsync(innTur.EndeStasjon);
+                if (sjekkEndeStasjon == null)
+                {
+                    var endeStasjonRad = new Stasjon();
+                    endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
+                    nyTurRad.EndeStasjon = endeStasjonRad.StasjonsNavn;
+                }
+                else
+                {
+                    nyTurRad.EndeStasjon = sjekkEndeStasjon.StasjonsNavn;
+                }
+
+
+                _db.Turer.Add(nyTurRad);
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
+        }
+
     }
 }

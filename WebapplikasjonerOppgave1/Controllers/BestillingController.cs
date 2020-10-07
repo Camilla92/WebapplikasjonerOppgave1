@@ -31,7 +31,7 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         public async Task<ActionResult> HentAlleTurer()
         {
-            List<Tur> alleTurer = await _db.HentAlleTurer();
+            List<DAL.Tur> alleTurer = await _db.HentAlleTurer();
             return Ok(alleTurer);
         }
 
@@ -56,6 +56,28 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
         }
-    }
-}
 
+        public async Task<ActionResult> OpprettTur(Models.Tur innTur)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            if (ModelState.IsValid)
+            {
+                bool returOK = await _db.Lagre(innTur);
+                if (!returOK)
+                {
+                    _log.LogInformation("Tur kunne ikke lagres!");
+                    return BadRequest("Tur kunne ikke lagres");
+                }
+                return Ok("Tur lagret");
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+
+
+        }
+    }
+
+}

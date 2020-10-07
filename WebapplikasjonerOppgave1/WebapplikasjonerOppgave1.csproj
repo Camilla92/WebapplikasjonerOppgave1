@@ -21,12 +21,6 @@
   <ItemGroup>
     <Content Remove="wwwroot\Registrer.html" />
     <Content Remove="wwwroot\Bilde1.png" />
-    <Content Remove="wwwroot\js\validering.js" />
-    <Content Remove="wwwroot\js\index.js" />
-    <Content Remove="wwwroot\js\index.js" />
-    <Content Remove="wwwroot\js\index.js" />
-    <Content Remove="wwwroot\index.html" />
-    <Content Remove="wwwroot\js\index.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\Bilde1.png" />

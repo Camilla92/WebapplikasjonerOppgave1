@@ -11,5 +11,6 @@ namespace WebapplikasjonerOppgave1.DAL
         Task<List<Tur>> HentAlleTurer();
         Task<List<Stasjon>> HentEndeStasjoner(string startStasjonsNavn);
         Task<bool> Lagre(BussBestilling innBussBestilling);
+        Task<bool> OpprettTur(Models.Tur innTur);
     }
 }
