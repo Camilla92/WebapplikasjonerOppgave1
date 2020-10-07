@@ -81,6 +81,27 @@ namespace WebapplikasjonerOppgave1.Controllers
             return BadRequest("Feil i inputvalidering på server");
         }
 
+        public async Task<ActionResult> OpprettTur(Tur innTur)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+
+            if (ModelState.IsValid)
+            {
+
+                bool returOk = await _db.OpprettTur(innTur);
+                if (!returOk)
+                {
+                    _log.LogInformation("Tur ble ikke registrert");
+                    return BadRequest("Tue ble ikke registrert");
+                }
+                return Ok("Tur registrert");
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+        }
 
         //Tor sin kode
         public async Task<ActionResult> LoggInn(Bruker bruker)
