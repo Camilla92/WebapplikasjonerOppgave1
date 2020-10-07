@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebapplikasjonerOppgave1", "WebapplikasjonerOppgave1\WebapplikasjonerOppgave1.csproj", "{BECD6392-B545-4E42-BBDD-F8588D16C8D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussBestillingTest", "BussBestillingTest\BussBestillingTest.csproj", "{1A95CC12-3F4C-496E-979C-F8B7312E3105}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussBestillingTest", "BussBestillingTest\BussBestillingTest.csproj", "{B94BA4FF-B867-454E-9063-AD076E03BA65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,9 @@ Global
 		{BECD6392-B545-4E42-BBDD-F8588D16C8D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BECD6392-B545-4E42-BBDD-F8588D16C8D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BECD6392-B545-4E42-BBDD-F8588D16C8D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A95CC12-3F4C-496E-979C-F8B7312E3105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A95CC12-3F4C-496E-979C-F8B7312E3105}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A95CC12-3F4C-496E-979C-F8B7312E3105}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A95CC12-3F4C-496E-979C-F8B7312E3105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B94BA4FF-B867-454E-9063-AD076E03BA65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B94BA4FF-B867-454E-9063-AD076E03BA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B94BA4FF-B867-454E-9063-AD076E03BA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B94BA4FF-B867-454E-9063-AD076E03BA65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
