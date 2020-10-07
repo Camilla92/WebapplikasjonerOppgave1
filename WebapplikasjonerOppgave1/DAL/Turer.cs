@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebapplikasjonerOppgave1.DAL
 {
-    public class Tur
+    public class Turer
     {
         [Key]
         public int TurId { get; set; }

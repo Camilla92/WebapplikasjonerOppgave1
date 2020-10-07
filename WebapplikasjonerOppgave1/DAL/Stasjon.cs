@@ -9,5 +9,6 @@ namespace WebapplikasjonerOppgave1.DAL
         [Key]
         public int SId { get; set; }
         public string StasjonsNavn { get; set; }
+        public string Stasjonsnavn { get; internal set; }
     }
 }

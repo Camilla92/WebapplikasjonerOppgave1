@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using WebapplikasjonerOppgave1.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebapplikasjonerOppgave1.DAL;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Stasjon = WebapplikasjonerOppgave1.DAL.Stasjon;
 using Microsoft.Extensions.Logging;
 
 namespace WebapplikasjonerOppgave1.Controllers
@@ -23,6 +20,26 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log = log;
         }
 
+        public async Task<ActionResult> EndreTur(Tur endreTur)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            if (ModelState.IsValid)
+            {
+                bool returOK = await _db.EndreTur(endreTur);
+                if (!returOK)
+                {
+                    _log.LogInformation("Endringen kunne ikke utføres");
+                    return NotFound("Endringen av turen kunne ikke utføres");
+                }
+                return Ok("Turen er endret");
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+        }
+
         public async Task<ActionResult> HentAlleStasjoner()
         {
             List<Stasjon> alleStasjoner = await _db.HentAlleStasjoner();
@@ -31,7 +48,7 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         public async Task<ActionResult> HentAlleTurer()
         {
-            List<Tur> alleTurer = await _db.HentAlleTurer();
+            List<Turer> alleTurer = await _db.HentAlleTurer();
             return Ok(alleTurer);
         }
 
@@ -56,6 +73,28 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
         }
-    }
-}
 
+        public async Task<ActionResult> OpprettTur(Tur innTur)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            if (ModelState.IsValid)
+            {
+                bool returOK = await _db.OpprettTur(innTur);
+                if (!returOK)
+                {
+                    _log.LogInformation("Tur kunne ikke lagres!");
+                    return BadRequest("Tur kunne ikke lagres");
+                }
+                return Ok("Tur lagret");
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+
+
+        }
+    }
+
+}
