@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WebapplikasjonerOppgave1.Models;
+using WebapplikasjonerOppgave1.DAL;
+
+using static WebapplikasjonerOppgave1.Models.NorwayContext;
 
 namespace WebapplikasjonerOppgave1.DAL
 {
@@ -121,5 +126,36 @@ namespace WebapplikasjonerOppgave1.DAL
                     iterationCount: 1000,
                     numBytesRequested: 32);
         }
+
+        public static byte[] LagSalt()
+        {
+            var csp = new RNGCryptoServiceProvider();
+            var salt = new byte[24];
+            csp.GetBytes(salt);
+            return salt;
+        }
+
+        public async Task<bool> LoggInn(Bruker bruker)
+        {
+            try
+            {
+                Brukere funnetBruker = await _db.Brukere.FirstOrDefaultAsync(b => b.Brukernavn == bruker.brukernavn);
+                byte[] hash = LagHash(bruker.Passord, funnetBruker.Salt);
+                bool ok = hash.SequenceEqual(funnetBruker.Passord);
+                if (ok)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
+        
+}
+
     }
 }

@@ -7,22 +7,38 @@ using WebapplikasjonerOppgave1.DAL;
 
 namespace WebapplikasjonerOppgave1.Models
 {
+
+    public class Brukere
+    {
+        public int Id { get; set; }
+        public string Brukernavn { get; set; }
+        public byte[] Passord { get; set; }
+        public byte[] Salt { get; set; }
+    }
     public class NorwayContext : DbContext
     {
+
         public NorwayContext(DbContextOptions<NorwayContext> options)
             : base(options)
         {
             Database.EnsureCreated();
         }
 
+        
+
         public virtual DbSet<Kunde> Kunder { get; set; }
         public virtual DbSet<Tur> Turer { get; set; }
         public virtual DbSet<Stasjon> Stasjoner { get; set; }
         public virtual DbSet<Bestilling> Bestillinger { get; set; }
+        public virtual DbSet<Brukere> Brukere { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
+
+        
     }
+
+  
 }
