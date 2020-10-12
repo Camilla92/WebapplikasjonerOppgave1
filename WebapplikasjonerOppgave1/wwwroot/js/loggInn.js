@@ -7,7 +7,7 @@
 
         const bruker = {
             brukernavn: $("#brukernavn").val(),
-            passord: $("#passord").val
+            passord: $("#passord").val()
 
         }
         $.post("Bestilling/LoggInn", bruker, function (OK) {
