@@ -93,6 +93,30 @@ function validerTelefonnummer(Telefonnummer) {
     }
 }
 
+function validerEpost(Epost) {
+    const regexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const ok = regexp.test(Epost);
+    if (!ok) {
+        $("#feilEpost").html("Epost er skrevet inn feil");
+        return false;
+    } else {
+        $("#feilEpost").html("");
+        return true;
+    }
+}
+
+function validerKortnummer(Kortnummer) {
+    const regexp = /^[0-9]{16}$/;
+    const ok = regexp.test(Kortnummer);
+    if (!ok) {
+        $("#feilKortnummer").html("Kortnummer må bestå av 16 tall");
+        return false;
+    } else {
+        $("#feilKortnummer").html("");
+        return true;
+    }
+}
+
 function validerAntallBarn(AntallBarn) {
     const regexp = /^[0-9]{1}$/;
     const ok = regexp.test(AntallBarn);
@@ -120,13 +144,10 @@ function validerAntallVoksne(AntallVoksne) {
 }
 
 function ingenValideringsFeil() {
-    return ( validerStartstasjon() && validerEndestasjon() && validerDato() &&
-        validerTid() && validerFornavn() && validerEtternavn() && validerTelefonnummer
-        && validerAntallBarn() && validerAntallVoksne() );
+    return (validerStartstasjon() && validerEndestasjon() && validerDato() &&
+        validerTid() && validerFornavn() && validerEtternavn() && validerTelefonnummer()
+        && validerEpost() && validerKortnummer && validerAntallBarn() && validerAntallVoksne() );
 }
-
-
-
 
 // AdminValidering
 

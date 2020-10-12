@@ -97,6 +97,8 @@ namespace WebapplikasjonerOppgave1.DAL
                     kundeRad.Fornavn = innBussBestilling.Fornavn;
                     kundeRad.Etternavn = innBussBestilling.Etternavn;
                     kundeRad.Telefonnummer = innBussBestilling.Telefonnummer;
+                    kundeRad.Epost = innBussBestilling.Epost;
+                    kundeRad.Kortnummer = innBussBestilling.Kortnummer;
                     _db.Kunder.Add(kundeRad);
                     await _db.SaveChangesAsync();
                     nyBestillingRad.kunde = kundeRad;

@@ -18,6 +18,12 @@ namespace WebapplikasjonerOppgave1.Models
         [RegularExpression(@"^[0-9]{8}$")]
         public string Telefonnummer { get; set; }
 
+        [RegularExpression(@"^[^<> ()[\]\\.,;:\s@\']+(\.[^<>()[\]\\.,;:\s@\']+)*)|(\'.+\'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})$")]
+        public string Epost { get; set; }
+
+        [RegularExpression(@"^[0-9]{16}$")]
+        public int Kortnummer { get; set; }
+
         //Bestilling
         [RegularExpression(@"^[0-9]{1}$")]
         public int AntallBarn { get; set; }

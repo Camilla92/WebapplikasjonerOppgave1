@@ -155,6 +155,8 @@ function validerOgLagBestilling() {
     const FornavnOK = validerFornavn($("#fornavn").val());
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
+    const EpostOK = validerEpost($("#epost").val());
+    const KonrtnummerOK = validerKortnummer($("#kortnummer").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
     if (StartstasjonOK && EndestasjonOK && TidOK && FornavnOK && EtternavnOK
@@ -209,6 +211,8 @@ function formaterBestilling() {
             "<tr>Fornavn : </tr>" + $("#fornavn").val() + "<br>" +
             "<tr>Etternav : </tr>" + $("#etternavn").val() + "<br>" +
             "<tr>Telefonnummer : </tr>" + $("#telefonnr").val() + "<br>" +
+            "<tr>Epost : </tr>" + $("#epost").val() + "<br>" +
+            "<tr>Kortnummer : </tr>" + $("#kortnummer").val() + "<br>" +
             "<tr><br>" +
             "<tr>Antall barn : </tr>" + $("#antallBarn").val() + "<br>" +
             "<tr>Antall voksne : </tr>" + $("#antallVoksne").val() + "<br>" +
@@ -228,6 +232,8 @@ function lagreBestilling() {
         fornavn: $("#fornavn").val(),
         etternavn: $("#etternavn").val(),
         telefonnummer: $("#telefonnr").val(),
+        epost: $("#epost").val(),
+        kortnummer: $("#kortnummer").val(),
         antallBarn: $("#antallBarn").val(),
         antallVoksne: $("#antallVoksne").val(),
         startstasjon: $("#startstasjon option:selected").val(),
