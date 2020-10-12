@@ -53,9 +53,18 @@ function formaterTurer(turer) {
             "<td><input type='text' id='tid" + linje + "' size='5' value='" + tur.tid + "'/></td>" +
             "<td><input type='text' id='barnePris" + linje + "' size='7' value='" + tur.barnePris + "'/></td>" +
             "<td><input type='text' id='voksenPris" + linje + "' size='7' value='" + tur.voksenPris + "'/></td>" +
-            "<td> <a class='btn btn-info' onclick='endreTur(" + linje + ")'>Endre</button></td>" +
+            "<td> <a class='btn btn-info' onclick='validerOgEndreTur(" + linje + ")'>Endre</button></td>" +
             "<td> <a class='btn btn-danger' onclick='slettTur(" + linje + ")'>Slett</button></td>" +
-            "</tr>";
+            "</tr>" +
+            "<tr>" +
+            "<td><span id='TurIdFeil" + linje + "' size='3'/> </td>" +
+            "<td><span id='feilStartStasjon" + linje + "'/> </td>" +
+            "<td><span id='feilEndeStasjonAdmin" + linje + "' /> </td>" +
+            "<td><span id='feilDatoAdmin" + linje + "' </td>" +
+            "<td><span id='feilTidAdmin" + linje + "' size='5' </td>" +
+            "<td><span id='feilBarnePrisAdmin" + linje + "' size='7' </td>" +
+            "<td><span id='feilVoksenPrisAdmin" + linje + "' size='7' </td>" +
+            "<td><span id='endreFeil" + linje + "' size='7' </td ></tr> ";
         linje++;
     });
     ut += "</table>";
@@ -109,11 +118,30 @@ function formaterTurer(turer) {
     $("#turene").html(ut);
 }
 */
+function validerOgEndreTur(linje) {
+    console.log($("#dato"+linje ).val());
+    console.log($("#tid"+linje).val());
+    console.log($("#barnePris"+linje).val());
+    console.log($("#voksenPris"+linje).val());
+
+    const StartstasjonOK = validerStartStasjonEndre($("#startstasjon"+linje).val(), linje);
+    const EndestasjonOK = validerEndeStasjonEndre($("#endestasjon"+linje).val(), linje); 
+    const DatoOK = validerDatoEndre($("#dato"+linje).val(), linje);
+    const TidOK = validerTidEndre($("#tid"+linje).val(), linje);
+    const PrisBarnOK = validerBarnePrisEndre($("#barnePris"+linje).val(), linje);
+    const PrisVoksenOK = validerVoksenPrisEndre($("#voksenPris"+linje).val(), linje);
+    if (StartstasjonOK && EndestasjonOK && TidOK && DatoOK && PrisBarnOK && PrisVoksenOK) {
+        EndreTur(linje);
+    }
+    else {
+        $("#feil").html("Feil i inputvalidering");
+    }
+}
 
 
-function endreTur(linje) {
+function EndreTur(linje) {
     var data = {
-        TurId: $("#TurId" + linje).val(),
+        turId: $("#TurId" + linje).val(),
         startstasjon: $("#startstasjon" + linje).val(),
         endestasjon: $("#endestasjon" + linje).val(),
         dato: $("#dato" + linje).val(),
@@ -121,7 +149,7 @@ function endreTur(linje) {
         barnePris: $("#barnePris" + linje).val(),
         voksenPris: $("#voksenPris" + linje).val()
     }
-    var url = "/BestillingController/endreTur";
+    var url = "bestilling/EndreTur";
     $.post(url, data, function (turer) {
         if (turer === "Feil innlogging") {
             $(location).attr('href', 'loggInn.html');

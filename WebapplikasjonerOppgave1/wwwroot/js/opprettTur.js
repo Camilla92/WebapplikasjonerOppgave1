@@ -1,4 +1,4 @@
-﻿/*function validerOgLagTur() {
+﻿function validerOgLagTur() {
     const StartstasjonOK = validerStartStasjonAdmin($("#startstasjon").val());
     const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjon").val()); @
         const DatoOK = validerDatoAdmin($("#feilDatoAdmin").val());
@@ -10,12 +10,13 @@
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
     if (StartstasjonOK && EndestasjonOK && TidOK && FornavnOK && EtternavnOK
         && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
-        lagMinEgenPopUp();
+        opprettTur();
     }
-}*/
+}
 
 
 function opprettTur() {
+
     const tur = {
         startstasjon: $("#startstasjonAdmin").val(),
         endestasjon: $("#endestasjonAdmin").val(),
