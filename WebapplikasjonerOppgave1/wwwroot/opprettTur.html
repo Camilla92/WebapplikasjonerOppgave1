@@ -18,43 +18,61 @@
 </head>
 
 <body>
-
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="admin.html">
+                <img class="bilde" src="norway.jpg" alt="Nor-Way logo">
+            </a>
+            <a class="navbar navbar-expand-lg btn btn-info pull-right " href="admin.html">->Gå tilbake</a>
+        </nav>
+    </header>
     <div class="view">
-        <div class="container-sm bg-dark w-25">
+        <div class="container-sm bg-dark w-0">
             <h4 class="text-white">Opprett ny tur</h4>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-20 mx-auto">
                     <form class="form">
-                        <div class="form-group">
-                            <label>Startstasjon</label>
-                            <input type="text" id="startstasjonAdmin" class="form-control" onchange="validerStartStasjonAdmin(this.value)" /> <br />
-                            <span id="feilStartStasjonAdmin" style="color: red"></span>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 ">
+                                <label>Startstasjon</label>
+                                <input type="text" id="startstasjonAdmin" class="form-control" onchange="validerStartStasjonAdmin(this.value)" /> <br />
+                                <span id="feilStartStasjonAdmin" style="color: red"></span>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <label>Endestasjon</label>
+                                <input type="text" id="endestasjonAdmin" class="form-control" onchange="validerEndeStasjonAdmin(this.value)" /> <br />
+                                <span id="feilEndeStasjonAdmin" style="color: red"></span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Endestasjon</label>
-                            <input type="text" id="endestasjonAdmin" class="form-control" onchange="validerEndeStasjonAdmin(this.value)" /> <br />
-                            <span id="feilEndeStasjonAdmin" style="color: red"></span>
+                        <div class="form-group row">
+                            <div class="col-sm-6 ">
+                                <label>Dato (DD/MM/ÅÅÅÅ)</label>
+
+                                <input type="text" id="datoAdmin" class="form-control" onchange="validerDatoAdmin(this.value)" /> <br />
+                                <span id="feilDatoAdmin" style="color: red"></span>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <label>Tid</label>
+                                <input type="text" id="tidAdmin" class="form-control" onchange="validerTidAdmin(this.value)" /> <br />
+                                <span id="feilTidAdmin" style="color: red"></span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Dato (DD/MM/ÅÅÅÅ)</label>
-                            <input type="text" id="datoAdmin" class="form-control" onchange="validerDatoAdmin(this.value)" /> <br />
-                            <span id="feilDatoAdmin" style="color: red"></span>
+
+                        <div class="form-group row">
+
+                            <div class="col-sm-6 ">
+                                <label>Barnepris</label>
+                                <input type="text" id="barnePrisAdmin" class="form-control" onchange="validerBarnePrisAdmin(this.value)" /> <br />
+                                <span id="feilBarneprisAdmin" style="color: red"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Voksenpris</label>
+                                <input type="text" id="voksenPrisAdmin" class="form-control" onchange="validerVoksenPrisAdmin(this.value)" /> <br />
+                                <span id="feilVoksenprisAdmin" style="color: red"></span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>Tid</label>
-                            <input type="text" id="tidAdmin" class="form-control" onchange="validerTidAdmin(this.value)" /> <br />
-                            <span id="feilTidAdmin" style="color: red"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Barnepris</label>
-                            <input type="text" id="barnePrisAdmin" class="form-control" onchange="validerBarnePrisAdmin(this.value)" /> <br />
-                            <span id="feilBarneprisAdmin" style="color: red"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Voksenpris</label>
-                            <input type="text" id="voksenPrisAdmin" class="form-control" onchange="validerVoksenPrisAdmin(this.value)" /> <br />
-                            <span id="feilVoksenprisAdmin" style="color: red"></span>
-                        </div>
+
                         <div class="form-group">
                             <input type="button" class="btn btn-primary" id="reg" value="Opprett tur" onclick="opprettTur()" />
                         </div>
