@@ -148,6 +148,6 @@ function slettTur(linje) {
 
 function loggUt() {
     $.get("/loggUt", function () {
-        window.location.href = "/";
+        window.location.href = "loggInn.html";
     })
 }
