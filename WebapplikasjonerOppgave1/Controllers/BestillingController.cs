@@ -93,12 +93,25 @@ namespace WebapplikasjonerOppgave1.Controllers
 
                 bool returOk = await _db.OpprettTur(innTur);
                 if (!returOk)
+
                 {
+
                     _log.LogInformation("Tur ble ikke registrert");
                     return BadRequest("Tue ble ikke registrert");
                 }
                 return Ok("Tur registrert");
             }
+
+            var errors = ModelState
+            .Where(x => x.Value.Errors.Count > 0)
+            .Select(x => new { x.Key, x.Value.Errors })
+            .ToArray();
+
+            foreach (var error in errors)
+            {
+                System.Diagnostics.Debug.WriteLine(error);
+            }
+
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
         }

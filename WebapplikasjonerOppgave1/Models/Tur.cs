@@ -18,7 +18,7 @@ namespace WebapplikasjonerOppgave1.Models
         [RegularExpression(@"^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$")]
         public string Dato { get; set; }
 
-        [RegularExpression(@"^([01]?[0 - 9]|2[0-3]):[0-5] [0-9]$")]
+        [RegularExpression(@"^([01]?[0-9]|2[0-3]):[0-5][0-9]$")]
         public string Tid { get; set; }
 
         [RegularExpression(@"^([0-9.]{2,4}[0-9]{1,2})?$")]
