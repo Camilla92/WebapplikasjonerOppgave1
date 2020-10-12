@@ -1,6 +1,6 @@
 ﻿$(function () {
     var url = "bestilling/HentAlleTurer";
-    $.getJSON(url, function (turene) {
+    $.get(url, function (turene) {
         if (turene === "Feil innlogging") {
             $(location).attr('href', 'loggInn.html');
         }
@@ -46,13 +46,13 @@ function formaterTurer(turer) {
     var linje = 1;
     $.each(turer, function (key, tur) {
         ut += "<tr>" +
-            "<td><input type='text' readonly id='TurId" + linje + "' size='3' value='" + tur.TurId + "'/></td>" +
-            "<td><input type='text' id='startstasjon" + linje + "' value='" + tur.StartStasjon + "'/></td>" +
-            "<td><input type='text' id='endestasjon" + linje + "' value='" + tur.EndeStasjon + "'/></td>" +
-            "<td> <input type='text' id='dato" + linje + "' value='" + tur.Dato + "'/></td>" +
-            "<td><input type='text' id='tid" + linje + "' size='5' value='" + tur.Tid + "'/></td>" +
-            "<td><input type='text' id='barnePris" + linje + "' size='7' value='" + tur.BarnePris + "'/></td>" +
-            "<td><input type='text' id='voksenPris" + linje + "' size='7' value='" + tur.VoksenPris + "'/></td>" +
+            "<td><input type='text' readonly id='TurId" + linje + "' size='3' value='" + tur.turId + "'/></td>" +
+            "<td><input type='text' id='startstasjon" + linje + "' value='" + tur.startStasjon.stasjonsNavn + "'/></td>" +
+            "<td><input type='text' id='endestasjon" + linje + "' value='" + tur.endeStasjon.stasjonsNavn + "'/></td>" +
+            "<td> <input type='text' id='dato" + linje + "' value='" + tur.dato + "'/></td>" +
+            "<td><input type='text' id='tid" + linje + "' size='5' value='" + tur.tid + "'/></td>" +
+            "<td><input type='text' id='barnePris" + linje + "' size='7' value='" + tur.barnePris + "'/></td>" +
+            "<td><input type='text' id='voksenPris" + linje + "' size='7' value='" + tur.voksenPris + "'/></td>" +
             "<td> <a class='btn btn-info' onclick='endreTur(" + linje + ")'>Endre</button></td>" +
             "<td> <a class='btn btn-danger' onclick='slettTur(" + linje + ")'>Slett</button></td>" +
             "</tr>";
