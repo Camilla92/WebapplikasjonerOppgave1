@@ -250,5 +250,20 @@ namespace WebapplikasjonerOppgave1.DAL
 
 
         }
+
+        public async Task<bool> SlettTur(int TurId)
+        {
+            try
+            {
+                Turer enTur = await _db.Turer.FindAsync(TurId);
+                _db.Turer.Remove(enTur);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
