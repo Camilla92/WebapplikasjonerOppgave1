@@ -146,9 +146,3 @@ function SlettTur(linje) {
 
 
 
-
-function loggUt() {
-    $.get("/loggUt", function () {
-        window.location.href = "loggInn.html";
-    })
-}
