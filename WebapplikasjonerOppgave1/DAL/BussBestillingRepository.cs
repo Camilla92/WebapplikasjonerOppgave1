@@ -167,28 +167,34 @@ namespace WebapplikasjonerOppgave1.DAL
                 nyTurRad.BarnePris = innTur.BarnePris;
                 nyTurRad.VoksenPris = innTur.VoksenPris;
 
-                var sjekkStartStasjon = await _db.Stasjoner.FindAsync(innTur.StartStasjon);
-                if (sjekkStartStasjon == null)
+                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
+                foreach(var stasjon in alleStasjoner)
                 {
-                    var startStasjonRad = new Stasjon();
-                    startStasjonRad.StasjonsNavn = innTur.StartStasjon;
-                    nyTurRad.StartStasjon = startStasjonRad;
-                }
-                else
-                {
-                    nyTurRad.StartStasjon = sjekkStartStasjon;
+                    if (innTur.StartStasjon.Equals(stasjon.StasjonsNavn))
+                    {
+                        nyTurRad.StartStasjon = stasjon;
+                    }
+                    else
+                    {
+                        var startStasjonRad = new Stasjon();
+                        startStasjonRad.StasjonsNavn = innTur.StartStasjon;
+                        nyTurRad.StartStasjon = startStasjonRad;
+                    }
                 }
 
-                var sjekkEndeStasjon = await _db.Stasjoner.FindAsync(innTur.EndeStasjon);
-                if (sjekkEndeStasjon == null)
+
+                foreach (var stasjon in alleStasjoner)
                 {
-                    var endeStasjonRad = new Stasjon();
-                    endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
-                    nyTurRad.EndeStasjon = endeStasjonRad;
-                }
-                else
-                {
-                    nyTurRad.EndeStasjon = sjekkEndeStasjon;
+                    if (innTur.EndeStasjon.Equals(stasjon.StasjonsNavn))
+                    {
+                        nyTurRad.EndeStasjon = stasjon;
+                    }
+                    else
+                    {
+                        var endeStasjonRad = new Stasjon();
+                        endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
+                        nyTurRad.EndeStasjon = endeStasjonRad;
+                    }
                 }
 
 
@@ -207,34 +213,41 @@ namespace WebapplikasjonerOppgave1.DAL
         {
             try
             {
-                var tur = await _db.Turer.FindAsync(endreTur.Tid);
+                var tur = await _db.Turer.FindAsync(endreTur.TurId);
                 tur.Dato = endreTur.Dato;
                 tur.BarnePris = endreTur.BarnePris;
                 tur.VoksenPris = endreTur.VoksenPris;
 
-
-                var sjekkStartStasjon = await _db.Stasjoner.FindAsync(endreTur.StartStasjon);
-                if (sjekkStartStasjon == null)
+                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
+                foreach (var stasjon in alleStasjoner)
                 {
-                    var startStasjonRad = new Stasjon();
-                    startStasjonRad.StasjonsNavn = endreTur.StartStasjon;
-                    endreTur.StartStasjon = startStasjonRad.StasjonsNavn;
+                    if (endreTur.StartStasjon.Equals(stasjon.StasjonsNavn))
+                    {
+                        tur.StartStasjon = stasjon;
+                    }
                 }
-                else
+                if (tur.StartStasjon.Equals(null))
                 {
-                    tur.StartStasjon.StasjonsNavn = endreTur.StartStasjon;
+                     var startStasjonRad = new Stasjon();
+                     startStasjonRad.StasjonsNavn = endreTur.StartStasjon;
+                     tur.StartStasjon = startStasjonRad;
+                    
                 }
 
-                var sjekkEndeStasjon = await _db.Stasjoner.FindAsync(endreTur.EndeStasjon);
-                if (sjekkEndeStasjon == null)
+
+
+                foreach (var stasjon in alleStasjoner)
+                {
+                    if (endreTur.EndeStasjon.Equals(stasjon.StasjonsNavn))
+                    {
+                        tur.EndeStasjon = stasjon;
+                    }
+                }
+                if(tur.EndeStasjon.Equals(null))
                 {
                     var endeStasjonRad = new Stasjon();
                     endeStasjonRad.StasjonsNavn = endreTur.EndeStasjon;
-                    endreTur.EndeStasjon = endeStasjonRad.StasjonsNavn;
-                }
-                else
-                {
-                    tur.EndeStasjon.StasjonsNavn = endreTur.EndeStasjon;
+                    tur.EndeStasjon = endeStasjonRad;
                 }
 
 
