@@ -1,4 +1,4 @@
-﻿/*$(function () {
+﻿$(function () {
     var url = "bestilling/HentAlleTurer";
     $.getJSON(url, function (turene) {
         if (turene === "Feil innlogging") {
@@ -8,8 +8,9 @@
         $("#endreTurene").html(ut);
     });
 });
-*/
 
+
+/*
 $(function () {
     hentAlleTurer();
 });
@@ -27,6 +28,7 @@ function hentAlleTurer() {
             }
         });
 }
+*/
 
 
 function formaterTurer(turer) {
