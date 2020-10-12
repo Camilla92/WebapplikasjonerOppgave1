@@ -53,8 +53,8 @@ function formaterTurer(turer) {
             "<td><input type='text' id='tid" + linje + "' size='5' value='" + tur.tid + "'/></td>" +
             "<td><input type='text' id='barnePris" + linje + "' size='7' value='" + tur.barnePris + "'/></td>" +
             "<td><input type='text' id='voksenPris" + linje + "' size='7' value='" + tur.voksenPris + "'/></td>" +
-            "<td> <a class='btn btn-info' onclick='endreTur(" + linje + ")'>Endre</button></td>" +
-            "<td> <a class='btn btn-danger' onclick='slettTur(" + linje + ")'>Slett</button></td>" +
+            "<td> <a class='btn btn-info' onclick='EndreTur(" + linje + ")'>Endre</button></td>" +
+            "<td> <a class='btn btn-danger' onclick='SlettTur(" + linje + ")'>Slett</button></td>" +
             "</tr>";
         linje++;
     });
@@ -101,8 +101,8 @@ function formaterTurer(turer) {
             "<td>" + tur.Tid + "</td>" +
             "<td>" + tur.BarnePris + "</td>" +
             "<td>" + tur.VoksenPris + "</td > " +
-            "<td> <button class='btn btn-info' onclick='endreTur(" + tur.TurId + ")'>Endre</button></td>" +
-            "<td> <button class='btn btn-danger' onclick='slettTur(" + tur.TurId + ")'>Slett</button></td>" +
+            "<td> <button class='btn btn-info' onclick='EndreTur(" + tur.TurId + ")'>Endre</button></td>" +
+            "<td> <button class='btn btn-danger' onclick='SlettTur(" + tur.TurId + ")'>Slett</button></td>" +
             "</tr>";
     };
     ut += "</table>";
@@ -111,8 +111,8 @@ function formaterTurer(turer) {
 */
 
 
-function endreTur(linje) {
-    var data = {
+function EndreTur(linje) {
+    var tur = {
         TurId: $("#TurId" + linje).val(),
         startstasjon: $("#startstasjon" + linje).val(),
         endestasjon: $("#endestasjon" + linje).val(),
@@ -121,10 +121,11 @@ function endreTur(linje) {
         barnePris: $("#barnePris" + linje).val(),
         voksenPris: $("#voksenPris" + linje).val()
     }
-    var url = "/BestillingController/endreTur";
-    $.post(url, data, function (turer) {
-        if (turer === "Feil innlogging") {
-            $(location).attr('href', 'loggInn.html');
+    var url = "bestilling/EndreTur";
+    $.post(url, tur, function (turer) {
+        if (turer === "Tur ble ikke registrert") {// må endres
+            $(location).attr('href', 'loggInn.html'); // må endres
+
         }
         else {
             $(location).attr('href', 'admin.html');
@@ -132,21 +133,19 @@ function endreTur(linje) {
     });
 }
 
-function slettTur(linje) {
+function SlettTur(linje) {
     var TurId = $("#TurId" + linje).val();
-    var url = "/BestillingController/slettTur?TurId" + TurId;
-    var slettOK = confirm("Slett tur med tur id" + TurId);
+    var slettOK = confirm("Trykk OK for å slette en tur med tur-id: " + TurId);
     if (slettOK) {
-        $.getJSON(url, function (tur) {
-            if (tur === "Feil innlogging") {
-                $(location).attr('href', 'loggInn.html');
-            }
-            else {
-                $(location).attr('href', 'admin.html');
-            }
+        var url = "bestilling/SlettTur?TurId=" + TurId;
+        $.get(url, function () {
+            window.location.href = "admin.html";
         });
     }
 }
+
+
+
 
 function loggUt() {
     $.get("/loggUt", function () {

@@ -13,6 +13,7 @@ namespace WebapplikasjonerOppgave1.DAL
         Task<bool> Lagre(BussBestilling innBussBestilling);
         Task<bool> OpprettTur(Tur innTur);
         Task<bool> EndreTur(Tur endreTur);
+        Task<bool> SlettTur(int TurId);
         Task<bool> LoggInn(Bruker bruker);
     }
 }
