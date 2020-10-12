@@ -179,10 +179,10 @@ function validerStartStasjonAdmin(startstasjonAdmin) {
     const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
     const ok = regexp.test(startstasjonAdmin);
     if (!ok) {
-        $("#feilStartStasjon").html("Startstasjon må bestå av 2 til 20 bokstaver")
+        $("#feilStartStasjonAdmin").html("Startstasjon må bestå av 2 til 20 bokstaver")
         return false;
     } else {
-        $("#feilStartStasjon").html("");
+        $("#feilStartStasjonAdmin").html("");
         return true;
     }
 }
