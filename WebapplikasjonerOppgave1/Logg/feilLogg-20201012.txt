@@ -24,6 +24,39 @@ System.InvalidOperationException: Unable to resolve service for type 'Microsoft.
 2020-10-12T10:12:41.3948860+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
 2020-10-12T10:12:41.3976320+02:00  [INF] Hosting environment: "Development" (c3307c92)
 2020-10-12T10:12:41.4007460+02:00  [INF] Content root path: "/Users/martine/Documents/GitHub/WebapplikasjonerOppgave1-master/WebapplikasjonerOppgave1" (b5d60022)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+2020-10-12T10:20:14.0765590+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-12T10:20:14.0832170+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-12T10:20:14.0859880+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-12T10:20:14.0884520+02:00  [INF] Content root path: "/Users/martine/Documents/GitHub/WebapplikasjonerOppgave1-master/WebapplikasjonerOppgave1" (b5d60022)
+2020-10-12T10:25:06.2999510+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-12T10:25:06.3091490+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-12T10:25:06.3144200+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-12T10:25:06.3183460+02:00  [INF] Content root path: "/Users/martine/Documents/GitHub/WebapplikasjonerOppgave1-master/WebapplikasjonerOppgave1" (b5d60022)
+2020-10-12T10:28:18.9410110+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-12T10:28:18.9474030+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-12T10:28:18.9504790+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-12T10:28:18.9531110+02:00  [INF] Content root path: "/Users/martine/Documents/GitHub/WebapplikasjonerOppgave1-master/WebapplikasjonerOppgave1" (b5d60022)
+2020-10-12T10:29:04.0651480+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-12T10:29:04.0713190+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-12T10:29:04.0736890+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-12T10:29:04.0759320+02:00  [INF] Content root path: "/Users/martine/Documents/GitHub/WebapplikasjonerOppgave1-master/WebapplikasjonerOppgave1" (b5d60022)
+2020-10-12T10:31:40.0960270+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-12T10:31:40.1040840+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-12T10:31:40.1073300+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-12T10:31:40.1104600+02:00  [INF] Content root path: "/Users/martine/Documents/GitHub/WebapplikasjonerOppgave1-master/WebapplikasjonerOppgave1" (b5d60022)
+=======
+2020-10-12T10:30:33.0106800+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-12T10:30:33.0237630+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-12T10:30:33.0276760+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-12T10:30:33.0320310+02:00  [INF] Content root path: "/Users/nikolasekiw/Prosjekter/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
+2020-10-12T10:31:28.4674090+02:00 0HM3EH4AUTLP0:0000000F [INF] Feil i inputvalidering (06f553d7)
+>>>>>>> Stashed changes
+=======
+>>>>>>> 8331daad4fd39c33ea78bd2eb4265022824ae5a9
 2020-10-12T10:41:20.9253800+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
 2020-10-12T10:41:20.9503950+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
 2020-10-12T10:41:21.0111990+02:00  [INF] Hosting environment: "Development" (c3307c92)
@@ -58,6 +91,7 @@ System.InvalidOperationException: Unable to resolve service for type 'Microsoft.
 2020-10-12T11:04:45.7402100+02:00  [INF] Content root path: "/Users/nikolasekiw/Prosjekter/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
 2020-10-12T11:17:13.3780490+02:00 0HM3EHNEN3LCM:0000001B [INF] The key value at position 0 of the call to 'DbSet<Stasjon>.Find' was of type 'string', which does not match the property type of 'int'. (a0b64aff)
 2020-10-12T11:17:13.3840670+02:00 0HM3EHNEN3LCM:0000001B [INF] Tur ble ikke registrert (a76acec1)
+<<<<<<< HEAD
 2020-10-12T11:28:55.5456220+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
 2020-10-12T11:28:55.5528050+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
 2020-10-12T11:28:55.5737010+02:00  [INF] Hosting environment: "Development" (c3307c92)
@@ -73,3 +107,6 @@ System.InvalidOperationException: Unable to resolve service for type 'Microsoft.
 2020-10-12T11:59:10.5346450+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
 2020-10-12T11:59:10.5386010+02:00  [INF] Hosting environment: "Development" (c3307c92)
 2020-10-12T11:59:10.5418090+02:00  [INF] Content root path: "/Users/nikolasekiw/Prosjekter/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
+=======
+>>>>>>> e59e16641b9f559c619897aab46a57d5e988650c
+>>>>>>> 8331daad4fd39c33ea78bd2eb4265022824ae5a9

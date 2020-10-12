@@ -1,5 +1,5 @@
 ﻿function loggUt() {
-    $.get("/loggUt", function () {
+    $.get("Bestilling/LoggUt", function () {
         window.location.href = "loggInn.html";
     })
 }
