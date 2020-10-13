@@ -1,13 +1,10 @@
 ﻿function validerOgLagTur() {
     const StartstasjonOK = validerStartStasjonAdmin($("#startstasjon").val());
     const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjon").val()); @
-        const DatoOK = validerDatoAdmin($("#feilDatoAdmin").val());
+    const DatoOK = validerDatoAdmin($("#feilDatoAdmin").val());
     const TidOK = validerTidAdmin($("#feilTidAdmin").val());
-    const FornavnOK = validerFornavn($("#fornavn").val());
-    const EtternavnOK = validerEtternavn($("#etternavn").val());
-    const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
-    const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
-    const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
+    const BarnePrisOK = validerBarnePris("#barnePrisAdmin").val()):
+    const VoksenPrisOK = validerVoksenPris("#voksenPrisAdmin").val()):
     if (StartstasjonOK && EndestasjonOK && TidOK && FornavnOK && EtternavnOK
         && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
         opprettTur();
