@@ -157,6 +157,7 @@ namespace WebapplikasjonerOppgave1.DAL
             }
 
         }
+
         public async Task<bool> OpprettTur(Tur innTur)
         {
             try
@@ -167,30 +168,34 @@ namespace WebapplikasjonerOppgave1.DAL
                 nyTurRad.BarnePris = innTur.BarnePris;
                 nyTurRad.VoksenPris = innTur.VoksenPris;
 
-                var sjekkStartStasjon = await _db.Stasjoner.FindAsync(innTur.StartStasjon);
-                if (sjekkStartStasjon == null)
+                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
+                foreach(var stasjon in alleStasjoner)
                 {
-                    var startStasjonRad = new Stasjon();
-                    startStasjonRad.StasjonsNavn = innTur.StartStasjon;
-                    nyTurRad.StartStasjon = startStasjonRad;
-                }
-                else
-                {
-                    nyTurRad.StartStasjon = sjekkStartStasjon;
-                }
-
-                var sjekkEndeStasjon = await _db.Stasjoner.FindAsync(innTur.EndeStasjon);
-                if (sjekkEndeStasjon == null)
-                {
-                    var endeStasjonRad = new Stasjon();
-                    endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
-                    nyTurRad.EndeStasjon = endeStasjonRad;
-                }
-                else
-                {
-                    nyTurRad.EndeStasjon = sjekkEndeStasjon;
+                    if (innTur.StartStasjon.Equals(stasjon.StasjonsNavn))
+                    {
+                        nyTurRad.StartStasjon = stasjon;
+                    }
+                    else
+                    {
+                        var startStasjonRad = new Stasjon();
+                        startStasjonRad.StasjonsNavn = innTur.StartStasjon;
+                        nyTurRad.StartStasjon = startStasjonRad;
+                    }
                 }
 
+                foreach (var stasjon in alleStasjoner)
+                {
+                    if (innTur.EndeStasjon.Equals(stasjon.StasjonsNavn))
+                    {
+                        nyTurRad.EndeStasjon = stasjon;
+                    }
+                    else
+                    {
+                        var endeStasjonRad = new Stasjon();
+                        endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
+                        nyTurRad.EndeStasjon = endeStasjonRad;
+                    }
+                }
 
                 _db.Turer.Add(nyTurRad);
                 await _db.SaveChangesAsync();
@@ -207,34 +212,38 @@ namespace WebapplikasjonerOppgave1.DAL
         {
             try
             {
-                var tur = await _db.Turer.FindAsync(endreTur.Tid);
+                var tur = await _db.Turer.FindAsync(endreTur.TurId); //finner turen med id-en i db
+                tur.Tid = endreTur.Tid; //setter verdiene fra input (endreTur) til tur
                 tur.Dato = endreTur.Dato;
                 tur.BarnePris = endreTur.BarnePris;
                 tur.VoksenPris = endreTur.VoksenPris;
 
-
-                var sjekkStartStasjon = await _db.Stasjoner.FindAsync(endreTur.StartStasjon);
-                if (sjekkStartStasjon == null)
+                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync(); //henter alle stasjonene
+                foreach (var stasjon in alleStasjoner) //looper gjennom alle stasjonene
                 {
-                    var startStasjonRad = new Stasjon();
-                    startStasjonRad.StasjonsNavn = endreTur.StartStasjon;
-                    endreTur.StartStasjon = startStasjonRad.StasjonsNavn;
-                }
-                else
-                {
-                    tur.StartStasjon.StasjonsNavn = endreTur.StartStasjon;
+                    if (endreTur.StartStasjon.Equals(stasjon.StasjonsNavn)) //sjekker om stasjonen fra input er lik stasjon i db
+                    {
+                        tur.StartStasjon = stasjon; //hvis finner lik stasjon, blir stasjon satt til en som allerede finnes
+                    } else
+                    {
+                        var startStasjonRad = new Stasjon(); //hvis stasjon ikke fantes fra før av, blir ny stasjon opprettet
+                        startStasjonRad.StasjonsNavn = endreTur.StartStasjon; //Nytt stasjonsnavn legges til i db
+                        tur.StartStasjon = startStasjonRad; //tur sin startstasjon settes lik stasjonen fra input (endreTur)
+                    }
                 }
 
-                var sjekkEndeStasjon = await _db.Stasjoner.FindAsync(endreTur.EndeStasjon);
-                if (sjekkEndeStasjon == null)
+                foreach (var stasjon in alleStasjoner)
+                {
+                    if (endreTur.EndeStasjon.Equals(stasjon.StasjonsNavn))
+                    {
+                        tur.EndeStasjon = stasjon;
+                    }
+                }
+                if(tur.EndeStasjon.Equals(null))
                 {
                     var endeStasjonRad = new Stasjon();
                     endeStasjonRad.StasjonsNavn = endreTur.EndeStasjon;
-                    endreTur.EndeStasjon = endeStasjonRad.StasjonsNavn;
-                }
-                else
-                {
-                    tur.EndeStasjon.StasjonsNavn = endreTur.EndeStasjon;
+                    tur.EndeStasjon = endeStasjonRad;
                 }
 
 
@@ -249,6 +258,21 @@ namespace WebapplikasjonerOppgave1.DAL
 
 
 
+        }
+
+        public async Task<bool> SlettTur(int TurId)
+        {
+            try
+            {
+                Turer enTur = await _db.Turer.FindAsync(TurId);
+                _db.Turer.Remove(enTur);
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

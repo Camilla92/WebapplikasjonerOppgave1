@@ -179,10 +179,10 @@ function validerStartStasjonAdmin(startstasjonAdmin) {
     const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
     const ok = regexp.test(startstasjonAdmin);
     if (!ok) {
-        $("#feilStartStasjon").html("Startstasjon må bestå av 2 til 20 bokstaver")
+        $("#feilStartStasjonAdmin").html("Startstasjon må bestå av 2 til 20 bokstaver")
         return false;
     } else {
-        $("#feilStartStasjon").html("");
+        $("#feilStartStasjonAdmin").html("");
         return true;
     }
 }
@@ -223,9 +223,85 @@ function validerTidAdmin(tidAdmin) {
     }
 }
 
+
+
 function ingenValideringsFeilAdmin() {
     return (validerBarnePrisAdmin() && validerVoksenPrisAdmin() && validerStartStasjonAdmin()
         && validerEndeStasjonAdmin && validerDatoAdmin() && validerTidAdmin());
+}
+
+
+//Endre validering
+function validerBarnePrisEndre(Barnepris, linje) {
+    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+    const ok = regex.test(Barnepris);
+    if (!ok) {
+        $("#feilBarnePrisAdmin" + linje).html("Barnepris må være mellom 2 og 4 tegn");
+        return false;
+    } else {
+        $("#feilBarnePrisAdmin" + linje).html("");
+        return true;
+    }
+}
+
+function validerVoksenPrisEndre(voksenPrisAdmin, linje) {
+    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+    const ok = regex.test(voksenPrisAdmin);
+    if (!ok) {
+        $("#feilVoksenPrisAdmin" + linje).html("Voksenpris må være mellom 2 og fire tegn");
+        return false;
+    } else {
+        $("#feilVoksenPrisAdmin" + linje).html("");
+        return true;
+    }
+}
+
+function validerStartStasjonEndre(startstasjonAdmin, linje) {
+    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
+    const ok = regexp.test(startstasjonAdmin);
+    if (!ok) {
+        $("#feilStartStasjon" + linje).html("Startstasjon må bestå av 2 til 20 bokstaver")
+        return false;
+    } else {
+        $("#feilStarStasjon" + linje).html("");
+        return true;
+    }
+}
+
+function validerEndeStasjonEndre(endestasjonAdmin, linje) {
+    const regex = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
+    const ok = regex.test(endestasjonAdmin);
+    if (!ok) {
+        $("#feilEndeStasjonAdmin" + linje).html("Endestasjon må bestå av 2 til 20 bokstaver")
+        return false;
+    } else {
+        $("#feilEndeStasjonAdmin" + linje).html("");
+        return true;
+    }
+}
+
+function validerDatoEndre(datoAdmin, linje) {
+    const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+    const ok = regex.test(datoAdmin);
+    if (!ok) {
+        $("#feilDatoAdmin" + linje).html("Formatet på dato må være DD/MM/YYYY")
+        return false;
+    } else {
+        $("#feilDatoAdmin" + linje).html("");
+        return true;
+    }
+}
+
+function validerTidEndre(tidAdmin, linje) {
+    const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+    const ok = regex.test(tidAdmin);
+    if (!ok) {
+        $("#feilTidAdmin" + linje).html("Formatet på dato må være DD/MM/YYYY")
+        return false;
+    } else {
+        $("#feilTidAdmin" + linje).html("");
+        return true;
+    }
 }
 
 
