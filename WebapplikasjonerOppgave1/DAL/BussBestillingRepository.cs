@@ -223,7 +223,6 @@ namespace WebapplikasjonerOppgave1.DAL
                 tur.BarnePris = endreTur.BarnePris;
                 tur.VoksenPris = endreTur.VoksenPris;
 
-
                 bool startStasjonFunnet = false;
                 List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync(); //henter alle stasjonene
                 foreach (var stasjon in alleStasjoner) //looper gjennom alle stasjonene
