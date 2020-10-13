@@ -167,36 +167,40 @@ namespace WebapplikasjonerOppgave1.DAL
                 nyTurRad.BarnePris = innTur.BarnePris;
                 nyTurRad.VoksenPris = innTur.VoksenPris;
 
+                bool startStasjonFunnet = false;
                 List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
-                foreach(var stasjon in alleStasjoner)
+                foreach (var stasjon in alleStasjoner)
                 {
                     if (innTur.StartStasjon.Equals(stasjon.StasjonsNavn))
                     {
                         nyTurRad.StartStasjon = stasjon;
-                    }
-                    else
-                    {
-                        var startStasjonRad = new Stasjon();
-                        startStasjonRad.StasjonsNavn = innTur.StartStasjon;
-                        nyTurRad.StartStasjon = startStasjonRad;
+                        startStasjonFunnet = true;
                     }
                 }
 
+                if (!startStasjonFunnet)
+                {
+                    var startStasjonRad = new Stasjon();
+                    startStasjonRad.StasjonsNavn = innTur.StartStasjon;
+                    nyTurRad.StartStasjon = startStasjonRad;
+                }
 
+                bool endeStasjonFunnet = false;
                 foreach (var stasjon in alleStasjoner)
                 {
                     if (innTur.EndeStasjon.Equals(stasjon.StasjonsNavn))
                     {
                         nyTurRad.EndeStasjon = stasjon;
-                    }
-                    else
-                    {
-                        var endeStasjonRad = new Stasjon();
-                        endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
-                        nyTurRad.EndeStasjon = endeStasjonRad;
+                        endeStasjonFunnet = true;
                     }
                 }
 
+                if (!endeStasjonFunnet)
+                {
+                    var endeStasjonRad = new Stasjon();
+                    endeStasjonRad.StasjonsNavn = innTur.EndeStasjon;
+                    nyTurRad.EndeStasjon = endeStasjonRad;
+                }
 
                 _db.Turer.Add(nyTurRad);
                 await _db.SaveChangesAsync();
@@ -213,43 +217,47 @@ namespace WebapplikasjonerOppgave1.DAL
         {
             try
             {
-                var tur = await _db.Turer.FindAsync(endreTur.TurId);
+                var tur = await _db.Turer.FindAsync(endreTur.TurId); //finner turen med id-en i db
+                tur.Tid = endreTur.Tid; //setter verdiene fra input (endreTur) til tur
                 tur.Dato = endreTur.Dato;
                 tur.BarnePris = endreTur.BarnePris;
                 tur.VoksenPris = endreTur.VoksenPris;
 
-                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync();
-                foreach (var stasjon in alleStasjoner)
+
+                bool startStasjonFunnet = false;
+                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync(); //henter alle stasjonene
+                foreach (var stasjon in alleStasjoner) //looper gjennom alle stasjonene
                 {
-                    if (endreTur.StartStasjon.Equals(stasjon.StasjonsNavn))
+                    if (endreTur.StartStasjon.Equals(stasjon.StasjonsNavn)) //sjekker om stasjonen fra input er lik stasjon i db
                     {
-                        tur.StartStasjon = stasjon;
+                        tur.StartStasjon = stasjon; //hvis finner lik stasjon, blir stasjon satt til en som allerede finnes
+                        startStasjonFunnet = true;
                     }
                 }
-                if (tur.StartStasjon.Equals(null))
+
+                if (!startStasjonFunnet)
                 {
-                     var startStasjonRad = new Stasjon();
-                     startStasjonRad.StasjonsNavn = endreTur.StartStasjon;
-                     tur.StartStasjon = startStasjonRad;
-                    
+                    var startStasjonRad = new Stasjon(); //hvis stasjon ikke fantes fra før av, blir ny stasjon opprettet
+                    startStasjonRad.StasjonsNavn = endreTur.StartStasjon; //Nytt stasjonsnavn legges til i db
+                    tur.StartStasjon = startStasjonRad; //tur sin startstasjon settes lik stasjonen fra input (endreTur)
                 }
 
-
-
+                bool endeStasjonFunnet = false;
                 foreach (var stasjon in alleStasjoner)
                 {
                     if (endreTur.EndeStasjon.Equals(stasjon.StasjonsNavn))
                     {
                         tur.EndeStasjon = stasjon;
+                        endeStasjonFunnet = true;
                     }
                 }
-                if(tur.EndeStasjon.Equals(null))
+
+                if (!endeStasjonFunnet)
                 {
                     var endeStasjonRad = new Stasjon();
                     endeStasjonRad.StasjonsNavn = endreTur.EndeStasjon;
                     tur.EndeStasjon = endeStasjonRad;
                 }
-
 
                 await _db.SaveChangesAsync();
                 return true;
@@ -259,9 +267,6 @@ namespace WebapplikasjonerOppgave1.DAL
                 _log.LogInformation(e.Message);
                 return false;
             }
-
-
-
         }
 
         public async Task<bool> SlettTur(int TurId)
