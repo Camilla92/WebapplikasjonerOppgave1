@@ -7,8 +7,6 @@ using WebapplikasjonerOppgave1.DAL;
 
 namespace WebapplikasjonerOppgave1.Models
 {
-
-   
     public class NorwayContext : DbContext
     {
 
@@ -17,8 +15,6 @@ namespace WebapplikasjonerOppgave1.Models
         {
             Database.EnsureCreated();
         }
-
-        
 
         public virtual DbSet<Kunde> Kunder { get; set; }
         public virtual DbSet<Turer> Turer { get; set; }
@@ -30,9 +26,5 @@ namespace WebapplikasjonerOppgave1.Models
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-
-        
-    }
-
-  
+    } 
 }

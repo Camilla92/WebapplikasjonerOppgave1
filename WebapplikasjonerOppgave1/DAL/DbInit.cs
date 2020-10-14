@@ -19,8 +19,6 @@ namespace WebapplikasjonerOppgave1.Models
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
-
-
                 /*---------OPPRETTER STASJONER--------*/
                 var stasjon1 = new Stasjon { StasjonsNavn = "Oslo" };
                 var stasjon2 = new Stasjon { StasjonsNavn = "Bergen" };

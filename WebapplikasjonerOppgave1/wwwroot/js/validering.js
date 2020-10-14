@@ -149,10 +149,9 @@ function ingenValideringsFeil() {
         && validerEpost() && validerKortnummer && validerAntallBarn() && validerAntallVoksne() );
 }
 
-// AdminValidering
-
-function validerBarnePrisAdmin(Barnepris) {
-    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+// AdminValidering 
+function validerBarnePrisAdmin(barnePrisAdmin) {
+    const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(barnePrisAdmin);
     if (!ok) {
         $("#feilBarnePrisAdmin").html("Barnepris må være mellom 2 og 4 sifre");
@@ -164,7 +163,7 @@ function validerBarnePrisAdmin(Barnepris) {
 }
 
 function validerVoksenPrisAdmin(voksenPrisAdmin) {
-    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+    const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(voksenPrisAdmin);
     if (!ok) {
         $("#feilVoksenPrisAdmin").html("Voksenpris må være mellom 2 og fire sifre");
@@ -223,17 +222,15 @@ function validerTidAdmin(tidAdmin) {
     }
 }
 
-
-
 function ingenValideringsFeilAdmin() {
-    return (validerBarnePrisAdmin() && validerVoksenPrisAdmin() && validerStartStasjonAdmin()
-        && validerEndeStasjonAdmin && validerDatoAdmin() && validerTidAdmin());
+    return (validerStartStasjonAdmin() && validerEndeStasjonAdmin && validerDatoAdmin() && validerTidAdmin()
+        && validerBarnePrisAdmin() && validerVoksenPrisAdmin());
 }
 
 
-//Endre validering
-function validerBarnePrisEndre(Barnepris, linje) {
-    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+//Endre validering 
+function validerBarnePrisEndre(Barnepris, linje) {  
+    const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(Barnepris);
     if (!ok) {
         $("#feilBarnePrisAdmin" + linje).html("Barnepris må være mellom 2 og 4 tegn");
@@ -245,10 +242,10 @@ function validerBarnePrisEndre(Barnepris, linje) {
 }
 
 function validerVoksenPrisEndre(voksenPrisAdmin, linje) {
-    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
+    const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(voksenPrisAdmin);
     if (!ok) {
-        $("#feilVoksenPrisAdmin" + linje).html("Voksenpris må være mellom 2 og fire tegn");
+        $("#feilVoksenPrisAdmin" + linje).html("Voksenpris må være mellom 2 og 4 tegn");
         return false;
     } else {
         $("#feilVoksenPrisAdmin" + linje).html("");
