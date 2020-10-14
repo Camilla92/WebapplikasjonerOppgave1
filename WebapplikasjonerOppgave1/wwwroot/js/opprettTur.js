@@ -1,15 +1,11 @@
 ﻿function validerOgLagTur() {
-    const StartstasjonOK = validerStartStasjonAdmin($("#startstasjon").val());
-    const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjon").val()); @
-        const DatoOK = validerDatoAdmin($("#feilDatoAdmin").val());
-    const TidOK = validerTidAdmin($("#feilTidAdmin").val());
-    const FornavnOK = validerFornavn($("#fornavn").val());
-    const EtternavnOK = validerEtternavn($("#etternavn").val());
-    const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
-    const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
-    const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
-    if (StartstasjonOK && EndestasjonOK && TidOK && FornavnOK && EtternavnOK
-        && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
+    const StartstasjonOK = validerStartStasjonAdmin($("#startstasjonAdmin").val());
+    const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjonAdmin").val());
+    const DatoOK = validerDatoAdmin($("#datoAdmin").val());
+    const TidOK = validerTidAdmin($("#tidAdmin").val());
+    const BarnePrisOK = validerBarnePrisAdmin($("#barnePrisAdmin").val());
+    const VoksenPrisOK = validerVoksenPrisAdmin($("#voksenPrisAdmin").val());
+    if (StartstasjonOK && EndestasjonOK && DatoOK && TidOK && BarnePrisOK && VoksenPrisOK) {
         opprettTur();
     }
 }
