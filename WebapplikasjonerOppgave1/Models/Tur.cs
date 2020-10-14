@@ -21,10 +21,10 @@ namespace WebapplikasjonerOppgave1.Models
         [RegularExpression(@"^([01]?[0-9]|2[0-3]):[0-5][0-9]$")]
         public string Tid { get; set; }
 
-        [RegularExpression(@"^([0-9.]{2,4}[0-9]{1,2})?$")]
+        [RegularExpression(@"^0-9]{1,3}$")]
         public double BarnePris { get; set; }
 
-        [RegularExpression(@"^([0-9.]{2,4}[0-9]{1,2})?$")]
+        [RegularExpression(@"^0-9]{1,3}$")]
         public double VoksenPris { get; set; }
     }
 }
