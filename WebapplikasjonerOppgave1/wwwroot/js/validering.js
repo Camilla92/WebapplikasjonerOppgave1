@@ -155,7 +155,7 @@ function validerBarnePrisAdmin(Barnepris) {
     const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
     const ok = regex.test(barnePrisAdmin);
     if (!ok) {
-        $("#feilBarnePrisAdmin").html("Barnepris må være mellom 2 og 4 tegn");
+        $("#feilBarnePrisAdmin").html("Barnepris må være mellom 2 og 4 sifre");
         return false;
     } else {
         $("#feilBarnePrisAdmin").html("");
@@ -167,7 +167,7 @@ function validerVoksenPrisAdmin(voksenPrisAdmin) {
     const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
     const ok = regex.test(voksenPrisAdmin);
     if (!ok) {
-        $("#feilVoksenPrisAdmin").html("Voksenpris må være mellom 2 og fire tegn");
+        $("#feilVoksenPrisAdmin").html("Voksenpris må være mellom 2 og fire sifre");
         return false;
     } else {
         $("#feilVoksenPrisAdmin").html("");
@@ -215,7 +215,7 @@ function validerTidAdmin(tidAdmin) {
     const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
     const ok = regex.test(tidAdmin);
     if (!ok) {
-        $("#feilTidAdmin").html("Formatet på dato må være DD/MM/YYYY")
+        $("#feilTidAdmin").html("Formatet på tid må være TT:SS ")
         return false;
     } else {
         $("#feilTidAdmin").html("");
