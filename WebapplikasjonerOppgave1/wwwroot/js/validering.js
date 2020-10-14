@@ -152,7 +152,7 @@ function ingenValideringsFeil() {
 // AdminValidering
 
 function validerBarnePrisAdmin(Barnepris) {
-    const regex = /^[0-9]{1,3}$/;
+    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
     const ok = regex.test(barnePrisAdmin);
     if (!ok) {
         $("#feilBarnePrisAdmin").html("Barnepris må være mellom 2 og 4 sifre");
@@ -164,7 +164,7 @@ function validerBarnePrisAdmin(Barnepris) {
 }
 
 function validerVoksenPrisAdmin(voksenPrisAdmin) {
-    const regex = /^[0-9]{1,3}$/;
+    const regex = /^([0-9.]{2,4}[0-9]{1,2})?$/;
     const ok = regex.test(voksenPrisAdmin);
     if (!ok) {
         $("#feilVoksenPrisAdmin").html("Voksenpris må være mellom 2 og fire sifre");
