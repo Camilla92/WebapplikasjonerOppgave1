@@ -44,11 +44,6 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         public async Task<ActionResult> HentEndeStasjoner(string startStasjonsNavn)
         {
-            //sjekker om innloggingssession er true/false
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            {
-                return Unauthorized();
-            }
             List<Stasjon> endeStasjon = await _db.HentEndeStasjoner(startStasjonsNavn);
             return Ok(endeStasjon);
         }
