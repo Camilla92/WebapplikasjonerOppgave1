@@ -231,6 +231,11 @@ namespace WebapplikasjonerOppgave1.DAL
                     {
                         tur.StartStasjon = stasjon; //hvis finner lik stasjon, blir stasjon satt til en som allerede finnes
                         startStasjonFunnet = true;
+
+                        if(endreTur.StartStasjon == endreTur.EndeStasjon)
+                        {
+                            return false;
+                        }
                     }
                 }
 
@@ -248,6 +253,11 @@ namespace WebapplikasjonerOppgave1.DAL
                     {
                         tur.EndeStasjon = stasjon;
                         endeStasjonFunnet = true;
+
+                        if(endreTur.EndeStasjon == endreTur.StartStasjon)
+                        {
+                            return false;
+                        }
                     }
                 }
 
@@ -256,6 +266,7 @@ namespace WebapplikasjonerOppgave1.DAL
                     var endeStasjonRad = new Stasjon();
                     endeStasjonRad.StasjonsNavn = endreTur.EndeStasjon;
                     tur.EndeStasjon = endeStasjonRad;
+
                 }
 
                 await _db.SaveChangesAsync();
