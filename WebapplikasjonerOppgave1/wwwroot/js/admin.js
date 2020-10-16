@@ -119,6 +119,8 @@ function formaterTurer(turer) {
     $("#turene").html(ut);
 }
 */
+
+
 function validerOgEndreTur(linje) {
     console.log($("#dato"+linje ).val());
     console.log($("#tid"+linje).val());
@@ -135,7 +137,7 @@ function validerOgEndreTur(linje) {
         EndreTur(linje);
     }
     else {
-        $("#feil").html("Feil i inputvalidering");
+        $("#feil").html("Feil i inputvalidering - kan ikke endre på turen! ");
     }
 }
 
@@ -150,20 +152,19 @@ function EndreTur(linje) {
         barnePris: $("#barnePris" + linje).val(),
         voksenPris: $("#voksenPris" + linje).val()
     }
-    var url = "bestilling/EndreTur";
-    $.post(url, tur, function (turer) {
-        if (turer === "Tur ble ikke registrert") {// må endres
-            $(location).attr('href', 'loggInn.html'); // må endres
-        }
-        else {
+
+    var endreOK = confirm("Ønsker du å endre på tur med TurId: " + tur.TurId + " ?");
+    if (endreOK) {
+        var url = "bestilling/EndreTur";
+        $.post(url, tur, function () {
             $(location).attr('href', 'admin.html');
-        }
-    });
+        });
+    }
 }
 
 function SlettTur(linje) {
     var TurId = $("#TurId" + linje).val();
-    var slettOK = confirm("Trykk OK for å slette en tur med tur-id: " + TurId);
+    var slettOK = confirm("Ønsker du å slette tur med TurId: " + TurId + " ?");
     if (slettOK) {
         var url = "bestilling/SlettTur?TurId=" + TurId;
         $.get(url, function () {
