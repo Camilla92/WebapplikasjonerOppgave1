@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace BussBestillingTest2
 {
+
     public class MockHttpSession : ISession
     {
         Dictionary<string, object> sessionStorage = new Dictionary<string, object>();

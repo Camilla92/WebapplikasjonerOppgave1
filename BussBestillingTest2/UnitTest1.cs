@@ -26,7 +26,6 @@ namespace BussBestillingTest2
 
 
         /*
-         * 
         Task<List<Stasjon>> HentAlleStasjoner(); -> Trenger ikke test? Oppgave 1
         Task<List<Turer>> HentAlleTurer();      -> Laget tester
         Task<List<Stasjon>> HentEndeStasjoner(string startStasjonsNavn); -> Trenger ikke test? Oppgave 1
