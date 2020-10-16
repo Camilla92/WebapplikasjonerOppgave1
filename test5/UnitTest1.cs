@@ -8,7 +8,8 @@ namespace test5
         [Fact]
         public void Test1()
         {
-
+            //Hei Nikola
+            int test = 2;
         }
     }
 }

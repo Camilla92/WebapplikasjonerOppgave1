@@ -18,3 +18,7 @@
 2020-10-15T20:11:32.1492490+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
 2020-10-15T20:11:32.1774210+02:00  [INF] Hosting environment: "Development" (c3307c92)
 2020-10-15T20:11:32.1818860+02:00  [INF] Content root path: "/Users/nikolasekiw/Prosjekter/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
+2020-10-15T20:15:25.5362050+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-15T20:15:25.5484650+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-15T20:15:25.5521810+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-15T20:15:25.5551630+02:00  [INF] Content root path: "/Users/synneangell/Projects/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
