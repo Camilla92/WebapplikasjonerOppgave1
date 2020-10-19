@@ -35,6 +35,50 @@ namespace test5
         Task<bool> SlettTur(int TurId);     -> Laget tester
         Task<bool> LoggInn(Bruker bruker);  -> Laget tester
         */
+        
+        
+        [Fact]
+        public async Task HentAlleStasjoner()
+        {
+            // Arrange
+            var stasjon1 = new Stasjon
+            {
+                SId = 1,
+                StasjonsNavn = "Oslo",
+            };
+            var stasjon2 = new Stasjon
+            {
+                SId = 2,
+                StasjonsNavn = "Bergen"
+            };
+            var stasjon3 = new Stasjon
+            {
+                SId = 3,
+                StasjonsNavn = "Tromsø"
+            };
+
+            var stasjonsListe = new List<Stasjon>();
+            stasjonsListe.Add(stasjon1);
+            stasjonsListe.Add(stasjon2);
+            stasjonsListe.Add(stasjon3);
+
+            mockRep.Setup(s => s.HentAlleStasjoner()).ReturnsAsync(stasjonsListe);
+
+            var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            var resultat = await bestillingController.HentAlleStasjoner();
+            Assert.Equal<List<Stasjon>>(stasjonsListe, resultat);
+        }
+
+        [Fact]
+        public async Task HentAlleStasjonerTom()
+        {
+            //var stasjonsListe = new List<Stasjon>();
+
+            mockRep.Setup(s => s.HentAlleStasjoner()).ReturnsAsync(()=>null);
+            var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            var resultat = await bestillingController.HentAlleStasjoner();
+            Assert.Null(resultat);
+        }
 
         /*
 
