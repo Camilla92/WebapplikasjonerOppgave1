@@ -1,10 +1,12 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebapplikasjonerOppgave1.Models
 {
+    [ExcludeFromCodeCoverage]
     public class Tur
     {
         public int TurId { get; set; }

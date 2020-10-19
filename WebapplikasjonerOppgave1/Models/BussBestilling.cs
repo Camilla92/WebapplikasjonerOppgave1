@@ -1,9 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WebapplikasjonerOppgave1.Models
 {
-
+    [ExcludeFromCodeCoverage]
     public class BussBestilling
     {
         public int Id { get; set; }

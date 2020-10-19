@@ -25,6 +25,7 @@ namespace WebapplikasjonerOppgave1.Controllers
             _log = log;
         }
 
+
         public async Task<ActionResult> HentAlleStasjoner()
         {
             List<Stasjon> alleStasjoner = await _db.HentAlleStasjoner();
@@ -163,11 +164,6 @@ namespace WebapplikasjonerOppgave1.Controllers
             return BadRequest("Feil i inputvalidering på server");
         }
 
-        //Tor sin kode
-        public void LoggUt()
-        {
-            HttpContext.Session.SetString(_loggetInn, "");
-        }
     }
 }
 

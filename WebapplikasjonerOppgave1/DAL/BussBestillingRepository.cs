@@ -10,9 +10,11 @@ using WebapplikasjonerOppgave1.Models;
 using WebapplikasjonerOppgave1.DAL;
 
 using static WebapplikasjonerOppgave1.Models.NorwayContext;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WebapplikasjonerOppgave1.DAL
 {
+    [ExcludeFromCodeCoverage]
     public class BussBestillingRepository : IBussBestillingRepository
     {
         private readonly NorwayContext _db;

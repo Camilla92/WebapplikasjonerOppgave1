@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebapplikasjonerOppgave1.DAL;
 
 namespace WebapplikasjonerOppgave1.Models
 {
+    [ExcludeFromCodeCoverage]
     public class NorwayContext : DbContext
     {
 

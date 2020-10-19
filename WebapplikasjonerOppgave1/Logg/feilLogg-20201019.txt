@@ -211,3 +211,7 @@ System.Text.RegularExpressions.RegexParseException: Invalid pattern '^[^<> ()[\]
 2020-10-19T10:05:04.3923460+02:00  [INF] Content root path: "/Users/synneangell/Projects/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
 2020-10-19T10:05:40.0878160+02:00 0HM3K0MNRKUO8:00000008 [INF] Feil i inputvalidering (06f553d7)
 2020-10-19T10:05:46.6452380+02:00 0HM3K0MNRKUO8:00000009 [INF] Feil i inputvalidering (06f553d7)
+2020-10-19T10:36:30.0134050+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-19T10:36:30.0240990+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-19T10:36:30.0271800+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-19T10:36:30.0296340+02:00  [INF] Content root path: "/Users/nikolasekiw/Prosjekter/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
