@@ -59,8 +59,8 @@ namespace WebapplikasjonerOppgave1.DAL
             List<Turer> alleTurer = await _db.Turer.ToListAsync();
             foreach (var turen in alleTurer)
             {
-                if (innBussBestilling.StartStasjon.Equals(turen.StartStasjon) &&
-                    innBussBestilling.EndeStasjon.Equals(turen.EndeStasjon) &&
+                if (innBussBestilling.StartStasjon.Equals(turen.StartStasjon.StasjonsNavn) &&
+                    innBussBestilling.EndeStasjon.Equals(turen.EndeStasjon.StasjonsNavn) &&
                     innBussBestilling.Tid.Equals(turen.Tid) && innBussBestilling.Dato.Equals(turen.Dato))
                 {
                     turID = turen.TurId;

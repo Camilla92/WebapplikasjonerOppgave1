@@ -312,11 +312,11 @@ namespace test5
             bestillingController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await bestillingController.EndreTur(It.IsAny<Tur>()) as UnauthorizedObjectResult;
+            var resultat = await bestillingController.EndreTur(It.IsAny<Tur>()) as BadRequestObjectResult;
 
             // Assert 
-            Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("Endringen av turen kunne ikke utføres", resultat.Value);
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal("Tur ble ikke registrert", resultat.Value);
         }
 
         [Fact]
