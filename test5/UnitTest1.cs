@@ -250,11 +250,11 @@ namespace test5
             bestillingController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await bestillingController.SlettTur(It.IsAny<int>()) as NotFoundObjectResult;
+            var resultat = await bestillingController.SlettTur(It.IsAny<int>()) as BadRequestObjectResult;
 
             // Assert 
-            Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);
-            Assert.Equal("Sletting av tur ble ikke utført", resultat.Value);
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal("Tur ble ikke slettet", resultat.Value);
         }
 
         [Fact]
@@ -312,7 +312,7 @@ namespace test5
             bestillingController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await bestillingController.EndreTur(It.IsAny<Tur>()) as NotFoundObjectResult;
+            var resultat = await bestillingController.EndreTur(It.IsAny<Tur>()) as UnauthorizedObjectResult;
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.NotFound, resultat.StatusCode);

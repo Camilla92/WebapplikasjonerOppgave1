@@ -18,6 +18,8 @@ namespace WebapplikasjonerOppgave1.Controllers
         private readonly ILogger<BestillingController> _log;
         private readonly IBussBestillingRepository _db;
         private const string _loggetInn = "loggetInn";
+        private const string _ikkeLoggetInn = "";
+
 
         public BestillingController(IBussBestillingRepository db, ILogger<BestillingController> log)
         {
@@ -65,7 +67,7 @@ namespace WebapplikasjonerOppgave1.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             if (ModelState.IsValid)
@@ -77,7 +79,7 @@ namespace WebapplikasjonerOppgave1.Controllers
                 {
 
                     _log.LogInformation("Tur ble ikke registrert");
-                    return BadRequest("Tue ble ikke registrert");
+                    return BadRequest("Turen ble ikke registrert");
                 }
                 return Ok("Tur registrert");
             }
@@ -100,7 +102,7 @@ namespace WebapplikasjonerOppgave1.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             if (ModelState.IsValid)
@@ -131,7 +133,7 @@ namespace WebapplikasjonerOppgave1.Controllers
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
             {
-                return Unauthorized();
+                return Unauthorized("Ikke logget inn");
             }
 
             bool returOk = await _db.SlettTur(TurId);
@@ -154,7 +156,7 @@ namespace WebapplikasjonerOppgave1.Controllers
                 if (!returnOK)
                 {
                     _log.LogInformation("Innloggingen feilet for bruker" + bruker.Brukernavn);
-                    HttpContext.Session.SetString(_loggetInn, "");
+                    HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
                     return Ok(false);
                 }
                 HttpContext.Session.SetString(_loggetInn, "LoggetInn");

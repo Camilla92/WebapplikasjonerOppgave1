@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 namespace test5
 {
 
+    [ExcludeFromCodeCoverage]
     public class MockHttpSession : ISession
     {
         Dictionary<string, object> sessionStorage = new Dictionary<string, object>();
