@@ -1,12 +1,10 @@
 ﻿
 function validerLikeStasjoner() {
-
     const start = document.getElementById("startstasjonAdmin").value;
     const slutt = document.getElementById("endestasjonAdmin").value;
 
     if (start === slutt) {
-        $("#feilStartStasjonAdmin").html("Stasjonsnavnene kan ikke være like. ")
-        $("#feilEndeStasjonAdmin").html("Stasjonsnavnene kan ikke være like. ")
+        $("#feil").html("Stasjonsnavnene kan ikke være like")
         return false;
     }
     else {
