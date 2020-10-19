@@ -186,6 +186,9 @@ function validerStartStasjonAdmin(startstasjonAdmin) {
     }
 }
 
+
+
+
 function validerEndeStasjonAdmin(endestasjonAdmin) {
     const regex = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
     const ok = regex.test(endestasjonAdmin);
@@ -197,6 +200,8 @@ function validerEndeStasjonAdmin(endestasjonAdmin) {
         return true;
     }
 }
+
+
 
 function validerDatoAdmin(datoAdmin) {
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
@@ -223,7 +228,7 @@ function validerTidAdmin(tidAdmin) {
 }
 
 function ingenValideringsFeilAdmin() {
-    return (validerStartStasjonAdmin() && validerEndeStasjonAdmin && validerDatoAdmin() && validerTidAdmin()
+    return (validerStartStasjonAdmin() && validerEndeStasjonAdmin() && validerDatoAdmin() && validerTidAdmin()
         && validerBarnePrisAdmin() && validerVoksenPrisAdmin());
 }
 
