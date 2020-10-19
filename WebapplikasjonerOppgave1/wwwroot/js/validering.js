@@ -94,7 +94,7 @@ function validerTelefonnummer(Telefonnummer) {
 }
 
 function validerEpost(Epost) {
-    const regexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const regexp = /^\S+@\S+$/;
     const ok = regexp.test(Epost);
     if (!ok) {
         $("#feilEpost").html("Epost er skrevet inn feil");
