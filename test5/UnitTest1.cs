@@ -76,6 +76,7 @@ namespace test5
             };
 
 
+
             var turListe = new List<Tur>();
             turListe.Add(tur1);
             turListe.Add(tur2);
@@ -125,10 +126,7 @@ namespace test5
         [Fact]
         public async Task OpprettTurLoggetInnOK()
         {
-
-
             // Arrange
-
             mockRep.Setup(k => k.OpprettTur(It.IsAny<Tur>())).ReturnsAsync(true);
 
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
@@ -159,7 +157,7 @@ namespace test5
             bestillingController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await BestillingController.OpprettTur(It.IsAny<Tur>()) as BadRequestObjectResult;
+            var resultat = await bestillingController.OpprettTur(It.IsAny<Tur>()) as BadRequestObjectResult;
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
@@ -210,7 +208,7 @@ namespace test5
             bestillingController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var resultat = await bestillingController.Lagre(It.IsAny<Tur>()) as UnauthorizedObjectResult;
+            var resultat = await bestillingController.OpprettTur(It.IsAny<Tur>()) as UnauthorizedObjectResult;
 
             // Assert 
             Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);

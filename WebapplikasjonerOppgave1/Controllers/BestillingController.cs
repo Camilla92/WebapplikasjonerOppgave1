@@ -45,12 +45,6 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         public async Task<ActionResult> Lagre(BussBestilling innBussBestilling)
         {
-            //sjekker om innloggingssession er true/false
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            {
-                return Unauthorized();
-            }
-
             if (ModelState.IsValid)
             {
                
