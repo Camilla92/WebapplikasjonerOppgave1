@@ -430,6 +430,68 @@ namespace test5
             Assert.Equal("Feil i inputvalidering på server", resultat.Value);
         }
 
+
+        [Fact]
+        public async Task LagreOK()
+        {
+
+
+            var innBussbestilling = new BussBestilling
+            {
+                Id = 1,
+                Fornavn = "Per",
+                Etternavn = "Hansen",
+                Telefonnummer = "99345672",
+                Epost = "PeHansen@oslomet.no",
+                Kortnummer = "1234567890123456",
+                AntallBarn = 2,
+                AntallVoksne = 3,
+                Dato = "12/12/2020",
+                Tid = "09:00",
+                BarnePris = 50,
+                VoksenPris = 100,
+                StartStasjon = "Bergen"
+
+            };
+
+
+            mockRep.Setup(k => k.Lagre(innBussbestilling)).ReturnsAsync(true);
+            var bestillingController = new BestillingController(mockRep.Object);
+            bool resultat = await bestillingController.Lagre(innBussbestilling);
+            Assert.True(resultat);
+        }
+
+
+
+        [Fact]
+        public async Task LagreIkkeOK()
+        {
+            var innBussbestilling = new BussBestilling
+            {
+                Id = 1,
+                Fornavn = "Per",
+                Etternavn = "Hansen",
+                Telefonnummer = "99345672",
+                Epost = "PeHansen@oslomet.no",
+                Kortnummer = "1234567890123456",
+                AntallBarn = 2,
+                AntallVoksne = 3,
+                Dato = "12/12/2020",
+                Tid = "09:00",
+                BarnePris = 50,
+                VoksenPris = 100,
+                StartStasjon = "Bergen"
+
+
+            };
+
+            mockRep.Setup(k => k.Lagre(innBussbestilling)).ReturnsAsync(false);
+            var kundeController = new BestillingController(mockRep.Object);
+            bool resultat = await bestillingController.Lagre(innBussbestilling);
+            Assert.False(resultat);
+        }
+
+
         /*
         [Fact]
         public void LoggUt()
