@@ -94,7 +94,7 @@ function validerTelefonnummer(Telefonnummer) {
 }
 
 function validerEpost(Epost) {
-    const regexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const regexp = /^\S+@\S+$/;
     const ok = regexp.test(Epost);
     if (!ok) {
         $("#feilEpost").html("Epost er skrevet inn feil");
@@ -186,6 +186,9 @@ function validerStartStasjonAdmin(startstasjonAdmin) {
     }
 }
 
+
+
+
 function validerEndeStasjonAdmin(endestasjonAdmin) {
     const regex = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
     const ok = regex.test(endestasjonAdmin);
@@ -197,6 +200,8 @@ function validerEndeStasjonAdmin(endestasjonAdmin) {
         return true;
     }
 }
+
+
 
 function validerDatoAdmin(datoAdmin) {
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
@@ -223,7 +228,7 @@ function validerTidAdmin(tidAdmin) {
 }
 
 function ingenValideringsFeilAdmin() {
-    return (validerStartStasjonAdmin() && validerEndeStasjonAdmin && validerDatoAdmin() && validerTidAdmin()
+    return (validerStartStasjonAdmin() && validerEndeStasjonAdmin() && validerDatoAdmin() && validerTidAdmin()
         && validerBarnePrisAdmin() && validerVoksenPrisAdmin());
 }
 

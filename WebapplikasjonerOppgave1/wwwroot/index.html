@@ -14,22 +14,37 @@
     <script src="js/validering.js"></script>
     <link rel="stylesheet" href="stylingIndex.css">
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">
-                <img class="bilde" src="norway.jpg" alt="Nor-Way logo">
-            </a>
-            <a class="navbar navbar-expand-lg btn btn-info pull-right " href="loggInn.html">Logg inn som administrator-></a>
-        </nav>
-    </header>
+        <div class="container">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-white bg-white">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <a class="navbar-brand" href="index.html">
+                            <img class="bilde" src="norway.jpg" alt="Nor-Way logo">
+                        </a>
+                    </div>
+                    <div class="col- col-lg-3">
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+                        <a href="loggInn.html" class="btn btn-outline-secondary btn-block pull-right">Logg inn som administrator</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>   
 
     <div class="view">
-        <div class="container-sm bg-dark w-25">
-            <h4 class="text-white">Registrer bestilling</h4>
+        <div class="container-sm bg-dark w-15">
             <div class="row">
-                <div class="col-md-20 mx-auto">
+                <div class="col-md-10 mx-auto">
                     <form>
+                        <div class="form-group row">
+                            <div class="col-sm-12 "> <br/>
+                                <h4 class="text-white">Registrer bestilling</h4>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-sm-6 ">
                                 <label for="startstasjon">Jeg skal reise fra: </label>
@@ -82,14 +97,14 @@
                                 <input type="text" id="kortnummer" class="form-control" onchange="validerKortnummer(this.value)" /> <br />
                                 <span id="feilKortnummer" style="color: red"></span>
                             </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-sm-6 ">
                                 <label>Antall barn</label>
                                 <input type="number" min="0" id="antallBarn" class="form-control" onchange="beregnOgValiderBarn()" /> <br />
                                 <inline id="barnePris"></inline>
                                 <span id="feilAntallBarn" style="color: red"></span>
                             </div>
-                        </div>
-                        <div class="form-group row">
                             <div class="col-sm-6 ">
                                 <label>Antall voksne</label>
                                 <input type="number" min="0" id="antallVoksne" class="form-control" onkeyup="beregnOgValiderVoksen()" /> <br />
