@@ -76,7 +76,6 @@ namespace test5
             };
 
 
-
             var turListe = new List<Tur>();
             turListe.Add(tur1);
             turListe.Add(tur2);

@@ -174,11 +174,6 @@ namespace WebapplikasjonerOppgave1.Controllers
         {
             HttpContext.Session.SetString(_loggetInn, "");
         }
-
-        public Task<UnauthorizedObjectResult> Lagre(Tur tur)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

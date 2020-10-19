@@ -1,4 +1,50 @@
+<<<<<<< HEAD
 2020-10-19T09:15:36.1004080+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
 2020-10-19T09:15:36.1077990+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
 2020-10-19T09:15:36.1108930+02:00  [INF] Hosting environment: "Development" (c3307c92)
 2020-10-19T09:15:36.1134700+02:00  [INF] Content root path: "/Users/synneangell/Projects/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
+=======
+2020-10-19T09:30:40.4724770+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-19T09:30:40.4801320+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-19T09:30:40.4832030+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-19T09:30:40.4859550+02:00  [INF] Content root path: "/Users/nikolasekiw/Prosjekter/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)
+2020-10-19T09:31:31.1364780+02:00 0HM3K03GNTNJI:0000000D [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+WebapplikasjonerOppgave1.Controllers.BestillingController.Lagre (WebapplikasjonerOppgave1)
+WebapplikasjonerOppgave1.Controllers.BestillingController.Lagre (WebapplikasjonerOppgave1)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-10-19T09:32:02.5953400+02:00 0HM3K03GNTNJI:0000000E [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+WebapplikasjonerOppgave1.Controllers.BestillingController.Lagre (WebapplikasjonerOppgave1)
+WebapplikasjonerOppgave1.Controllers.BestillingController.Lagre (WebapplikasjonerOppgave1)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2020-10-19T09:34:41.3410560+02:00 0HM3K03GNTNJJ:0000000A [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+Microsoft.AspNetCore.Routing.Matching.AmbiguousMatchException: The request matched multiple endpoints. Matches: 
+
+WebapplikasjonerOppgave1.Controllers.BestillingController.Lagre (WebapplikasjonerOppgave1)
+WebapplikasjonerOppgave1.Controllers.BestillingController.Lagre (WebapplikasjonerOppgave1)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ReportAmbiguity(CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.ProcessFinalCandidates(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector.Select(HttpContext httpContext, CandidateState[] candidateState)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.MatchAsync(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+>>>>>>> 9582566... slettet lagre
