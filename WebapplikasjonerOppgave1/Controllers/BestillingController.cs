@@ -57,6 +57,18 @@ namespace WebapplikasjonerOppgave1.Controllers
                 }
                 return Ok("Bestilling registrert");
             }
+
+
+            var errors = ModelState
+            .Where(x => x.Value.Errors.Count > 0)
+            .Select(x => new { x.Key, x.Value.Errors })
+            .ToArray();
+
+            foreach (var error in errors)
+            {
+                System.Diagnostics.Debug.WriteLine(error);
+            }
+
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
         }

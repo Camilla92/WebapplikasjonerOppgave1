@@ -15,6 +15,6 @@ namespace WebapplikasjonerOppgave1.DAL
         public string Etternavn { get; set; }
         public string Telefonnummer { get; set; }
         public string Epost { get; set; }
-        public int Kortnummer { get; set; }
+        public string Kortnummer { get; set; }
     }
 }

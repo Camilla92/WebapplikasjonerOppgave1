@@ -19,11 +19,11 @@ namespace WebapplikasjonerOppgave1.Models
         [RegularExpression(@"^[0-9]{8}$")]
         public string Telefonnummer { get; set; }
 
-        [RegularExpression(@"^\S+@\S+$/$")]
+        [RegularExpression(@"^\S+@\S+$")]
         public string Epost { get; set; }
 
         [RegularExpression(@"^[0-9]{16}$")]
-        public int Kortnummer { get; set; }
+        public string Kortnummer { get; set; }
 
         //Bestilling
         [RegularExpression(@"^[0-9]{1}$")]
