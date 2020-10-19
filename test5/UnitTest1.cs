@@ -27,7 +27,7 @@ namespace test5
 
         /*
         Task<List<Stasjon>> HentAlleStasjoner(); -> Trenger ikke test? Oppgave 1
-        Task<List<Turer>> HentAlleTurer();      -> Laget tester
+        Task<List<Turer>> HentAlleTurer();      -> Trenger ikke test? Oppgave 1
         Task<List<Stasjon>> HentEndeStasjoner(string startStasjonsNavn); -> Trenger ikke test? Oppgave 1
         Task<bool> Lagre(BussBestilling innBussBestilling); -> Trenger ikke test? Oppgave 1
         Task<bool> OpprettTur(Tur innTur);  -> Laget tester
@@ -36,6 +36,7 @@ namespace test5
         Task<bool> LoggInn(Bruker bruker);  -> Laget tester
         */
 
+        /*
 
         [Fact]
         public async Task HentAlleTurerLoggetInnOK()
@@ -118,7 +119,7 @@ namespace test5
             // Assert 
             Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
             Assert.Equal("Ikke logget inn", resultat.Value);
-        }
+        }*/
 
 
 

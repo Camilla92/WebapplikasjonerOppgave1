@@ -10,7 +10,7 @@
             passord: $("#passord").val()
 
         }
-        $.post("Bestilling/LoggInn", bruker, function (OK) {
+        $.post("Bestilling/LoggUt", bruker, function (OK) {
 
             if (OK) {
                 window.location.href = 'admin.html';

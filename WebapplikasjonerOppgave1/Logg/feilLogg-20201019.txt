@@ -1,0 +1,4 @@
+2020-10-19T09:15:36.1004080+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2020-10-19T09:15:36.1077990+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-10-19T09:15:36.1108930+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-10-19T09:15:36.1134700+02:00  [INF] Content root path: "/Users/synneangell/Projects/WebapplikasjonerOppgave1/WebapplikasjonerOppgave1" (b5d60022)

@@ -33,11 +33,6 @@ namespace WebapplikasjonerOppgave1.Controllers
 
         public async Task<ActionResult> HentAlleTurer()
         {
-            //sjekker om innloggingssession er true/false
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
-            {
-                return Unauthorized();
-            }
             List<Turer> alleTurer = await _db.HentAlleTurer();
             return Ok(alleTurer);
         }
