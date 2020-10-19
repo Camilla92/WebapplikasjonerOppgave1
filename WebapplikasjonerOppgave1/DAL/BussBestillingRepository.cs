@@ -77,7 +77,9 @@ namespace WebapplikasjonerOppgave1.DAL
             foreach (var kunde in alleKunder)
             {
                 if (innBussBestilling.Fornavn.Equals(kunde.Fornavn) &&
-                    innBussBestilling.Etternavn.Equals(kunde.Etternavn))
+                    innBussBestilling.Etternavn.Equals(kunde.Etternavn) &&
+                    innBussBestilling.Epost.Equals(kunde.Epost) &&
+                    innBussBestilling.Kortnummer.Equals(kunde.Kortnummer))
                 {
                     kundeID = kunde.KId;
                 }
