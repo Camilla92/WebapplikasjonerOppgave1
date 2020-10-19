@@ -35,8 +35,8 @@ namespace test5
         Task<bool> SlettTur(int TurId);     -> Laget tester
         Task<bool> LoggInn(Bruker bruker);  -> Laget tester
         */
-        
-        
+
+
         [Fact]
         public async Task HentAlleStasjoner()
         {
@@ -65,8 +65,9 @@ namespace test5
             mockRep.Setup(s => s.HentAlleStasjoner()).ReturnsAsync(stasjonsListe);
 
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
-            var resultat = await bestillingController.HentAlleStasjoner();
-            Assert.Equal<List<Stasjon>>(stasjonsListe, resultat);
+            var resultat = await bestillingController.HentAlleStasjoner() as OkObjectResult;
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal(stasjonsListe, resultat.Value);
         }
 
         [Fact]
@@ -74,98 +75,99 @@ namespace test5
         {
             //var stasjonsListe = new List<Stasjon>();
 
-            mockRep.Setup(s => s.HentAlleStasjoner()).ReturnsAsync(()=>null);
+            mockRep.Setup(s => s.HentAlleStasjoner()).ReturnsAsync(() => null);
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
-            var resultat = await bestillingController.HentAlleStasjoner();
-            Assert.Null(resultat);
+            var resultat = await bestillingController.HentAlleStasjoner() as OkObjectResult;
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal(null, resultat.Value);
         }
 
-        /*
+        /*[Fact]
+        public async Task HentEndeStasjoner()
+        {
+        //Alt dette her er feil, usikker på hvordan jeg henter kun endeStasjoner :o 
+            var endeStasjoner = new List<Tur>();
+            
+            mockRep.Setup(s => s.HentEndeStasjoner(Stasjon endeStasjoner)).ReturnsAsync(endeStasjoner);
+            var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            var resultat = await bestillingController.HentEndeStasjoner() as OkObjectResult;
+            Assert.Equal((int)HttpStatusCode.OK, resultat.Value);
+        }*/
 
         [Fact]
-        public async Task HentAlleTurerLoggetInnOK()
+        public async Task HentAlleTurer()
         {
+            var stasjon1 = new Stasjon
+            {
+                SId = 1,
+                StasjonsNavn = "Oslo",
+            };
+
+            var stasjon2 = new Stasjon
+            {
+                SId = 2,
+                StasjonsNavn = "Bergen"
+            };
+            var stasjon3 = new Stasjon
+            {
+                SId = 3,
+                StasjonsNavn = "Tromsø"
+            };
             // Arrange
-            var tur1 = new Tur
+            var tur1 = new Turer
             {
                 TurId = 1,
-                StartStasjon = "Oslo",
-                EndeStasjon = "Trondheim",
+                StartStasjon = stasjon2,
+                EndeStasjon = stasjon3,
                 Dato = "24/12/2020",
                 Tid = "13:00",
                 BarnePris = 50,
                 VoksenPris = 100
             };
 
-            var tur2 = new Tur
+            var tur2 = new Turer
             {
                 TurId = 2,
-                StartStasjon = "Trondheim",
-                EndeStasjon = "Bodø",
+                StartStasjon = stasjon3,
+                EndeStasjon = stasjon2,
                 Dato = "25/12/2020",
                 Tid = "12:00",
                 BarnePris = 200,
                 VoksenPris = 500
             };
 
-            var tur3 = new Tur
+            var tur3 = new Turer
             {
                 TurId = 3,
-                StartStasjon = "Oslo",
-                EndeStasjon = "Bodø",
+                StartStasjon = stasjon1,
+                EndeStasjon = stasjon3,
                 Dato = "26/12/2020",
                 Tid = "10:00",
                 BarnePris = 100,
                 VoksenPris = 200
             };
 
-
-
-            var turListe = new List<Tur>();
+            var turListe = new List<Turer>();
             turListe.Add(tur1);
             turListe.Add(tur2);
             turListe.Add(tur3);
 
             mockRep.Setup(k => k.HentAlleTurer()).ReturnsAsync(turListe);
-
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
-
-            mockSession[_loggetInn] = _loggetInn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            bestillingController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
             var resultat = await bestillingController.HentAlleTurer() as OkObjectResult;
-
-            // Assert 
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
-            Assert.Equal<List<Tur>>((List<Tur>)resultat.Value, turListe);
+            Assert.Equal(turListe, resultat.Value);
         }
 
         [Fact]
-        public async Task HentAlleTurerIkkeLoggetInn()
+        public async Task HentAlleTurerTomListe()
         {
-            // Arrange
-
-            //var tomListe = new List<Tur>();
-
-            mockRep.Setup(k => k.HentAlleTurer()).ReturnsAsync(It.IsAny<List<Tur>>());
-
+            mockRep.Setup(k => k.HentAlleTurer()).ReturnsAsync(() => null);
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
-
-            mockSession[_loggetInn] = _ikkeLoggetInn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            bestillingController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var resultat = await bestillingController.HentAlleTurer() as UnauthorizedObjectResult;
-
-            // Assert 
-            Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
-            Assert.Equal("Ikke logget inn", resultat.Value);
-        }*/
-
-
+            var resultat = await bestillingController.HentAlleTurer() as OkObjectResult;
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal(null, resultat.Value);
+        }
 
         [Fact]
         public async Task OpprettTurLoggetInnOK()
@@ -478,8 +480,6 @@ namespace test5
         [Fact]
         public async Task LagreOK()
         {
-
-
             var innBussbestilling = new BussBestilling
             {
                 Id = 1,
@@ -495,17 +495,14 @@ namespace test5
                 BarnePris = 50,
                 VoksenPris = 100,
                 StartStasjon = "Bergen"
-
             };
 
-
             mockRep.Setup(k => k.Lagre(innBussbestilling)).ReturnsAsync(true);
-            var bestillingController = new BestillingController(mockRep.Object);
-            bool resultat = await bestillingController.Lagre(innBussbestilling);
-            Assert.True(resultat);
+            var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            var resultat = await bestillingController.Lagre(innBussbestilling) as OkObjectResult;
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal("Bestilling registrert", resultat.Value);
         }
-
-
 
         [Fact]
         public async Task LagreIkkeOK()
@@ -525,17 +522,43 @@ namespace test5
                 BarnePris = 50,
                 VoksenPris = 100,
                 StartStasjon = "Bergen"
-
-
             };
 
             mockRep.Setup(k => k.Lagre(innBussbestilling)).ReturnsAsync(false);
-            var kundeController = new BestillingController(mockRep.Object);
-            bool resultat = await bestillingController.Lagre(innBussbestilling);
-            Assert.False(resultat);
+            var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            var resultat = await bestillingController.Lagre(innBussbestilling) as BadRequestObjectResult;
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal("Bestilling ble ikke registrert", resultat.Value);
         }
-
-
+        
+        [Fact]
+        public async Task LagreFeilInput()
+        {
+            var innBussbestilling = new BussBestilling
+            {
+                Id = 1,
+                Fornavn = "i",
+                Etternavn = "i",
+                Telefonnummer = "i",
+                Epost = "i",
+                Kortnummer = "i",
+                AntallBarn = 0,
+                AntallVoksne = 0,
+                Dato = "i",
+                Tid = "i",
+                BarnePris = 0,
+                VoksenPris = 0,
+                StartStasjon = "i",
+                EndeStasjon = "i"
+            };
+            
+            mockRep.Setup(b => b.Lagre(innBussbestilling)).ReturnsAsync(false);
+            var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            var resultat = await bestillingController.Lagre(innBussbestilling) as BadRequestObjectResult;
+            Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
+            Assert.Equal("Feil i inputvalidering på server", resultat.Value);
+        }
+        
         /*
         [Fact]
         public void LoggUt()

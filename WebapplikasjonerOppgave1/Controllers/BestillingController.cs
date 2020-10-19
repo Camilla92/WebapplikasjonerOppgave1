@@ -59,18 +59,6 @@ namespace WebapplikasjonerOppgave1.Controllers
                 }
                 return Ok("Bestilling registrert");
             }
-
-
-            var errors = ModelState
-            .Where(x => x.Value.Errors.Count > 0)
-            .Select(x => new { x.Key, x.Value.Errors })
-            .ToArray();
-
-            foreach (var error in errors)
-            {
-                System.Diagnostics.Debug.WriteLine(error);
-            }
-
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
         }
@@ -167,11 +155,11 @@ namespace WebapplikasjonerOppgave1.Controllers
                 bool returnOK = await _db.LoggInn(bruker);
                 if (!returnOK)
                 {
-                    _log.LogInformation("Innloggingen feilet for bruker" + bruker.Brukernavn);
+                    _log.LogInformation("Innloggingen feilet for bruker");
                     HttpContext.Session.SetString(_loggetInn, _ikkeLoggetInn);
                     return Ok(false);
                 }
-                HttpContext.Session.SetString(_loggetInn, "LoggetInn");
+                HttpContext.Session.SetString(_loggetInn, _loggetInn);
                 return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
