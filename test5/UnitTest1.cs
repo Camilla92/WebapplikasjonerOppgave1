@@ -79,26 +79,40 @@ namespace test5
         [Fact]
         public async Task HentEndeStasjoner()
         {
+        
+            var stasjon1 = new Stasjon
+            {
+                StasjonsNavn = "Oslo"
+            };
+        
+            var stasjon2 = new Stasjon
+            {
+                SId = 2,
+                StasjonsNavn = "Bergen"
+            };
+        
 
-        var stasjon1 = new Tur
+        var tur1 = new Turer
         {
-            String StasjonsNavn = "Oslo"
+            TurId = 1,
+            StartStasjon = stasjon1,
+            EndeStasjon = stasjon2,
+            Dato = "24/12/2020",  
+            Tid = "10:00",
+            BarnePris = 100,
+            VoksenPris = 200
         };
         
-        var stasjon2 = new Stasjon
-        {
-            SId = 2,
-            StasjonsNavn = "Bergen"
-        };
-
         var endeStasjonListe = new List<Stasjon>();
         endeStasjonListe.Add(stasjon1);
         endeStasjonListe.Add(stasjon2);
 
-        mockRep.Setup(s => s.HentEndeStasjoner()).ReturnsAsync(endeStasjonListe);
+        mockRep.Setup(s => s.HentEndeStasjoner(stasjon1.StasjonsNavn)).ReturnsAsync(endeStasjonListe);
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
-            var resultat = await bestillingController.HentEndeStasjoner() as OkObjectResult;
-            Assert.Equal((int)HttpStatusCode.OK, resultat.Value);
+            var resultat = await bestillingController.HentEndeStasjoner(stasjon1.StasjonsNavn) as OkObjectResult;
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal(endeStasjonListe, resultat.Value);
+
         }
 
         [Fact]
