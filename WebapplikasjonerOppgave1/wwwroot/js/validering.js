@@ -210,8 +210,35 @@ function validerDatoAdmin(datoAdmin) {
         $("#feilDatoAdmin").html("Formatet på dato må være DD/MM/YYYY")
         return false;
     } else {
-        $("#feilDatoAdmin").html("");
-        return true;
+        var today = new Date();
+        var datoAdminSplit = datoAdmin.split("/");
+        var month = today.getUTCMonth();
+        month += 1;
+        
+        console.log("Dato nå:"+today);
+        console.log("År nå:"+today.getFullYear());
+        console.log("År:"+datoAdminSplit[2]);
+        console.log("Måned nå:"+month);
+        console.log("Måned:"+datoAdminSplit[1]);
+        console.log("Dag utf nå:"+today.getUTCDate());
+        console.log("Dag:"+datoAdminSplit[0]);
+        
+        if(datoAdminSplit[2] < today.getFullYear()){
+            $("#feilDatoAdmin").html("Dato kan ikke være tilbake i tid");
+            return false;
+        }
+        else if(datoAdminSplit[2] === today.getFullYear() && datoAdminSplit[1] < month){
+            $("#feilDatoAdmin").html("Dato kan ikke være tilbake i tid");
+            return false;
+        }
+        else if(datoAdminSplit[2] === today.getFullYear() && datoAdminSplit[1] === month && datoAdminSplit[0] < today.getUTCDay()){
+            $("#feilDatoAdmin").html("Dato kan ikke være tilbake i tid");
+            return false;
+        }
+        else {
+            $("#feilDatoAdmin").html("");
+            return true;
+        }
     }
 }
 
