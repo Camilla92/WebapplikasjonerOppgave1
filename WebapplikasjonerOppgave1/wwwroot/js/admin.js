@@ -57,15 +57,15 @@ function formaterTurer(turer) {
             "<td> <a class='btn btn-danger' onclick='SlettTur(" + linje + ")'>Slett</button></td>" +
             "</tr>" +
             "<tr>" +
-            "<td><span id='TurIdFeil" + linje + "' size='3'/></td>" +
-            "<td><span id='feilStartStasjon" + linje + "'/></td>" +
-            "<td><span id='feilEndeStasjonAdmin" + linje + "'/></td>" +
-            "<td><span id='feilDatoAdmin" + linje + "'/></td>" +
-            "<td><span id='feilTidAdmin" + linje + "' size='5'/></td>" +
-            "<td><span id='feilBarnePrisAdmin" + linje + "' size='7'/></td>" +
-            "<td><span id='feilVoksenPrisAdmin" + linje + "' size='7'/></td>" +
-            "<td><span id='slettFeil" + linje + "' size='7'/>" +
-            "<td><span id='endreFeil" + linje + "' size='7'/></td ></tr> ";
+            "<td><span style='color: red; font-size: 80%' id='TurIdFeil" + linje + "' size='3'/></td>" +
+            "<td><span style='color: red; font-size: 80%' id='feilStartStasjon" + linje + "'/></td>" +
+            "<td><span style='color: red; font-size: 80%' id='feilEndeStasjonAdmin" + linje + "'/></td>" +
+            "<td><span style='color: red; font-size: 80%' id='feilDatoAdmin" + linje + "'/></td>" +
+            "<td><span style='color: red; font-size: 80%' id='feilTidAdmin" + linje + "' size='5'/></td>" +
+            "<td><span style='color: red; font-size: 80%' id='feilBarnePrisAdmin" + linje + "' size='7'/></td>" +
+            "<td><span style='color: red; font-size: 80%' id='feilVoksenPrisAdmin" + linje + "' size='7'/></td>" +
+            "<td><span style='color: red; font-size: 80%' id='slettFeil" + linje + "' size='7'/>" +
+            "<td><span style='color: red; font-size: 80%' id='endreFeil" + linje + "' size='7'/></td ></tr> ";
         linje++;
     });
     ut += "</table>";

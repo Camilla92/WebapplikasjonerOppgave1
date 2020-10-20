@@ -300,8 +300,19 @@ function validerDatoEndre(datoAdmin, linje) {
         $("#feilDatoAdmin" + linje).html("Formatet på dato må være DD/MM/YYYY")
         return false;
     } else {
-        $("#feilDatoAdmin" + linje).html("");
-        return true;
+        var today = new Date();
+        var dateParts = datoAdmin.split("/");
+        var datoInput = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+        today.setUTCDate(today.getUTCDate()-1);
+
+        if (today.getTime() < datoInput.getTime()) {
+            $("#feilDatoAdmin" + linje).html("");
+            return true;
+        }
+        else {
+            $("#feilDatoAdmin" + linje).html("Dato kan ikke være tilbake i tid")
+            return false;
+        }
     }
 }
 
