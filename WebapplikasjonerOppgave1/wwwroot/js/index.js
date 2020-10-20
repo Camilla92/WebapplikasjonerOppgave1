@@ -227,6 +227,10 @@ function formaterBestilling() {
     });
 }
 
+
+
+
+
 function lagreBestilling() {
     const bestilling = {
         fornavn: $("#fornavn").val(),
@@ -244,13 +248,45 @@ function lagreBestilling() {
 
     const url = "bestilling/lagre";
     $.post(url, bestilling, function () {
+        
         window.location.href = 'bekreft.html';
+        
         console.log("Bestillingen er lagret!");
+        sendEmail();
+        
     })
         .fail(function () {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
 };
+
+
+
+
+$(function sendEmail () {
+    $("[id*=bekreft]").click(function () {
+        var toEmail = $.trim($("#epost").val());
+        var innhold = formaterBestilling();
+
+        $.ajax({
+            type: "POST",
+            url: "Service.asmx/SendEmail",
+            data: "{toEmail: '" + toEmail + "', Innhold: '" + innhold +"'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                alert(r.d+ "feil feil feil 1");
+            },
+            error: function (r) {
+                alert(r.responseText+ "feilfeilfeil 2");
+            },
+            failure: function (r) {
+                alert(r.responseText+ "feil feil feil 3");
+            }
+        });
+        return false;
+    });
+});
 
 
 
