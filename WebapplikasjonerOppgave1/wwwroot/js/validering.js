@@ -220,7 +220,7 @@ function validerDatoAdmin(datoAdmin) {
             return true;
         }
         else {
-            $("#feilDatoAdmin").html("Dato kan ikke være tilbake i tid");
+            $("#feilDatoAdmin").html("Dato og tid kan ikke være tilbake i tid");
             return false;
         }
     }
@@ -293,24 +293,27 @@ function validerEndeStasjonEndre(endestasjonAdmin, linje) {
     }
 }
 
-function validerDatoEndre(datoAdmin, linje) {
+function validerDatoEndre(datoAdmin, tidAdmin, linje) {
+    var today = new Date();
+    var dateParts = datoAdmin.split("/");
+    var timeParts = tidAdmin.split(":");
+    var datoInput = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0], timeParts[0], timeParts[1]);
+    
+    console.log("Idag"+today);
+    console.log("Input"+datoInput);
+    
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     const ok = regex.test(datoAdmin);
     if (!ok) {
-        $("#feilDatoAdmin" + linje).html("Formatet på dato må være DD/MM/YYYY")
+        $("#feilDatoAdmin" + linje).html("Formatet på dato må være DD/MM/YYYY");
         return false;
     } else {
-        var today = new Date();
-        var dateParts = datoAdmin.split("/");
-        var datoInput = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-        today.setUTCDate(today.getUTCDate()-1);
-
         if (today.getTime() < datoInput.getTime()) {
             $("#feilDatoAdmin" + linje).html("");
             return true;
         }
         else {
-            $("#feilDatoAdmin" + linje).html("Dato kan ikke være tilbake i tid")
+            $("#feilDatoAdmin" + linje).html("Dato kan ikke være tilbake i tid");
             return false;
         }
     }
