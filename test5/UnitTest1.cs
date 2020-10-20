@@ -24,7 +24,6 @@ namespace test5
         private readonly Mock<HttpContext> mockHttpContext = new Mock<HttpContext>();
         private readonly MockHttpSession mockSession = new MockHttpSession();
 
-
         /*
         Task<List<Stasjon>> HentAlleStasjoner(); -> Trenger ikke test? Oppgave 1
         Task<List<Turer>> HentAlleTurer();      -> Trenger ikke test? Oppgave 1
@@ -36,11 +35,9 @@ namespace test5
         Task<bool> LoggInn(Bruker bruker);  -> Laget tester
         */
 
-
         [Fact]
         public async Task HentAlleStasjoner()
         {
-            // Arrange
             var stasjon1 = new Stasjon
             {
                 SId = 1,
@@ -63,7 +60,6 @@ namespace test5
             stasjonsListe.Add(stasjon3);
 
             mockRep.Setup(s => s.HentAlleStasjoner()).ReturnsAsync(stasjonsListe);
-
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
             var resultat = await bestillingController.HentAlleStasjoner() as OkObjectResult;
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
@@ -73,8 +69,6 @@ namespace test5
         [Fact]
         public async Task HentAlleStasjonerTom()
         {
-            //var stasjonsListe = new List<Stasjon>();
-
             mockRep.Setup(s => s.HentAlleStasjoner()).ReturnsAsync(() => null);
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
             var resultat = await bestillingController.HentAlleStasjoner() as OkObjectResult;
@@ -82,17 +76,30 @@ namespace test5
             Assert.Equal(null, resultat.Value);
         }
 
-        /*[Fact]
+        [Fact]
         public async Task HentEndeStasjoner()
         {
-        //Alt dette her er feil, usikker på hvordan jeg henter kun endeStasjoner :o 
-            var endeStasjoner = new List<Tur>();
-            
-            mockRep.Setup(s => s.HentEndeStasjoner(Stasjon endeStasjoner)).ReturnsAsync(endeStasjoner);
+
+        var stasjon1 = new Tur
+        {
+            String StasjonsNavn = "Oslo"
+        };
+        
+        var stasjon2 = new Stasjon
+        {
+            SId = 2,
+            StasjonsNavn = "Bergen"
+        };
+
+        var endeStasjonListe = new List<Stasjon>();
+        endeStasjonListe.Add(stasjon1);
+        endeStasjonListe.Add(stasjon2);
+
+        mockRep.Setup(s => s.HentEndeStasjoner()).ReturnsAsync(endeStasjonListe);
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
             var resultat = await bestillingController.HentEndeStasjoner() as OkObjectResult;
             Assert.Equal((int)HttpStatusCode.OK, resultat.Value);
-        }*/
+        }
 
         [Fact]
         public async Task HentAlleTurer()
@@ -225,9 +232,7 @@ namespace test5
             };
 
             mockRep.Setup(k => k.OpprettTur(tur1)).ReturnsAsync(true);
-
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
-
             bestillingController.ModelState.AddModelError("Startstasjon", "Feil i inputvalidering på server");
 
             mockSession[_loggetInn] = _loggetInn;
@@ -537,28 +542,30 @@ namespace test5
             var innBussbestilling = new BussBestilling
             {
                 Id = 1,
-                Fornavn = "i",
-                Etternavn = "i",
-                Telefonnummer = "i",
-                Epost = "i",
-                Kortnummer = "i",
-                AntallBarn = 0,
-                AntallVoksne = 0,
-                Dato = "i",
-                Tid = "i",
-                BarnePris = 0,
-                VoksenPris = 0,
-                StartStasjon = "i",
-                EndeStasjon = "i"
+                Fornavn = "Per",
+                Etternavn = "Hansen",
+                Telefonnummer = "9",
+                Epost = "PeHansen@oslomet.no",
+                Kortnummer = "1234567890123456",
+                AntallBarn = 2,
+                AntallVoksne = 3,
+                Dato = "12/12/2020",
+                Tid = "09:00",
+                BarnePris = 50,
+                VoksenPris = 100,
+                StartStasjon = "Bergen",
+                EndeStasjon = "Oslo"
             };
             
-            mockRep.Setup(b => b.Lagre(innBussbestilling)).ReturnsAsync(false);
+            mockRep.Setup(b => b.Lagre(innBussbestilling)).ReturnsAsync(true);
             var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            bestillingController.ModelState.AddModelError("Telefonnummer", "Feil i inputvalidering på server");
+            
             var resultat = await bestillingController.Lagre(innBussbestilling) as BadRequestObjectResult;
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
             Assert.Equal("Feil i inputvalidering på server", resultat.Value);
         }
-        
+
         /*
         [Fact]
         public void LoggUt()
