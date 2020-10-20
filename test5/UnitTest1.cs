@@ -13,6 +13,19 @@ using Moq;
 
 namespace test5
 {
+    
+    /**
+     * Metoder og antall tester pr metode
+     *
+     * HentAlleStasjoner --> 2
+     * HentEndeStasjoner --> 2
+     * HentAlleTurer --> 2
+     * OpprettTur --> 4
+     * SlettTur --> 3
+     * EndreTur --> 5
+     * LoggInn --> 3
+     * Lagre --> 3
+     */
     public class test5
     {
         private const string _loggetInn = "loggetInn";
@@ -66,7 +79,7 @@ namespace test5
         }
 
         [Fact]
-        public async Task HentEndeStasjoner()
+        public async Task HentEndeStasjonerOK()
         {
         
             var stasjon1 = new Stasjon
@@ -101,7 +114,19 @@ namespace test5
             var resultat = await bestillingController.HentEndeStasjoner(stasjon1.StasjonsNavn) as OkObjectResult;
             Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
             Assert.Equal(endeStasjonListe, resultat.Value);
+        }
 
+        [Fact]
+        public async Task HentEndeStasjonerTom()
+        {
+            var stasjon1 = new Stasjon();
+            var endeStasjonListe = new List<Stasjon>();
+            endeStasjonListe.Add(stasjon1);
+            mockRep.Setup(s => s.HentEndeStasjoner(stasjon1.StasjonsNavn)).ReturnsAsync(() => null);
+            var bestillingController = new BestillingController(mockRep.Object, mockLog.Object);
+            var resultat = await bestillingController.HentEndeStasjoner(stasjon1.StasjonsNavn) as OkObjectResult;
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.Equal(null, resultat.Value);
         }
 
         [Fact]
