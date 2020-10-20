@@ -24,17 +24,6 @@ namespace test5
         private readonly Mock<HttpContext> mockHttpContext = new Mock<HttpContext>();
         private readonly MockHttpSession mockSession = new MockHttpSession();
 
-        /*
-        Task<List<Stasjon>> HentAlleStasjoner(); -> Trenger ikke test? Oppgave 1
-        Task<List<Turer>> HentAlleTurer();      -> Trenger ikke test? Oppgave 1
-        Task<List<Stasjon>> HentEndeStasjoner(string startStasjonsNavn); -> Trenger ikke test? Oppgave 1
-        Task<bool> Lagre(BussBestilling innBussBestilling); -> Trenger ikke test? Oppgave 1
-        Task<bool> OpprettTur(Tur innTur);  -> Laget tester
-        Task<bool> EndreTur(Tur endreTur);  -> Laget tester
-        Task<bool> SlettTur(int TurId);     -> Laget tester
-        Task<bool> LoggInn(Bruker bruker);  -> Laget tester
-        */
-
         [Fact]
         public async Task HentAlleStasjoner()
         {
