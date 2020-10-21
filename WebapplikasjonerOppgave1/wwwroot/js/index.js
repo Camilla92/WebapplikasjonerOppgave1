@@ -156,11 +156,11 @@ function validerOgLagBestilling() {
     const EtternavnOK = validerEtternavn($("#etternavn").val());
     const TelefonnummerOK = validerTelefonnummer($("#telefonnr").val());
     const EpostOK = validerEpost($("#epost").val());
-    const KonrtnummerOK = validerKortnummer($("#kortnummer").val());
+    const KortnummerOK = validerKortnummer($("#kortnummer").val());
     const AntallBarnOK = validerAntallBarn($("#antallBarn").val());
     const AntallVoksneOK = validerAntallVoksne($("#antallVoksne").val());
     if (StartstasjonOK && EndestasjonOK && TidOK && FornavnOK && EtternavnOK
-        && TelefonnummerOK && AntallBarnOK && AntallVoksneOK) {
+        && TelefonnummerOK && EpostOK && KortnummerOK && AntallBarnOK && AntallVoksneOK) {
         lagMinEgenPopUp();
     }
 }

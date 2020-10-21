@@ -122,19 +122,15 @@ function formaterTurer(turer) {
 
 
 function validerOgEndreTur(linje) {
-    console.log($("#dato"+linje ).val());
-    console.log($("#tid"+linje).val());
-    console.log($("#barnePris"+linje).val());
-    console.log($("#voksenPris"+linje).val());
-
     const StartstasjonOK = validerStartStasjonEndre($("#startstasjon"+linje).val(), linje);
     const EndestasjonOK = validerEndeStasjonEndre($("#endestasjon"+linje).val(), linje); 
-    const DatoOK = validerDatoEndre($("#dato"+linje).val(), linje);
+    const DatoOK = validerDatoEndre($("#dato"+linje).val(), $("#tid"+linje).val(), linje);
     const TidOK = validerTidEndre($("#tid"+linje).val(), linje);
     const PrisBarnOK = validerBarnePrisEndre($("#barnePris"+linje).val(), linje);
     const PrisVoksenOK = validerVoksenPrisEndre($("#voksenPris"+linje).val(), linje);
     if (StartstasjonOK && EndestasjonOK && TidOK && DatoOK && PrisBarnOK && PrisVoksenOK) {
-        EndreTur(linje);
+           EndreTur(linje);
+           return true;
     }
     else {
         $("#feil").html("Feil i inputvalidering - kan ikke endre på turen! ");
