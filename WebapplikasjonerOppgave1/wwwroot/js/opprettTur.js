@@ -1,4 +1,4 @@
-﻿function validerLikeStasjoner() {
+﻿function validerLikeStasjoner1() {
     const start = $("#startstasjonAdmin").val();
     const slutt = $("#endestasjonAdmin").val();
 
@@ -14,7 +14,7 @@
 function validerOgLagTur() {
     const StartstasjonOK = validerStartStasjonAdmin($("#startstasjonAdmin").val());
     const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjonAdmin").val());
-    const ikkeLikeStasjoner = validerLikeStasjoner();
+    const ikkeLikeStasjoner = validerLikeStasjoner1();
     const DatoOK = validerDatoAdmin($("#datoAdmin").val());
     const TidOK = validerTidAdmin($("#tidAdmin").val());
     const BarnePrisOK = validerBarnePrisAdmin($("#barnePrisAdmin").val());
