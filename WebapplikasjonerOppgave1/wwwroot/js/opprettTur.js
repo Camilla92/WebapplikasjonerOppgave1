@@ -24,13 +24,6 @@ function validerOgLagTur() {
     }
 }
 
-function testFunction() {
-    onChange();
-    validerStartStasjonAdmin($("#startstasjonAdmin").val());
-    validerEndeStasjonAdmin($("#endestasjonAdmin").val());
-    validerLikeStasjoner();
-}
-
 function opprettTur() {
     const tur = {
         startstasjon: $("#startstasjonAdmin").val(),
