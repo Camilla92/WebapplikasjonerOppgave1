@@ -251,27 +251,3 @@ function lagreBestilling() {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
 }
-
-function sendEpost(bestilling){
-    Email.Send({
-/*        Host: "smtp.gmail.com",
-        Username: "1234@gmail.com",
-        Password: 123456789,*/
-        From: "NOR-WAY",
-        To: bestilling.epost,
-        Subject: "BussBestilling kvittering",
-        Body: "Fornavn : "+bestilling.fornavn+"\n"+
-            "Etternavn : "+bestilling.etternavn+"\n"+
-            "Telefonnnummer : "+bestilling.telefonnummer+"\n"+
-            "Epost : "+bestilling.telefonnummer+"\n"+
-            "Kortnummer : "+bestilling.kortnummer+"\n"+
-            "Antall barn : "+bestilling.antallBarn+"\n"+
-            "Antall voksne : "+bestilling.antallVoksne+"\n"+
-            "Startstasjon : "+bestilling.startStasjon+"\n"+
-            "Endestasjon : "+bestilling.endeStasjon+"\n"+
-            "Dato : "+bestilling.dato+"\n"+
-            "Tid : "+bestilling.tid+"\n",
-    }).then (
-        message => alert("Emaiilen har blitt sendt")
-    );
-}

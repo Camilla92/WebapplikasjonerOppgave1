@@ -1,6 +1,6 @@
 ﻿function validerLikeStasjoner() {
-    const start = document.getElementById("startstasjonAdmin").value;
-    const slutt = document.getElementById("endestasjonAdmin").value;
+    const start = $("#startstasjonAdmin").val();
+    const slutt = $("#endestasjonAdmin").val();
 
     if (start === slutt) {
         $("#feil").html("Stasjonsnavnene kan ikke være like")

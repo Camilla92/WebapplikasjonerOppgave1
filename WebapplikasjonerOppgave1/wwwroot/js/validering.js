@@ -290,9 +290,6 @@ function validerDatoEndre(datoAdmin, tidAdmin, linje) {
     var timeParts = tidAdmin.split(":");
     var datoInput = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0], timeParts[0], timeParts[1]);
     
-    console.log("Idag"+today);
-    console.log("Input"+datoInput);
-    
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     const ok = regex.test(datoAdmin);
     if (!ok) {
