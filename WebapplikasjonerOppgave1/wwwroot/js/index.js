@@ -244,7 +244,6 @@ function lagreBestilling() {
 
     const url = "bestilling/lagre";
     $.post(url, bestilling, function () {
-        sendEpost(bestilling);
         window.location.href = 'bekreft.html';
     })
         .fail(function () {
