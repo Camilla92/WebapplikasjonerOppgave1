@@ -1,6 +1,4 @@
-﻿//TESTE TESTE
-
-function validerStartstasjon() {
+﻿function validerStartstasjon() {
     const ikkeValgtSS = $('#startstasjon option:selected').val();
     if (ikkeValgtSS === "Velg startstasjon") {
         $("#feilStartstasjon").html("Må velge en startstasjon");
@@ -11,7 +9,6 @@ function validerStartstasjon() {
         return true;
     }
 }
-
 
 function validerEndestasjon() {
     const ikkeValgtES = $('#endestasjon option:selected').val();
@@ -24,7 +21,6 @@ function validerEndestasjon() {
         return true;
     }
 }
-
 
 function validerDato(dato) {
     // regex på formatet: dd/mm/yyyy
@@ -43,7 +39,6 @@ function validerDato(dato) {
 
 function validerTid() {
     const tid = $('#tid option:selected').val();
-;
     if (tid === "Velg tidspunkt") {
         $("#feilTid").html("Må velge et tidspunkt");
         return false;
@@ -149,7 +144,8 @@ function ingenValideringsFeil() {
         && validerEpost() && validerKortnummer && validerAntallBarn() && validerAntallVoksne() );
 }
 
-// AdminValidering 
+// AdminValidering
+
 function validerBarnePrisAdmin(barnePrisAdmin) {
     const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(barnePrisAdmin);
@@ -186,9 +182,6 @@ function validerStartStasjonAdmin(startstasjonAdmin) {
     }
 }
 
-
-
-
 function validerEndeStasjonAdmin(endestasjonAdmin) {
     const regex = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
     const ok = regex.test(endestasjonAdmin);
@@ -200,8 +193,6 @@ function validerEndeStasjonAdmin(endestasjonAdmin) {
         return true;
     }
 }
-
-
 
 function validerDatoAdmin(datoAdmin) {
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
@@ -243,8 +234,8 @@ function ingenValideringsFeilAdmin() {
         && validerBarnePrisAdmin() && validerVoksenPrisAdmin());
 }
 
+//Endre validering
 
-//Endre validering 
 function validerBarnePrisEndre(Barnepris, linje) {  
     const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(Barnepris);
@@ -331,10 +322,6 @@ function validerTidEndre(tidAdmin, linje) {
     }
 }
 
-
-
-
-
 //Tor sitt eksempel: 
 function validerBrukernavn(brukernavn) {
 
@@ -367,4 +354,3 @@ function validerPassord(passord) {
     }
 
 }
-

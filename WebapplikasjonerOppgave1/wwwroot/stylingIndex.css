@@ -1,10 +1,6 @@
 ﻿label {
     color:white;
 }
-/*.container {
-    padding-top: 60px;
-    background-color: rgba(0,0,0,0.7);
-}*/
 
 .view {
     background-image: url('lofoten.jpg');
@@ -17,7 +13,6 @@
 .bilde {
     max-width: 250px;
     padding-top: 20px;
-
 }
 
 

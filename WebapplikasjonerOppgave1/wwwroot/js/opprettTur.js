@@ -1,5 +1,4 @@
-﻿
-function validerLikeStasjoner() {
+﻿function validerLikeStasjoner() {
     const start = document.getElementById("startstasjonAdmin").value;
     const slutt = document.getElementById("endestasjonAdmin").value;
 
@@ -32,9 +31,7 @@ function testFunction() {
     validerLikeStasjoner();
 }
 
-
 function opprettTur() {
-
     const tur = {
         startstasjon: $("#startstasjonAdmin").val(),
         endestasjon: $("#endestasjonAdmin").val(),
@@ -43,7 +40,6 @@ function opprettTur() {
         barnepris: $("#barnePrisAdmin").val(),
         voksenpris: $("#voksenPrisAdmin").val()
     }
-
     const url = "bestilling/opprettTur";
     $.post(url, tur, function () {
         window.location.href = 'admin.html';

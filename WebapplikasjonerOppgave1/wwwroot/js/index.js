@@ -275,6 +275,3 @@ function sendEpost(bestilling){
         message => alert("Emaiilen har blitt sendt")
     );
 }
-
-
-
