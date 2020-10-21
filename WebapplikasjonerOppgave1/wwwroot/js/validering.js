@@ -269,7 +269,7 @@ function validerStartStasjonEndre(startstasjonAdmin, linje) {
         $("#feilStartStasjon" + linje).html("Startstasjon må bestå av 2 til 20 bokstaver")
         return false;
     } else {
-        $("#feilStarStasjon" + linje).html("");
+        $("#feilStartStasjon" + linje).html("");
         return true;
     }
 }
@@ -370,6 +370,7 @@ function validerLikeStasjonerOpprett(start, slutt) {
         return false;
     }
     else {
+        $("#feil").html("");
         return true;
     }
 }
