@@ -187,7 +187,21 @@ function validerEndeStasjonAdmin(endestasjonAdmin) {
     }
 }
 
-function validerDatoAdmin(dato, tid) {
+function validerDatoAdmin(dato) {
+    const regexp = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+
+    const ok = regexp.test(dato);
+    if (!ok) {
+        $("#feilDatoAdmin").html("Dato må være i riktig format.");
+        return false;
+    }
+    else {
+        $("#feilDatoAdmin").html("");
+        return true;
+    }
+}
+
+function validerDatoOgTid(dato, tid) {
     var today = new Date();
     var dateParts = dato.split("/");
     var timeParts = tid.split(":");
@@ -202,8 +216,7 @@ function validerDatoAdmin(dato, tid) {
         if (today.getTime() < datoInput.getTime()) {
             $("#feilDatoAdmin").html("");
             return true;
-        }
-        else {
+        } else {
             $("#feilDatoAdmin").html("Dato/tid kan ikke være tilbake i tid");
             return false;
         }

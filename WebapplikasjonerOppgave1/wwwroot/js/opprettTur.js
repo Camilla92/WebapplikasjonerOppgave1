@@ -4,11 +4,12 @@ function validerOgLagTur() {
     const StartstasjonOK = validerStartStasjonAdmin($("#startstasjonAdmin").val());
     const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjonAdmin").val());
     const ikkeLikeStasjoner = validerLikeStasjonerOpprett();
-    const DatoOK = validerDatoAdmin($("#datoAdmin").val(), $("#tidAdmin").val());
+    const DatoOK = validerDatoAdmin($("#datoAdmin").val());
     const TidOK = validerTidAdmin($("#tidAdmin").val());
     const BarnePrisOK = validerBarnePrisAdmin($("#barnePrisAdmin").val());
     const VoksenPrisOK = validerVoksenPrisAdmin($("#voksenPrisAdmin").val());
-    if (StartstasjonOK && EndestasjonOK && ikkeLikeStasjoner && DatoOK && TidOK && BarnePrisOK && VoksenPrisOK) {
+    const DatoOgTidOK = validerDatoOgTid($("#datoAdmin").val(), $("#tidAdmin").val());
+    if (StartstasjonOK && EndestasjonOK && ikkeLikeStasjoner && DatoOK && TidOK && BarnePrisOK && VoksenPrisOK && DatoOgTidOK) {
         opprettTur();
     }
 }
