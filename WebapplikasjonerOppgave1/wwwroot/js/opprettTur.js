@@ -3,7 +3,7 @@
 function validerOgLagTur() {
     const StartstasjonOK = validerStartStasjonAdmin($("#startstasjonAdmin").val());
     const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjonAdmin").val());
-    const ikkeLikeStasjoner = validerLikeStasjonerOpprett();
+    const ikkeLikeStasjoner = validerLikeStasjonerOpprett($("#startstasjonAdmin").val(), $("#endestasjonAdmin").val());
     const DatoOK = validerDatoAdmin($("#datoAdmin").val());
     const TidOK = validerTidAdmin($("#tidAdmin").val());
     const BarnePrisOK = validerBarnePrisAdmin($("#barnePrisAdmin").val());
