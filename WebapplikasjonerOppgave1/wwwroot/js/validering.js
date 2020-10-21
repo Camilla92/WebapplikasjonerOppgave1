@@ -305,7 +305,7 @@ function validerDatoEndre(datoAdmin, tidAdmin, linje) {
             return true;
         }
         else {
-            $("#feilDatoAdmin" + linje).html("Dato/tid kan ikke være tilbake i tid");
+            $("#slettFeil" + linje).html("Dato/tid kan ikke være tilbake i tid");
             return false;
         }
     }
