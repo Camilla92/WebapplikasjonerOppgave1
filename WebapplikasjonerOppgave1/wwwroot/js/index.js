@@ -252,7 +252,7 @@ function lagreBestilling() {
         window.location.href = 'bekreft.html';
         
         console.log("Bestillingen er lagret!");
-        sendEmail();
+        //sendEmail();
         
     })
         .fail(function () {
@@ -263,10 +263,10 @@ function lagreBestilling() {
 
 
 
-$(function sendEmail () {
+/*$(function sendEmail () {
     $("[id*=bekreft]").click(function () {
         var toEmail = $.trim($("#epost").val());
-        var innhold = formaterBestilling();
+        var innhold = $.trim(formaterBestilling());
 
         $.ajax({
             type: "POST",
@@ -275,10 +275,11 @@ $(function sendEmail () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (r) {
-                alert(r.d+ "feil feil feil 1");
+                alert(r.d+ "Error feil 1");
             },
             error: function (r) {
-                alert(r.responseText+ "feilfeilfeil 2");
+                alert(r.responseText + "feilfeilfeil 2");
+                console.log(r.responseText);
             },
             failure: function (r) {
                 alert(r.responseText+ "feil feil feil 3");
@@ -286,7 +287,7 @@ $(function sendEmail () {
         });
         return false;
     });
-});
+});*/
 
 
 
