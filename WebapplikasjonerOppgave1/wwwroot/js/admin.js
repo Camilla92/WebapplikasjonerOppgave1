@@ -120,15 +120,28 @@ function formaterTurer(turer) {
 }
 */
 
+function validerLikeStasjoner() {
+    const start = $("#startstasjon").val();
+    const slutt = $("#endestasjon").val();
+
+    if (start === slutt) {
+        $("#feil").html("Stasjonsnavnene kan ikke være like")
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 
 function validerOgEndreTur(linje) {
     const StartstasjonOK = validerStartStasjonEndre($("#startstasjon"+linje).val(), linje);
     const EndestasjonOK = validerEndeStasjonEndre($("#endestasjon"+linje).val(), linje); 
     const DatoOK = validerDatoEndre($("#dato"+linje).val(), $("#tid"+linje).val(), linje);
+    const ikkeLikeStasjoner = validerLikeStasjoner();
     const TidOK = validerTidEndre($("#tid"+linje).val(), linje);
     const PrisBarnOK = validerBarnePrisEndre($("#barnePris"+linje).val(), linje);
     const PrisVoksenOK = validerVoksenPrisEndre($("#voksenPris"+linje).val(), linje);
-    if (StartstasjonOK && EndestasjonOK && TidOK && DatoOK && PrisBarnOK && PrisVoksenOK) {
+    if (StartstasjonOK && EndestasjonOK && TidOK && DatoOK && PrisBarnOK && PrisVoksenOK && ikkeLikeStasjoner) {
            EndreTur(linje);
            return true;
     }
