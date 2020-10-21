@@ -231,6 +231,8 @@ function validerLikeStasjonerOpprett() {
         return false;
     }
     else {
+        
+        $("#feil").html("")
         return true;
     }
 }
