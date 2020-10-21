@@ -222,6 +222,19 @@ function validerTidAdmin(tidAdmin) {
     }
 }
 
+function validerLikeStasjonerOpprett() {
+    const start = $("#startstasjonAdmin").val();
+    const slutt = $("#endestasjonAdmin").val();
+
+    if (start === slutt) {
+        $("#feil").html("Stasjonsnavnene kan ikke være like")
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 //Endre validering
 function validerBarnePrisEndre(Barnepris, linje) {  
     const regex = /^[0-9]{2,4}$/;

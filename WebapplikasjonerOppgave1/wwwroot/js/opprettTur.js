@@ -1,20 +1,9 @@
-﻿function validerLikeStasjoner1() {
-    const start = $("#startstasjonAdmin").val();
-    const slutt = $("#endestasjonAdmin").val();
-
-    if (start === slutt) {
-        $("#feil").html("Stasjonsnavnene kan ikke være like")
-        return false;
-    }
-    else {
-        return true;
-    }
-}
+﻿
 
 function validerOgLagTur() {
     const StartstasjonOK = validerStartStasjonAdmin($("#startstasjonAdmin").val());
     const EndestasjonOK = validerEndeStasjonAdmin($("#endestasjonAdmin").val());
-    const ikkeLikeStasjoner = validerLikeStasjoner1();
+    const ikkeLikeStasjoner = validerLikeStasjonerOpprett();
     const DatoOK = validerDatoAdmin($("#datoAdmin").val());
     const TidOK = validerTidAdmin($("#tidAdmin").val());
     const BarnePrisOK = validerBarnePrisAdmin($("#barnePrisAdmin").val());
