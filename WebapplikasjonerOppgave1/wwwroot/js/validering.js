@@ -231,6 +231,8 @@ function validerLikeStasjonerOpprett() {
         return false;
     }
     else {
+        
+        $("#feil").html("")
         return true;
     }
 }
@@ -311,7 +313,7 @@ function validerTidEndre(tidAdmin, linje) {
     const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
     const ok = regex.test(tidAdmin);
     if (!ok) {
-        $("#feilTidAdmin" + linje).html("Formatet på dato må være DD/MM/YYYY")
+        $("#feilTidAdmin" + linje).html("Formatet på tid må være TT: SS ")
         return false;
     } else {
         $("#feilTidAdmin" + linje).html("");
@@ -355,6 +357,7 @@ function validerLikeStasjoner(start, slutt, linje) {
         return false;
     }
     else {
+        $("#feilEndeStasjonAdmin" + linje).html("")
         return true;
     }
 }
