@@ -270,7 +270,6 @@ namespace WebapplikasjonerOppgave1.DAL
                     var endeStasjonRad = new Stasjon();
                     endeStasjonRad.StasjonsNavn = endreTur.EndeStasjon;
                     tur.EndeStasjon = endeStasjonRad;
-
                 }
 
                 await _db.SaveChangesAsync();

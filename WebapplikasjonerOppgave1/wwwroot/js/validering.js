@@ -364,7 +364,7 @@ function validerLikeStasjoner(start, slutt, linje) {
     }
 }
 
-function validerLikeStasjoner2(start, slutt) {
+function validerLikeStasjonerOpprett(start, slutt) {
     if (start === slutt) {
         $("#feil").html("Stasjonsnavnene kan ikke være like");
         return false;
