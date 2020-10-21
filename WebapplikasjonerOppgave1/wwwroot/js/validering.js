@@ -349,5 +349,14 @@ function validerPassord(passord) {
         $("#feilPassord").html("");
         return true;
     }
+}
 
+function validerLikeStasjoner(start, slutt, linje) {
+    if (start === slutt) {
+        $("#feilEndeStasjonAdmin" + linje).html("Stasjonsnavnene kan ikke være like")
+        return false;
+    }
+    else {
+        return true;
+    }
 }
