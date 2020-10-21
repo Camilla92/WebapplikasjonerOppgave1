@@ -187,24 +187,24 @@ function validerEndeStasjonAdmin(endestasjonAdmin) {
     }
 }
 
-function validerDatoAdmin(datoAdmin) {
+function validerDatoAdmin(dato, tid) {
+    var today = new Date();
+    var dateParts = dato.split("/");
+    var timeParts = tid.split(":");
+    var datoInput = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0], timeParts[0], timeParts[1]);
+
     const regex = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-    const ok = regex.test(datoAdmin);
+    const ok = regex.test(dato);
     if (!ok) {
-        $("#feilDatoAdmin").html("Formatet på dato må være DD/MM/YYYY")
+        $("#feilDatoAdmin").html("Formatet på dato må være DD/MM/YYYY");
         return false;
     } else {
-        var today = new Date();
-        var dateParts = datoAdmin.split("/");
-        var datoInput = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
-        today.setUTCDate(today.getUTCDate()-1);
-
         if (today.getTime() < datoInput.getTime()) {
             $("#feilDatoAdmin").html("");
             return true;
         }
         else {
-            $("#feilDatoAdmin").html("Dato og tid kan ikke være tilbake i tid");
+            $("#feilDatoAdmin").html("Dato/tid kan ikke være tilbake i tid");
             return false;
         }
     }
@@ -286,6 +286,8 @@ function validerEndeStasjonEndre(endestasjonAdmin, linje) {
     }
 }
 
+
+
 function validerDatoEndre(datoAdmin, tidAdmin, linje) {
     var today = new Date();
     var dateParts = datoAdmin.split("/");
@@ -303,7 +305,7 @@ function validerDatoEndre(datoAdmin, tidAdmin, linje) {
             return true;
         }
         else {
-            $("#feilDatoAdmin" + linje).html("Dato kan ikke være tilbake i tid");
+            $("#feilDatoAdmin" + linje).html("Dato/tid kan ikke være tilbake i tid");
             return false;
         }
     }
@@ -358,6 +360,16 @@ function validerLikeStasjoner(start, slutt, linje) {
     }
     else {
         $("#feilEndeStasjonAdmin" + linje).html("")
+        return true;
+    }
+}
+
+function validerLikeStasjoner2(start, slutt) {
+    if (start === slutt) {
+        $("#feil").html("Stasjonsnavnene kan ikke være like");
+        return false;
+    }
+    else {
         return true;
     }
 }
