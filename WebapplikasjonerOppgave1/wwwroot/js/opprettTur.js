@@ -43,10 +43,10 @@ function opprettTur() {
     const url = "bestilling/opprettTur";
     $.post(url, tur, function () {
         window.location.href = 'admin.html';
+        window.alert("Ny tur fra " + tur.startstasjon + " til " + tur.endestasjon + " ble opprettet!");
         console.log("Tur er opprettet!");
     })
         .fail(function () {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
 };
-
