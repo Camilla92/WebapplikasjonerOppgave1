@@ -9,28 +9,6 @@ $(function () {
     });
 });
 
-
-/*
-$(function () {
-    hentAlleTurer();
-});
-
-function hentAlleTurer() {
-    $.get("bestilling/HentAlleTurer", function (turene) {
-        formaterTurer(turer);
-    })
-        .fail(function (feil) {
-            if (feil.status == 401) {
-                window.location.href = 'loggInn.html';
-            }
-            else {
-                $("#feil").html("Feil på server - prøv igjen senere");
-            }
-        });
-}
-*/
-
-
 function formaterTurer(turer) {
     let ut = "<table class='table table-striped'>" +
         "<th>TurId</th>" +
@@ -72,76 +50,14 @@ function formaterTurer(turer) {
     return ut;
 }
 
-/*
-
-$(function () {
-    HentAlleTurer();
-});
-
-function HentAlleTurer() {
-    $.get("bestilling/HentAlleTurer", function (turer) {
-        if (turer) {
-            formaterTurer(turer);
-        } else {
-            $("#feil").html("Feil i db");
-        }
-    });
-}
-
-
-
-function formaterTurer(turer) {
-    let ut = "<table class='table table-striped'>" +
-        "<th>TurId</th>" +
-        "<th>Startstasjon</th>" +
-        "<th>Endestasjon</th>" +
-        "<th>Dato</th>" +
-        "<th>Tid</th>" +
-        "<th>Barnepris</th>" +
-        "<th>Voksenpris</th>" +
-        "<th>Endre</th>" +
-        "<th>Slett</th>" +
-        "</tr>";
-    for (const tur of turer) {
-        ut += "<tr>" +
-            "<td>" + tur.TurId + "</td>" +
-            "<td>" + tur.StartStasjon + "</td>" +
-            "<td>" + tur.EndeStasjon + "</td>" +
-            "<td>" + tur.Dato + "</td>" +
-            "<td>" + tur.Tid + "</td>" +
-            "<td>" + tur.BarnePris + "</td>" +
-            "<td>" + tur.VoksenPris + "</td > " +
-            "<td> <button class='btn btn-info' onclick='EndreTur(" + tur.TurId + ")'>Endre</button></td>" +
-            "<td> <button class='btn btn-danger' onclick='SlettTur(" + tur.TurId + ")'>Slett</button></td>" +
-            "</tr>";
-    };
-    ut += "</table>";
-    $("#turene").html(ut);
-}
-*/
-
-function validerLikeStasjoner() {
-    const start = $("#startstasjon").val();
-    const slutt = $("#endestasjon").val();
-
-    if (start === slutt) {
-        $("#feil").html("Stasjonsnavnene kan ikke være like")
-        return false;
-    }
-    else {
-        return true;
-    }
-}
-
 function validerOgEndreTur(linje) {
     const StartstasjonOK = validerStartStasjonEndre($("#startstasjon"+linje).val(), linje);
     const EndestasjonOK = validerEndeStasjonEndre($("#endestasjon"+linje).val(), linje); 
     const DatoOK = validerDatoEndre($("#dato"+linje).val(), $("#tid"+linje).val(), linje);
-    const ikkeLikeStasjoner = validerLikeStasjoner();
     const TidOK = validerTidEndre($("#tid"+linje).val(), linje);
     const PrisBarnOK = validerBarnePrisEndre($("#barnePris"+linje).val(), linje);
     const PrisVoksenOK = validerVoksenPrisEndre($("#voksenPris"+linje).val(), linje);
-    if (StartstasjonOK && EndestasjonOK && TidOK && DatoOK && PrisBarnOK && PrisVoksenOK && ikkeLikeStasjoner) {
+    if (StartstasjonOK && EndestasjonOK && TidOK && DatoOK && PrisBarnOK && PrisVoksenOK) {
            EndreTur(linje);
            return true;
     }
@@ -149,7 +65,6 @@ function validerOgEndreTur(linje) {
         $("#feil").html("Feil i inputvalidering - kan ikke endre på turen! ");
     }
 }
-
 
 function EndreTur(linje) {
     var tur = {
@@ -161,7 +76,6 @@ function EndreTur(linje) {
         barnePris: $("#barnePris" + linje).val(),
         voksenPris: $("#voksenPris" + linje).val()
     }
-
     var endreOK = confirm("Ønsker du å endre på tur med TurId: " + tur.TurId + " ?");
     if (endreOK) {
         var url = "bestilling/EndreTur";
@@ -181,6 +95,3 @@ function SlettTur(linje) {
         });
     }
 }
-
-
-

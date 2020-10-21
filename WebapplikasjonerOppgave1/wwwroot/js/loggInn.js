@@ -8,7 +8,6 @@
         const bruker = {
             brukernavn: $("#brukernavn").val(),
             passord: $("#passord").val()
-
         }
         $.post("Bestilling/LoggInn", bruker, function (OK) {
 
@@ -20,19 +19,10 @@
 
                 $("#feil").html("Feil brukernavn eller passord.");
             }
-
         })
 
         .fail(function (feil){
-            
-  
-
             $("#feil").html("Feil på server.");
-
         });
-
     }
-
-
-
 }

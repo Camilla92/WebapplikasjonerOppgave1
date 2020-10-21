@@ -1,7 +1,6 @@
-﻿
-function validerLikeStasjoner() {
-    const start = $("#startstasjonAdmin").val();
-    const slutt = $("#endestasjonAdmin").val();
+﻿function validerLikeStasjoner() {
+    const start = document.getElementById("startstasjonAdmin").value;
+    const slutt = document.getElementById("endestasjonAdmin").value;
 
     if (start === slutt) {
         $("#feil").html("Stasjonsnavnene kan ikke være like")
@@ -32,9 +31,7 @@ function testFunction() {
     validerLikeStasjoner();
 }
 
-
 function opprettTur() {
-
     const tur = {
         startstasjon: $("#startstasjonAdmin").val(),
         endestasjon: $("#endestasjonAdmin").val(),
@@ -43,14 +40,13 @@ function opprettTur() {
         barnepris: $("#barnePrisAdmin").val(),
         voksenpris: $("#voksenPrisAdmin").val()
     }
-
     const url = "bestilling/opprettTur";
     $.post(url, tur, function () {
         window.location.href = 'admin.html';
+        window.alert("Ny tur fra " + tur.startstasjon + " til " + tur.endestasjon + " ble opprettet!");
         console.log("Tur er opprettet!");
     })
         .fail(function () {
             $("#feil").html("Feil på server - prøv igjen senere");
         });
 };
-
