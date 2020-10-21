@@ -357,6 +357,7 @@ function validerLikeStasjoner(start, slutt, linje) {
         return false;
     }
     else {
+        $("#feilEndeStasjonAdmin" + linje).html("")
         return true;
     }
 }
