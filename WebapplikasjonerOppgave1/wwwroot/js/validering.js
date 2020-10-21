@@ -138,14 +138,7 @@ function validerAntallVoksne(AntallVoksne) {
     }
 }
 
-function ingenValideringsFeil() {
-    return (validerStartstasjon() && validerEndestasjon() && validerDato() &&
-        validerTid() && validerFornavn() && validerEtternavn() && validerTelefonnummer()
-        && validerEpost() && validerKortnummer && validerAntallBarn() && validerAntallVoksne() );
-}
-
 // AdminValidering
-
 function validerBarnePrisAdmin(barnePrisAdmin) {
     const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(barnePrisAdmin);
@@ -229,13 +222,7 @@ function validerTidAdmin(tidAdmin) {
     }
 }
 
-function ingenValideringsFeilAdmin() {
-    return (validerStartStasjonAdmin() && validerEndeStasjonAdmin() && validerDatoAdmin() && validerTidAdmin()
-        && validerBarnePrisAdmin() && validerVoksenPrisAdmin());
-}
-
 //Endre validering
-
 function validerBarnePrisEndre(Barnepris, linje) {  
     const regex = /^[0-9]{2,4}$/;
     const ok = regex.test(Barnepris);
@@ -319,7 +306,6 @@ function validerTidEndre(tidAdmin, linje) {
     }
 }
 
-//Tor sitt eksempel: 
 function validerBrukernavn(brukernavn) {
 
     const regex = /^[a-zA-ZæøåÆØÅ\.\\-]{2,20}$/;
@@ -333,7 +319,6 @@ function validerBrukernavn(brukernavn) {
         $("#feilBrukernavn").html("");
         return true;
     }
-
 }
 
 function validerPassord(passord) {

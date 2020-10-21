@@ -221,19 +221,19 @@ namespace WebapplikasjonerOppgave1.DAL
         {
             try
             {
-                var tur = await _db.Turer.FindAsync(endreTur.TurId); //finner turen med id-en i db
-                tur.Tid = endreTur.Tid; //setter verdiene fra input (endreTur) til tur
+                var tur = await _db.Turer.FindAsync(endreTur.TurId); 
+                tur.Tid = endreTur.Tid; 
                 tur.Dato = endreTur.Dato;
                 tur.BarnePris = endreTur.BarnePris;
                 tur.VoksenPris = endreTur.VoksenPris;
 
                 bool startStasjonFunnet = false;
-                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync(); //henter alle stasjonene
-                foreach (var stasjon in alleStasjoner) //looper gjennom alle stasjonene
+                List<Stasjon> alleStasjoner = await _db.Stasjoner.ToListAsync(); 
+                foreach (var stasjon in alleStasjoner) 
                 {
-                    if (endreTur.StartStasjon.Equals(stasjon.StasjonsNavn)) //sjekker om stasjonen fra input er lik stasjon i db
+                    if (endreTur.StartStasjon.Equals(stasjon.StasjonsNavn)) 
                     {
-                        tur.StartStasjon = stasjon; //hvis finner lik stasjon, blir stasjon satt til en som allerede finnes
+                        tur.StartStasjon = stasjon; 
                         startStasjonFunnet = true;
 
                         if(endreTur.StartStasjon == endreTur.EndeStasjon)
@@ -245,9 +245,9 @@ namespace WebapplikasjonerOppgave1.DAL
 
                 if (!startStasjonFunnet)
                 {
-                    var startStasjonRad = new Stasjon(); //hvis stasjon ikke fantes fra før av, blir ny stasjon opprettet
-                    startStasjonRad.StasjonsNavn = endreTur.StartStasjon; //Nytt stasjonsnavn legges til i db
-                    tur.StartStasjon = startStasjonRad; //tur sin startstasjon settes lik stasjonen fra input (endreTur)
+                    var startStasjonRad = new Stasjon(); 
+                    startStasjonRad.StasjonsNavn = endreTur.StartStasjon; 
+                    tur.StartStasjon = startStasjonRad; 
                 }
 
                 bool endeStasjonFunnet = false;

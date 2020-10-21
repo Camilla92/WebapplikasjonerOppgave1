@@ -239,8 +239,7 @@ namespace test5
 
             // Act
             var resultat = await bestillingController.OpprettTur(It.IsAny<Tur>()) as BadRequestObjectResult;
-
-            // Assert 
+            
             Assert.Equal((int)HttpStatusCode.BadRequest, resultat.StatusCode);
             Assert.Equal("Turen ble ikke registrert", resultat.Value);
         }
