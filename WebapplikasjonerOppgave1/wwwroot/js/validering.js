@@ -355,11 +355,11 @@ function validerPassord(passord) {
 
 function validerLikeStasjoner(start, slutt, linje) {
     if (start === slutt) {
-        $("#feilEndeStasjonAdmin" + linje).html("Stasjonsnavnene kan ikke være like")
+        $("#slettFeil" + linje).html("Stasjonsnavnene kan ikke være like")
         return false;
     }
     else {
-        $("#feilEndeStasjonAdmin" + linje).html("")
+        $("#slettFeil" + linje).html("")
         return true;
     }
 }
